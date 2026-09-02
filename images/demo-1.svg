@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200" role="img" aria-label="Demo görsel 1">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#06351b"/>
+      <stop offset="1" stop-color="#01210e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1200" fill="url(#g1)"/>
+  <circle cx="500" cy="470" r="250" fill="none" stroke="#c4932d" stroke-width="6" opacity="0.5"/>
+  <ellipse cx="500" cy="560" rx="230" ry="150" fill="#0d4a28"/>
+  <path d="M300 540 h400 a30 30 0 0 1 -30 150 h-340 a30 30 0 0 1 -30 -150 z" fill="#c4932d"/>
+  <rect x="280" y="520" width="440" height="34" rx="17" fill="#e6d1a4"/>
+  <path d="M430 430 q20 -50 0 -100 M500 420 q25 -55 0 -110 M570 430 q20 -50 0 -100"
+        fill="none" stroke="#e6d1a4" stroke-width="10" stroke-linecap="round" opacity="0.85"/>
+  <text x="500" y="880" text-anchor="middle" font-family="Georgia, serif" font-size="70" fill="#faf9f8">Sıcak Vitrin</text>
+  <text x="500" y="945" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" letter-spacing="6" fill="#e6d1a4">DEMO GÖRSEL 1</text>
+</svg>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emek Sofrası | Maslak'ta Ev Yemekleri</title>
+<meta name="description" content="Her gün özenle hazırlanan ev yemekleri, sıcak ve doyurucu menüler. Maslak'ta el emeği ev lezzeti. Pazartesi–Cumartesi 08:30–19:00.">
+<link rel="canonical" href="https://emeksofrasi.com/">
+
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="Emek Sofrası | Maslak'ta Ev Yemekleri">
+<meta property="og:description" content="Her gün özenle hazırlanan ev yemekleri, sıcak ve doyurucu menüler.">
+<meta property="og:url" content="https://emeksofrasi.com/">
+<meta property="og:locale" content="tr_TR">
+<!-- <meta property="og:image" content="https://emeksofrasi.com/images/og-image.jpg"> -->
+
+<link rel="icon" href="images/emek_sofrasi_logo.png">
+<link rel="apple-touch-icon" href="images/emek_sofrasi_logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/chat.css">
+
+<!-- ============================================================
+     ANALITIK / DONUSUM TAKIBI - YAYINDA DOLDURULACAK
+     - Google Analytics 4 (gtag) buraya
+     - Meta Pixel buraya
+     - whatsapp_cta tiklamasinda WhatsApp donusum event
+     - hero_menu_cta tiklamasinda menu donusum event
+     ============================================================ -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Emek Sofrası",
+  "servesCuisine": "Türk ev yemekleri",
+  "image": "https://emeksofrasi.com/images/emek_sofrasi_logo.png",
+  "url": "https://emeksofrasi.com/",
+  "telephone": "+90-531-021-99-76",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Maslak Mah. Dere Boyu 2. Cad. No:8 E Blok",
+    "addressLocality": "Sarıyer",
+    "addressRegion": "İstanbul",
+    "postalCode": "34475",
+    "addressCountry": "TR"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "08:30", "closes": "19:00"
+  }]
+}
+</script>
+</head>
+<body class="page-home page-index" id="top">
+
+<!-- ================= HEADER ================= -->
+<header class="topbar" id="topbar">
+  <div class="topbar__inner">
+    <a class="topbar__logo" href="index.html" aria-label="Emek Sofrası ana sayfa">
+      <img src="images/emek_sofrasi_logo.png" alt="Emek Sofrası — Lezzetli, Dengeli, Doyurucu" width="1254" height="1254">
+    </a>
+
+    <nav class="site-nav" aria-label="Ana menü">
+      <ul>
+        <li><a href="index.html" aria-current="page">Ana Sayfa</a></li>
+        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+        <li><a href="menu.html" id="nav_menu" data-nav="menu">Menümüz</a></li>
+        <li><a href="paket-servis.html" id="nav_package" data-nav="package" class="site-nav__pkg">Paket Servis<small class="site-nav__soon">Yakında</small></a></li>
+        <li><a href="toplanti-yemekleri.html" id="nav_meeting_meals" data-nav="meeting_meals">Toplantı Yemekleri</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+      </ul>
+    </nav>
+
+    <a class="wa-btn" id="whatsapp_cta" data-cta="whatsapp"
+       href="https://wa.me/905310219976?text=Merhaba%2C%20Emek%20Sofras%C4%B1'na%20yazmak%20istiyorum."
+       target="_blank" rel="noopener">
+      <span class="wa-btn__ico" data-slot="wa-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.9-4.44 9.9-9.9S17.5 2 12.04 2zm0 18.05c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.15.83.84-3.07-.2-.32a8.13 8.13 0 01-1.25-4.32c0-4.52 3.68-8.2 8.2-8.2 4.52 0 8.2 3.68 8.2 8.2 0 4.52-3.68 8.2-8.2 8.2zm4.5-6.14c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42-.14-.01-.31-.01-.48-.01-.16 0-.43.06-.66.31-.23.24-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+      </span>
+      <span>WhatsApp ile<br>İletişime Geç</span>
+    </a>
+
+    <button class="nav-burger" aria-label="Menüyü aç/kapat" aria-expanded="false" aria-controls="mnav">
+      <span></span>
+    </button>
+  </div>
+
+  <nav class="mnav" id="mnav" aria-label="Mobil menü">
+    <ul>
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+      <li><a href="menu.html">Menümüz</a></li>
+      <li><a href="paket-servis.html">Paket Servis <small>· Yakında</small></a></li>
+      <li><a href="toplanti-yemekleri.html">Toplantı Yemekleri</a></li>
+      <li><a href="iletisim.html">İletişim</a></li>
+      <li><a href="https://wa.me/905310219976" target="_blank" rel="noopener">WhatsApp ile İletişime Geç</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ================= HERO — tasarım 4 ================= -->
+  <section class="hero" aria-label="Emek Sofrası tanıtım">
+    <div class="hero__grid">
+
+      <div class="hero__left">
+        <p class="hero__eyebrow">
+          El Emeği
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.7-4.3-9.3-8.1C.9 10.1 2 6.5 5 5.4c2-.7 4 .1 5.2 1.7L12 9l1.8-1.9C15 5.5 17 4.7 19 5.4c3 1.1 4.1 4.7 2.3 7.5C18.7 16.7 12 21 12 21z"/></svg>
+          Ev Lezzeti
+        </p>
+
+        <h1 class="hero__title">
+          <span class="l1">Her Sofrada</span>
+          <span class="l2">Bir Emek Var</span>
+        </h1>
+
+        <div class="hero__rule" aria-hidden="true">
+          <span></span>
+          <svg class="sprig" viewBox="0 0 34 18"><g fill="currentColor">
+            <ellipse cx="17" cy="6" rx="2.1" ry="5"/>
+            <path d="M17 12c-3 0-5.4-1.6-6.4-4 3 0 5.4 1.6 6.4 4zM17 12c3 0 5.4-1.6 6.4-4-3 0-5.4 1.6-6.4 4z"/>
+            <path d="M17 14c-2.1 0-3.9-1.1-4.7-2.8 2.1 0 3.9 1.1 4.7 2.8zM17 14c2.1 0 3.9-1.1 4.7-2.8-2.1 0-3.9 1.1-4.7 2.8z"/>
+            <circle cx="6" cy="9" r="1.1"/><circle cx="28" cy="9" r="1.1"/>
+          </g></svg>
+          <span></span>
+        </div>
+
+        <p class="hero__desc">Her gün özenle hazırlanan ev yemekleri,<br>sıcak ve doyurucu menüler.</p>
+
+        <a class="hero__cta" id="hero_menu_cta" data-cta="menu" href="menu.html">
+          Haftalık &amp; Günlük<br>Menülerimizi İnceleyin
+          <span class="hero__cta-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7V5z"/></svg>
+          </span>
+        </a>
+
+        <div class="hero__meta">
+          <div class="hero__hours">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>
+            <span>Pazartesi&nbsp;-&nbsp;Cumartesi</span>
+            <span class="sep">|</span>
+            <span>08:30&nbsp;-&nbsp;19:00</span>
+          </div>
+          <p class="hero__closed">Pazar günleri kapalıyız.</p>
+        </div>
+
+        <div class="hero__cards" aria-label="Kabul edilen yemek kartları">
+          <span class="hero__cards-label">Geçerli Yemek Kartları</span>
+          <div class="hero__cards-row">
+            <span class="card-logo"><img src="images/yemek kartlari/pluxee.png" alt="Pluxee" loading="lazy"></span>
+            <span class="card-logo"><img src="images/yemek kartlari/edenred.png" alt="Edenred Ticket Restaurant" loading="lazy"></span>
+            <span class="card-logo"><img src="images/yemek kartlari/multinet.png" alt="Multinet" loading="lazy"></span>
+            <span class="card-logo"><img src="images/yemek kartlari/setcard.png" alt="Setcard" loading="lazy"></span>
+            <span class="card-logo"><img src="images/yemek kartlari/metropol_card.png" alt="MetropolCard" loading="lazy"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__media" data-hero-carousel data-interval="5500">
+        <div class="hero__slides" data-hero-track>
+          <img class="hero__slide is-active" src="images/hero.png"
+               alt="Emek Sofrası'nda masada sıcak ev yemekleri: et sote, nohutlu pilav, mercimek çorbası, ızgara köfte, çıtır patates ve ekmek"
+               width="830" height="710" fetchpriority="high">
+          <img class="hero__slide" src="images/hakkimizda/foto-01.jpg" alt="Emek Sofrası iç mekânı" loading="lazy">
+          <img class="hero__slide" src="images/hakkimizda/foto-02.jpg" alt="Emek Sofrası dış cephesi" loading="lazy">
+          <img class="hero__slide" src="images/hakkimizda/foto-03.jpg" alt="Emek Sofrası günlük yemek vitrini ve iç mekân" loading="lazy">
+        </div>
+        <span class="steam steam--a" aria-hidden="true"></span>
+        <span class="steam steam--b" aria-hidden="true"></span>
+        <span class="steam steam--c" aria-hidden="true"></span>
+        <div class="hero__dots" data-hero-dots aria-hidden="true"></div>
+      </div>
+
+    </div>
+    <div class="hero__baseline" aria-hidden="true">
+      <span></span>
+      <svg class="sprig" viewBox="0 0 34 18"><g fill="currentColor">
+        <ellipse cx="17" cy="6" rx="2.3" ry="5.4"/>
+        <path d="M17 12c-3.2 0-5.8-1.7-6.8-4.2 3.2 0 5.8 1.7 6.8 4.2zM17 12c3.2 0 5.8-1.7 6.8-4.2-3.2 0-5.8 1.7-6.8 4.2z"/>
+        <path d="M17 14.4c-2.2 0-4.1-1.2-5-3 2.2 0 4.1 1.2 5 3zM17 14.4c2.2 0 4.1-1.2 5-3-2.2 0-4.1 1.2-5 3z"/>
+        <circle cx="5" cy="9" r="1.2"/><circle cx="29" cy="9" r="1.2"/>
+      </g></svg>
+      <span></span>
+    </div>
+    <svg class="hero__leaf hero__leaf--bl" viewBox="0 0 160 120" aria-hidden="true" fill="currentColor">
+      <path d="M0 120C6 78 26 34 74 8c-4 8-6 16-6 24 6-8 16-14 28-16-6 10-16 16-28 18 4 4 6 10 6 16-8-4-14-10-16-18-6 14-10 30-10 48-6 8-14 14-24 20-2-6-2-14 0-22-6 8-14 14-24 18 2-14 8-26 16-36-8 4-18 6-30 6 8-10 20-16 34-18-4-4-6-10-6-16 8 2 14 6 20 12 2-12 6-24 12-36z"/>
+    </svg>
+    <svg class="hero__leaf hero__leaf--br" viewBox="0 0 160 120" aria-hidden="true" fill="currentColor">
+      <path d="M0 120C6 78 26 34 74 8c-4 8-6 16-6 24 6-8 16-14 28-16-6 10-16 16-28 18 4 4 6 10 6 16-8-4-14-10-16-18-6 14-10 30-10 48-6 8-14 14-24 20-2-6-2-14 0-22-6 8-14 14-24 18 2-14 8-26 16-36-8 4-18 6-30 6 8-10 20-16 34-18-4-4-6-10-6-16 8 2 14 6 20 12 2-12 6-24 12-36z"/>
+    </svg>
+  </section>
+
+  <!-- ================= BÖLÜM 2 — Menümüz (özet) ================= -->
+  <section class="section section--panel" id="menu">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">Menümüz</span>
+        <h2>Günlük &amp; Haftalık Menüler</h2>
+        <p class="sec-head__sub">Her gün özenle hazırlanan menülerimizi menü sayfamızdan gün gün inceleyebilirsiniz.</p>
+      </div>
+      <div class="btn-row btn-row--center">
+        <a class="btn btn--gold" href="menu.html">Menü Sayfasına Git</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BÖLÜM 3 — Paket Servis (özet) ================= -->
+  <section class="section" id="paket">
+    <div class="container cta-band">
+      <span class="badge badge--soon">Yakında</span>
+      <h2>Paket Servisimiz Başlıyor</h2>
+      <p class="lead">Sevdiğiniz lezzetler, yakında kapınızda. Detaylar için paket servis sayfamızı ziyaret edin.</p>
+      <div class="btn-row btn-row--center">
+        <a class="btn btn--ghost" href="paket-servis.html">Paket Servis Sayfası</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BÖLÜM 4 — Toplantı Yemekleri (özet) ================= -->
+  <section class="section section--panel" id="kurumsal">
+    <div class="container cta-band">
+      <span class="eyebrow">Toplantı Yemekleri</span>
+      <h2>Toplantınız Sizden, Sofrası Bizden</h2>
+      <p class="lead">Özenle hazırlanan ev yemeklerimiz ve zeytinyağlı çeşitlerimizle toplantı sofralarınız için yanınızdayız.</p>
+      <div class="btn-row btn-row--center">
+        <a class="btn btn--gold" href="toplanti-yemekleri.html">Toplantı Yemekleri Sayfası</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BÖLÜM 5 — Hakkımızda ================= -->
+  <section class="section" id="hakkimizda">
+    <div class="container split split--reverse">
+      <div class="split__media">
+        <img class="about-photo" src="images/hakkimizda-mekan.jpg" alt="Emek Sofrası mekânından bir görünüm" loading="lazy">
+      </div>
+      <div class="split__content">
+        <span class="eyebrow">Hakkımızda</span>
+        <h2>El emeği, ev lezzeti</h2>
+        <p>Emek Sofrası, Maslak'ta her gün taze pişen ev yemekleri sunar. Menülerimiz günlük olarak değişiklik gösterebilir.</p>
+        <p><em>[DOĞRULANMIŞ METİN EKLENECEK — işletme hikâyesi, mutfak yaklaşımı]</em></p>
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="hakkimizda.html">Hikâyemizin Devamı</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BÖLÜM 6 — İletişim ================= -->
+  <section class="section section--panel" id="iletisim">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">İletişim &amp; Yol Tarifi</span>
+        <h2>Maslak'ta, plazaların arasında</h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <svg class="info-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg>
+          <h3>Adres</h3>
+          <p>Maslak Mah. Dere Boyu 2. Cad.<br>No:8 E Blok, 34475 Sarıyer / İstanbul</p>
+          <p><a href="https://www.google.com/maps/search/?api=1&query=Emek+Sofras%C4%B1+Maslak+Dere+Boyu+2.+Cadde+No+8" target="_blank" rel="noopener">Yol tarifi al →</a></p>
+        </div>
+        <div class="info-card">
+          <svg class="info-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.53 15.53 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          <h3>Telefon &amp; WhatsApp</h3>
+          <p><a href="tel:+905310219976">0531 021 99 76</a></p>
+          <p><a href="https://wa.me/905310219976" target="_blank" rel="noopener">WhatsApp'tan yazın →</a></p>
+        </div>
+        <div class="info-card">
+          <svg class="info-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+          <h3>Çalışma Saatleri</h3>
+          <div class="hours">
+            <div><span>Pazartesi – Cumartesi</span><span>08:30 – 19:00</span></div>
+            <div><span>Pazar</span><span class="is-closed">Kapalı</span></div>
+          </div>
+        </div>
+        <div class="info-card">
+          <svg class="info-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+          <h3>Yemek Kartları</h3>
+          <p>Pluxee, Setcard, Edenred Ticket Restaurant, MetropolCard, Multinet geçerlidir.</p>
+        </div>
+        <div class="info-card">
+          <svg class="info-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <h3>E-posta</h3>
+          <p><a href="mailto:emeksofrasimaslak@gmail.com">emeksofrasimaslak@gmail.com</a></p>
+        </div>
+        <div class="info-card">
+          <svg class="info-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <h3>Güncel Menü</h3>
+          <p>Menülerimiz günlük olarak değişiklik gösterebilir. Güncel menü için menü sayfamıza bakabilir ya da bizi arayabilirsiniz.</p>
+        </div>
+      </div>
+
+      <div class="map-embed">
+        <iframe
+          title="Emek Sofrası konum haritası"
+          src="https://www.google.com/maps?q=Maslak%20Mah.%20Dere%20Boyu%202.%20Cad.%20No%3A8%20Sar%C4%B1yer%20%C4%B0stanbul&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/emek_sofrasi_logo.png" alt="Emek Sofrası logosu">
+        <p>Maslak'ta el emeği ev lezzeti. Her gün özenle hazırlanan, sıcak ve doyurucu menüler.</p>
+      </div>
+      <div>
+        <h4>Sayfalar</h4>
+        <ul>
+          <li><a href="index.html">Ana Sayfa</a></li>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="menu.html">Menümüz</a></li>
+          <li><a href="paket-servis.html">Paket Servis · Yakında</a></li>
+          <li><a href="toplanti-yemekleri.html">Toplantı Yemekleri</a></li>
+          <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>İletişim</h4>
+        <ul>
+          <li><a href="tel:+905310219976">0531 021 99 76</a></li>
+          <li><a href="https://wa.me/905310219976" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:emeksofrasimaslak@gmail.com">emeksofrasimaslak@gmail.com</a></li>
+          <li>Pzt–Cmt 08:30–19:00 · Pazar kapalı</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Adres</h4>
+        <ul>
+          <li>Maslak Mah. Dere Boyu 2. Cad.</li>
+          <li>No:8 E Blok, 34475</li>
+          <li>Sarıyer / İstanbul</li>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=Emek+Sofras%C4%B1+Maslak+Dere+Boyu+2.+Cadde+No+8" target="_blank" rel="noopener">Haritada aç</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Emek Sofrası. Tüm hakları saklıdır.</span>
+      <span>
+        <a href="kvkk.html">KVKK Aydınlatma Metni</a> &nbsp;·&nbsp;
+        <a href="cerez-politikasi.html">Çerez Politikası</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+<!-- Sohbet asistanı ayarları -->
+<script>
+window.CHAT_CONFIG = {
+  webhookUrl: "",
+  whatsappNumber: "905310219976",
+  phone: "+905310219976"
+};
+</script>
+
+<script src="js/main.js"></script>
+<script src="js/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayfa Bulunamadı | Emek Sofrası</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/images/emek_sofrasi_logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/home.css">
+<style>
+  .nf {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 40px 24px; gap: 6px;
+    background: var(--hero-green);
+  }
+  .nf img { height: 120px; width: auto; margin-bottom: 22px; }
+  .nf__code {
+    font-family: var(--font-body); font-weight: 800;
+    font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-warm); margin: 0;
+  }
+  .nf h1 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--cream-text); margin: 6px 0 10px;
+  }
+  .nf p { color: var(--cream-dim); max-width: 42ch; margin: 0 0 22px; }
+  .nf__row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .nf a {
+    display: inline-flex; align-items: center;
+    padding: 12px 24px; border-radius: 10px;
+    font-family: var(--font-body); font-weight: 800;
+    font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nf a.is-gold { background: var(--btn-gold); color: var(--hero-ink); }
+  .nf a.is-ghost { border: 1px solid rgba(242,235,219,0.5); color: var(--cream-text); }
+</style>
+</head>
+<body class="page-home">
+  <section class="nf">
+    <img src="/images/emek_sofrasi_logo.png" alt="Emek Sofrası">
+    <p class="nf__code">Hata 404</p>
+    <h1>Aradığınız sayfa sofrada yok</h1>
+    <p>Sayfa taşınmış ya da hiç var olmamış olabilir. Ana sayfadan devam edebilirsiniz.</p>
+    <div class="nf__row">
+      <a class="is-gold" href="/index.html">Ana Sayfa</a>
+      <a class="is-ghost" href="/menu.html">Menümüz</a>
+      <a class="is-ghost" href="/iletisim.html">İletişim</a>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,274 @@
+/* ==========================================================================
+   Emek Sofrası — Toplantı Yemekleri
+   Emel Hanım'ın kilitli tasarımı birebir uygulanır (oranlar dahil).
+   Üst menü + logo + token'lar home.css'ten (tüm sayfalarla aynı).
+   Bu dosya SADECE .meeting-* alanlarını yönetir; header/nav/logo override YOK.
+
+   VIEWPORT KURALI: 1. bölüm (meeting-hero) HER ekran yüksekliğinde tek ekrana
+   sığar — hiçbir parça kadraj dışında kalmaz. Sabit dev px yükseklik yok;
+   clamp() + svh + yükseklik media query merdiveni.
+
+   MOBİL: masaüstü küçültülmez, yeniden akıtılır. Sıra: başlık → slogan →
+   açıklama → CTA → durum satırı → "Pek Yakında" paneli → GÖRSEL (en sonda).
+   ========================================================================== */
+
+:root {
+  --meeting-green: #04210f;    /* ana sayfa yeşiliyle birebir */
+  --meeting-gold:  #d9b45a;    /* tasarımdaki sıcak altın */
+  --meeting-cream: #f6efe0;
+}
+
+/* -------------------------------------------------- HERO */
+.meeting-page { width: 100%; overflow-x: hidden; background: var(--meeting-green); }
+
+.meeting-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - var(--header-h));
+  padding-left: clamp(20px, 5vw, 96px);
+  background: var(--meeting-green);
+  overflow: hidden;
+}
+
+/* Sağdaki aydınlık toplantı odası — tam kaplama, sol kenardan koyu geçiş */
+.meeting-hero__bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 78% 42%;
+  z-index: 0;
+}
+
+/* Sol koyu orman yeşili alan — tasarımdaki gibi: metin alanı TAM opak koyu,
+   ~%40'a kadar sabit, sonra masa açılır */
+.meeting-hero__overlay {
+  position: absolute; inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    95deg,
+    var(--meeting-green) 0%,
+    var(--meeting-green) 30%,
+    rgba(4, 33, 15, 0.92) 38%,
+    rgba(4, 33, 15, 0.55) 46%,
+    rgba(4, 33, 15, 0.14) 55%,
+    rgba(4, 33, 15, 0) 64%
+  );
+  pointer-events: none;
+}
+
+/* Sol metin bloğu — ORTA HİZALI (tasarımdaki gibi) */
+.meeting-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 33rem;
+  padding-block: clamp(18px, 3.4svh, 46px);
+  text-align: center;
+  color: var(--meeting-cream);
+}
+
+/* --- Başlık --- */
+.meeting-title {
+  margin: 0;
+  font-family: var(--font-display); font-weight: 800;
+  line-height: 0.97; letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.meeting-title span {
+  display: block;
+  font-size: clamp(2.2rem, 3.4vw + 1.9svh, 4.9rem);
+}
+
+/* --- Altın süs (ortalı) --- */
+.meeting-orn {
+  display: block; color: var(--meeting-gold);
+  margin: clamp(8px, 1.7svh, 18px) auto clamp(8px, 1.6svh, 16px);
+}
+.meeting-orn svg { width: clamp(130px, 13vw, 200px); height: auto; display: block; margin-inline: auto; }
+
+/* --- Slogan (altın) --- */
+.meeting-slogan {
+  margin: 0 0 clamp(9px, 1.7svh, 18px);
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.5rem, 2vw + .75svh, 2.8rem);
+  line-height: 1.12;
+  color: var(--meeting-gold);
+}
+
+/* --- Açıklama (krem, ortalı) --- */
+.meeting-description {
+  margin: 0 auto clamp(12px, 2.4svh, 26px);
+  max-width: 27rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.96rem, 0.7vw + .5svh, 1.24rem);
+  line-height: 1.44;
+  color: var(--meeting-cream);
+}
+
+/* --- Sipariş Ver butonu (aktif — ana sayfaya bağlı) --- */
+.meeting-cta {
+  display: inline-flex; align-items: center; gap: clamp(10px, 1.4vw, 18px);
+  padding: clamp(11px, 1.5svh, 16px) clamp(18px, 2vw, 28px);
+  border-radius: 10px;
+  background: var(--meeting-gold);
+  color: var(--meeting-green);
+  text-decoration: none;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+  transition: transform .2s ease, filter .2s ease;
+}
+.meeting-cta:hover { transform: translateY(-2px); filter: brightness(1.05); color: var(--meeting-green); }
+.meeting-cta:focus-visible { outline: 3px solid var(--meeting-cream); outline-offset: 3px; }
+.meeting-cta__ico { width: clamp(26px, 2.4vw, 34px); height: clamp(26px, 2.4vw, 34px); flex-shrink: 0; }
+.meeting-cta__ico svg { width: 100%; height: 100%; display: block; color: var(--meeting-green); }
+.meeting-cta__text {
+  font-family: var(--font-body); font-weight: 900;
+  font-size: clamp(1.05rem, 1.1vw + .3svh, 1.6rem);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+/* "Pek Yakında" etiketi — butonun içinde, sağda (tasarımdaki gibi) */
+.meeting-cta__soon {
+  font-family: var(--font-body); font-weight: 800;
+  font-size: clamp(0.62rem, 0.4vw + .18svh, 0.78rem);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(4, 33, 15, 0.16);
+  color: var(--meeting-green);
+}
+.meeting-cta__arrow { width: clamp(20px, 1.8vw, 26px); height: clamp(20px, 1.8vw, 26px); flex-shrink: 0; color: var(--meeting-green); }
+.meeting-cta__arrow svg { width: 100%; height: 100%; display: block; }
+
+/* --- Durum satırı (küçük takvim ikonu + metin) --- */
+.meeting-status-line {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin: clamp(7px, 1.3svh, 12px) 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 0.5vw + .3svh, 0.94rem);
+  color: var(--meeting-cream);
+  opacity: 0.9;
+}
+.meeting-status-line__ico { width: 15px; height: 15px; flex-shrink: 0; color: var(--meeting-gold); }
+.meeting-status-line__ico svg { width: 100%; height: 100%; display: block; }
+
+/* --- PEK YAKINDA! — altın fırça darbesi (yırtık boya kenarları) --- */
+.meeting-coming-soon {
+  position: relative;
+  display: inline-block;
+  margin-top: clamp(12px, 2.4svh, 26px);
+  padding: clamp(12px, 1.9svh, 20px) clamp(30px, 3.4vw, 46px) clamp(14px, 2.1svh, 22px);
+  color: var(--meeting-green);
+  transform: rotate(-1.6deg);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.34));
+}
+.meeting-coming-soon::before {
+  content: "";
+  position: absolute; inset: -10% -7%;
+  z-index: -1;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" preserveAspectRatio="none"><path d="M3 60 L22 50 C40 34 66 40 92 34 L104 44 L118 32 C150 26 186 38 214 30 L228 42 L240 30 C276 24 318 16 356 26 L368 16 L384 30 C414 24 452 22 470 44 L462 58 L474 72 C478 90 472 104 466 116 L474 128 L456 120 C424 134 384 124 350 130 L338 142 L322 128 C286 138 244 128 208 134 L196 146 L180 132 C144 140 96 140 62 126 L48 136 L40 118 C14 108 0 84 3 60 Z" fill="%23d9b45a"/></svg>');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.meeting-coming-soon strong {
+  display: block;
+  font-family: var(--font-body); font-weight: 900;
+  font-size: clamp(1.4rem, 1.8vw + .6svh, 2.6rem);
+  line-height: 1; letter-spacing: 0.01em; text-transform: uppercase;
+}
+.meeting-coming-soon span {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-body); font-weight: 800;
+  font-size: clamp(0.76rem, 0.7vw + .2svh, 0.98rem);
+  letter-spacing: 0.03em; text-transform: uppercase;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   DUYARLI — YÜKSEKLİK KIRILIMLARI (1. bölüm her ekran yüksekliğine sığsın)
+   ========================================================================== */
+@media (min-width: 901px) and (max-height: 940px) {
+  .meeting-title span { font-size: clamp(2rem, 2.6vw + 1.4svh, 3.7rem); }
+  .meeting-orn { margin: clamp(6px, 1.3svh, 12px) auto clamp(6px, 1.2svh, 10px); }
+  .meeting-orn svg { width: clamp(110px, 10vw, 160px); }
+  .meeting-slogan { font-size: clamp(1.35rem, 1.6vw + .5svh, 2.2rem); }
+}
+@media (min-width: 901px) and (max-height: 820px) {
+  :root { --header-h: 74px; --logo-w: clamp(100px, 10.5vw, 150px); }
+  .meeting-title span { font-size: clamp(1.9rem, 2.2vw + 1.1svh, 3.1rem); }
+  .meeting-description { font-size: clamp(0.94rem, 0.5vw + .3svh, 1.08rem); line-height: 1.38; margin-bottom: clamp(10px, 1.8svh, 18px); }
+  .meeting-coming-soon strong { font-size: clamp(1.3rem, 1.4vw + .5svh, 2rem); }
+}
+@media (min-width: 901px) and (max-height: 720px) {
+  :root { --header-h: 66px; --logo-w: clamp(86px, 9vw, 118px); }
+  .meeting-orn { display: none; }
+  .meeting-title span { font-size: clamp(1.75rem, 2vw + .9svh, 2.6rem); }
+  .meeting-slogan { font-size: clamp(1.25rem, 1.3vw + .4svh, 1.8rem); margin-bottom: clamp(7px, 1.3svh, 12px); }
+  .meeting-description { margin-bottom: clamp(8px, 1.4svh, 14px); }
+  .meeting-status-line { font-size: 0.8rem; }
+}
+@media (min-width: 901px) and (max-height: 640px) {
+  .meeting-hero { align-items: flex-start; }
+  .meeting-copy { padding-top: clamp(12px, 2svh, 22px); }
+  .meeting-title span { font-size: clamp(1.6rem, 4.6vw, 2.1rem); }
+  .meeting-description { font-size: 0.92rem; }
+  .meeting-coming-soon { margin-top: clamp(8px, 1.6svh, 16px); }
+}
+
+/* --- Laptop / dar masaüstü (901–1100) — üst boşluğu düzelt --- */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .meeting-hero { align-items: flex-start; }
+  .meeting-copy { padding-top: clamp(20px, 4svh, 40px); max-width: 30rem; }
+  .meeting-title span { font-size: clamp(2rem, 4.6vw, 3.4rem); }
+}
+
+/* ==========================================================================
+   MOBİL / DİKEY TABLET (≤900) — dikey yığın, GÖRSEL EN SONDA
+   ========================================================================== */
+@media (max-width: 900px) {
+  .meeting-hero {
+    display: flex; flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    padding-left: 0;
+    background: var(--meeting-green);
+    overflow: visible;
+  }
+  .meeting-hero__overlay { display: none; }
+
+  .meeting-copy {
+    order: 1;
+    max-width: 640px;
+    margin-inline: auto;
+    padding: clamp(22px, 4svh, 38px) clamp(18px, 5vw, 30px) clamp(24px, 5svh, 40px);
+  }
+  .meeting-title span { font-size: clamp(2rem, 8.4vw, 3rem); }
+  .meeting-slogan { font-size: clamp(1.4rem, 5.6vw, 2.05rem); }
+  .meeting-description { font-size: clamp(0.98rem, 3.8vw, 1.12rem); max-width: none; }
+
+  .meeting-hero__bg {
+    position: static;
+    order: 2;                    /* GÖRSEL: içeriğin altında, en sonda */
+    width: 100%; height: auto;
+    aspect-ratio: 16 / 10;
+    max-height: 44svh;
+    object-fit: cover;
+    object-position: 62% center;
+  }
+}
+
+/* Küçük telefon */
+@media (max-width: 480px) {
+  .meeting-hero__bg { max-height: 34svh; aspect-ratio: 16 / 11; }
+  .meeting-cta { width: 100%; justify-content: center; }
+  .meeting-coming-soon { display: block; }
+}
+@media (max-width: 900px) and (max-height: 720px) {
+  .meeting-hero__bg { max-height: 30svh; }
+  .meeting-orn { margin: 8px auto 6px; }
+  .meeting-orn svg { width: 120px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meeting-cta { transition: none; }
+}

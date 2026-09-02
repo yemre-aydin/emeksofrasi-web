@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Emek Sofrası — İletişim sayfası
+   Emel Hanım'ın kilitli tasarımı + verilen değerler birebir.
+   Üst menü = home.css'teki paylaşılan .topbar (Paket Servis ile birebir, sticky).
+   Gövde/1. bölüm açık krem tema (değişmedi). Footer yok.
+   Viewport disiplini: 100vh yok, clamp/svh/max-height.
+   ========================================================================== */
+
+:root {
+  --green: #123f31;
+  --cream: #f4eddf;
+  --gold:  #c89a3d;
+  --white: #fffdf8;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Mulish", "Segoe UI", -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; overflow-x: hidden; }
+body {
+  background: var(--cream);
+  color: var(--green);
+  font-family: var(--font-body);
+  -webkit-text-size-adjust: 100%;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* -------------------------------------------------- INTRO */
+.contact-page {
+  width: min(1440px, calc(100% - 40px));
+  margin-inline: auto;
+  padding-block: clamp(14px, 2.6svh, 36px) clamp(18px, 3.4svh, 48px);
+}
+
+.contact-intro { margin-bottom: clamp(12px, 2.4svh, 28px); }
+.contact-intro h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--green);
+}
+.gold-orn { display: block; color: var(--gold); margin: clamp(8px, 1.4vh, 14px) 0 clamp(4px, 0.8vh, 10px); }
+.gold-orn svg { width: clamp(110px, 14vw, 150px); height: auto; }
+.intro-script {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  color: var(--gold);
+}
+
+/* -------------------------------------------------- GRID */
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(22px, 3.4vw, 48px);
+  align-items: stretch;
+}
+
+/* -------------------------------------------------- KART */
+.contact-card {
+  background: var(--green);
+  border-radius: 18px;
+  padding: clamp(12px, 1.8vw, 26px) clamp(14px, 2vw, 28px);
+  color: var(--white);
+}
+.contact-row {
+  display: grid;
+  grid-template-columns: clamp(44px, 3.6vw, 54px) 1fr auto;
+  gap: clamp(12px, 1.4vw, 20px);
+  align-items: center;
+  padding-block: clamp(9px, 1.3vh, 15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  color: inherit;
+  text-decoration: none;
+}
+.contact-row:first-child { padding-top: 4px; }
+.contact-row:last-child { border-bottom: 0; padding-bottom: 4px; }
+.contact-row:is(a):hover .row-chevron { transform: translateX(3px); color: var(--white); }
+
+.contact-icon {
+  width: clamp(46px, 4vw, 54px);
+  height: clamp(46px, 4vw, 54px);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--green);
+}
+.contact-icon svg { width: 52%; height: 52%; }
+
+.contact-row h2 {
+  margin: 0 0 4px;
+  font-size: clamp(0.86rem, 1vw, 1rem);
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+.contact-row p {
+  margin: 0;
+  font-size: clamp(0.92rem, 1vw, 1.05rem);
+  line-height: 1.45;
+  color: rgba(255, 253, 248, 0.92);
+}
+.row-chevron {
+  color: var(--gold);
+  font-size: 1.4rem;
+  transition: transform .2s ease, color .2s ease;
+}
+
+.hours h2 { margin-bottom: 8px; }
+.hours > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  font-size: clamp(0.9rem, 1vw, 1.02rem);
+  padding: 2px 0;
+}
+.hours > div span { color: rgba(255, 253, 248, 0.88); }
+.hours > div strong { color: var(--white); font-weight: 700; }
+
+/* -------------------------------------------------- HARİTA + YOL TARİFİ */
+.map-column {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.6vh, 18px);
+}
+.map-wrapper {
+  flex: 1;
+  min-height: clamp(300px, 44svh, 460px);
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+  border: 1px solid rgba(18, 63, 49, 0.12);
+}
+.map-wrapper iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+.directions-button {
+  min-height: clamp(58px, 8vh, 84px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border: 2px solid var(--gold);
+  border-radius: 14px;
+  background: var(--green);
+  color: var(--gold);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(1.05rem, 1.5vw, 1.5rem);
+  letter-spacing: 0.06em;
+  transition: background .2s ease, color .2s ease;
+}
+.directions-button:hover { background: #0d3428; }
+.directions-button .dir-ico {
+  width: clamp(24px, 2vw, 30px);
+  height: clamp(24px, 2vw, 30px);
+  color: var(--gold);
+}
+
+/* -------------------------------------------------- DUYARLI — YÜKSEKLİK */
+
+/* Kısa masaüstü ekran — 1366x768 vb. */
+@media (min-width: 901px) and (max-height: 900px) {
+  .contact-intro { margin-bottom: clamp(9px, 1.7svh, 16px); }
+  .contact-intro h1 { font-size: clamp(1.9rem, 3.4vw, 2.9rem); }
+  .gold-orn { margin: 6px 0 4px; }
+  .gold-orn svg { width: clamp(96px, 12vw, 130px); }
+  .intro-script { font-size: clamp(1.25rem, 2.2vw, 1.8rem); }
+  .contact-row { padding-block: clamp(7px, 1svh, 12px); }
+  .contact-row h2 { margin-bottom: 2px; font-size: 0.84rem; }
+  .contact-card { padding: clamp(10px, 1.4vw, 20px) clamp(14px, 2vw, 26px); }
+  .map-wrapper { min-height: clamp(280px, 40svh, 400px); }
+  .directions-button { min-height: clamp(52px, 7svh, 72px); font-size: clamp(1rem, 1.3vw, 1.3rem); }
+}
+
+/* Daha kısa ekran (laptop, tarayıcı çubuklu ~700px) — alt kısım kadrajdan çıkmasın */
+@media (min-width: 901px) and (max-height: 760px) {
+  .contact-page { padding-block: clamp(10px, 1.6svh, 20px) clamp(12px, 2svh, 24px); }
+  .contact-intro { margin-bottom: clamp(6px, 1.2svh, 12px); }
+  .contact-intro h1 { font-size: clamp(1.6rem, 2.8vw, 2.3rem); letter-spacing: 0.06em; }
+  .gold-orn { margin: 3px 0 1px; }
+  .gold-orn svg { width: clamp(80px, 9vw, 110px); }
+  .intro-script { font-size: clamp(1.05rem, 1.9vw, 1.5rem); }
+  .contact-grid { gap: clamp(16px, 2.6vw, 34px); }
+  .contact-card { padding: clamp(7px, 1.1svh, 14px) clamp(12px, 1.6vw, 20px); }
+  .contact-row { padding-block: clamp(5px, 0.85svh, 9px); }
+  .contact-row h2 { margin-bottom: 1px; font-size: 0.78rem; }
+  .contact-row p { font-size: clamp(0.8rem, 0.9vw, 0.92rem); line-height: 1.3; }
+  .contact-icon { width: clamp(36px, 3vw, 44px); height: clamp(36px, 3vw, 44px); }
+  .hours > div { font-size: 0.84rem; padding: 1px 0; }
+  .map-wrapper { min-height: clamp(220px, 32svh, 320px); }
+  .directions-button { min-height: clamp(44px, 6svh, 58px); font-size: clamp(0.92rem, 1.15vw, 1.12rem); }
+}
+@media (min-width: 901px) and (max-height: 650px) {
+  .gold-orn { display: none; }
+  .contact-intro h1 { font-size: clamp(1.45rem, 2.4vw, 1.9rem); }
+  .intro-script { font-size: clamp(0.98rem, 1.7vw, 1.28rem); }
+  .contact-row { padding-block: clamp(4px, 0.7svh, 7px); }
+  .contact-icon { width: 34px; height: 34px; }
+  .contact-row p { font-size: 0.82rem; }
+  .map-wrapper { min-height: clamp(190px, 26svh, 260px); }
+}
+
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .map-wrapper { min-height: clamp(280px, 50svh, 420px); }
+}
+@media (max-width: 560px) {
+  .contact-page { width: min(100% - 24px, 1440px); }
+  .contact-row { grid-template-columns: 44px 1fr auto; gap: 12px; }
+  .contact-icon { width: 44px; height: 44px; }
+  .hours > div { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .map-wrapper { min-height: 300px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row-chevron, .directions-button { transition: none; }
+}

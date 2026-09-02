@@ -1,0 +1,32 @@
+# Emek Sofrası — Netlify önizleme yapılandırması
+# (Asıl yayın Natro; .htaccess Apache içindir. Apache bu dosyayı yok sayar,
+#  Netlify de .htaccess'i yok sayar — ikisi bir arada durabilir.)
+
+[build]
+  publish = "."
+
+# Güvenlik başlıkları
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Statik varlık önbelleği
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# 404: kök dizindeki 404.html Netlify tarafından otomatik sunulur.

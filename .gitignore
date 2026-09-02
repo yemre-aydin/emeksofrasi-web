@@ -1,0 +1,36 @@
+# ── OS / editör ───────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# ── Sırlar (savunma amaçlı — bu klasörde yok) ──
+.env
+.env.*
+config.env
+*.pem
+*.key
+
+# ── Yerel yedek / geçici dosyalar ─────────────
+_*
+*.bak
+*.orig
+
+# ── Büyük / kullanılmayan medya ───────────────
+#    (dosyalar diskte kalır, sadece repoya girmez)
+*.mp4
+images/3d/
+images/menu 3d/
+images/ChatGPT*
+images/WhatsApp Image*
+images/Logo_animation*
+images/Embroidered*
+images/paket servis sayfası arka plan son.jpg
+images/paket servis arka plan*.png
+images/paket-servis-bg-dikey.png
+images/anasayfa son gorsel.png
+images/mekan-orjinal.jpg
+
+# ── Tasarım kaynak dokümanı ───────────────────
+*.docx

@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Emek Sofrası — Sohbet asistanı widget'ı
+   Kural-tabanlı (backend yok). Marka renkleri: yeşil / altın / bordo / krem.
+   ========================================================================== */
+
+.es-chat {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 95;
+  font-family: var(--font-body, "Mulish", system-ui, sans-serif);
+}
+
+/* --- Açma butonu --- */
+.es-chat__launcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px 12px 14px;
+  border: none;
+  border-radius: 999px;
+  background: var(--green-deep, #01210e);
+  color: var(--cream, #faf9f8);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(1, 33, 14, 0.4);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.es-chat__launcher:hover { transform: translateY(-2px); background: #062e18; }
+.es-chat__launcher svg { width: 26px; height: 26px; color: var(--gold, #c4932d); flex-shrink: 0; }
+.es-chat__launcher-dot {
+  position: absolute;
+  top: 6px; right: 8px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--bordo, #8c1112);
+  border: 2px solid var(--cream, #faf9f8);
+}
+.es-chat.is-open .es-chat__launcher { display: none; }
+
+/* --- Panel --- */
+.es-chat__panel {
+  display: none;
+  flex-direction: column;
+  width: min(370px, calc(100vw - 32px));
+  height: min(560px, calc(100vh - 90px));
+  background: var(--cream, #faf9f8);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(1, 33, 14, 0.4);
+  border: 1px solid var(--cream-3, #d8bd82);
+}
+.es-chat.is-open .es-chat__panel { display: flex; }
+
+.es-chat__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--green-deep, #01210e);
+  color: var(--cream, #faf9f8);
+}
+.es-chat__header img { height: 40px; width: auto; background: var(--cream); border-radius: 8px; padding: 3px; }
+.es-chat__title { font-family: var(--font-display, Georgia, serif); font-weight: 700; font-size: 1.02rem; line-height: 1.1; }
+.es-chat__status { font-size: 0.72rem; color: var(--gold-light, #e6d1a4); font-weight: 700; }
+.es-chat__close {
+  margin-left: auto;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(230, 209, 164, 0.4);
+  background: transparent;
+  color: var(--cream);
+  font-size: 1rem;
+  cursor: pointer;
+}
+.es-chat__close:hover { background: var(--bordo, #8c1112); border-color: var(--bordo); }
+
+/* --- Mesaj alanı --- */
+.es-chat__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background:
+    linear-gradient(rgba(230,209,164,0.12), rgba(230,209,164,0.12)),
+    var(--cream, #faf9f8);
+}
+.es-msg {
+  max-width: 82%;
+  padding: 10px 13px;
+  border-radius: 14px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.es-msg--bot {
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid var(--cream-3, #d8bd82);
+  border-bottom-left-radius: 4px;
+  color: var(--ink, #1c1a15);
+}
+.es-msg--user {
+  align-self: flex-end;
+  background: var(--bordo, #8c1112);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.es-msg a { color: inherit; text-decoration: underline; }
+.es-msg--bot a { color: var(--bordo, #8c1112); }
+
+.es-msg--typing { display: flex; gap: 4px; align-items: center; }
+.es-msg--typing span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ink-soft, #5c574c);
+  animation: es-bounce 1.2s infinite ease-in-out;
+}
+.es-msg--typing span:nth-child(2) { animation-delay: 0.15s; }
+.es-msg--typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes es-bounce { 0%,80%,100%{transform:scale(0.6);opacity:.4} 40%{transform:scale(1);opacity:1} }
+
+/* --- Hızlı yanıt çipleri --- */
+.es-chat__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 8px 14px 4px;
+}
+.es-chip {
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--green, #06351b);
+  background: transparent;
+  color: var(--green-deep, #01210e);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.es-chip:hover { background: var(--green, #06351b); color: var(--cream, #faf9f8); }
+.es-chip--wa { border-color: #1faa54; color: #178a44; }
+.es-chip--wa:hover { background: #1faa54; color: #fff; }
+
+/* --- Giriş --- */
+.es-chat__input {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--cream-3, #d8bd82);
+  background: #fff;
+}
+.es-chat__input input {
+  flex: 1;
+  border: 1px solid var(--cream-3, #d8bd82);
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+}
+.es-chat__input input:focus { border-color: var(--gold, #c4932d); }
+.es-chat__send {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--green-deep, #01210e);
+  color: var(--gold-light, #e6d1a4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.es-chat__send:hover { background: #062e18; }
+.es-chat__send svg { width: 18px; height: 18px; }
+
+.es-chat__foot {
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--ink-soft, #5c574c);
+  padding: 4px 0 8px;
+  background: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .es-chat__launcher, .es-chip, .es-msg--typing span { transition: none; animation: none; }
+}
