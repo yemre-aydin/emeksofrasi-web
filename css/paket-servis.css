@@ -1,23 +1,34 @@
 /* ==========================================================================
    Emek Sofrası — Paket Servis / Yakında
-   Kilitli tasarım (paket servis sayfası.jpeg) — birebir uygulama.
+   Kilitli tasarım: paket servis sayfası.jpeg — birebir uygulama.
    TEK full-bleed manzara fotoğrafı (temiz kurye + Emek Sofrası logolu çanta)
-   + üstünde SOL tarafta organik kavisli KREM PANEL, metin bu panelde.
-   Üst menü/logo/token'lar home.css'ten (tüm sayfalarla aynı).
+   + üstünde SOL organik kavisli KREM PANEL (SVG clip-path), BÜYÜK cesur tipografi
+   panelde ve fotoğrafın üzerine taşar. Üst menü/logo/token'lar home.css'ten.
 
-   VIEWPORT: 1. bölüm her ekran yüksekliğinde tek ekrana sığar —
-   svh clamp + yükseklik media query merdiveni. Mobilde dikey akış,
-   görsel en sonda bant.
+   VIEWPORT: 1. bölüm her ekran yüksekliğine sığar (svh clamp + yükseklik
+   merdiveni). Mobilde dikey akış, görsel en sonda bant.
    ========================================================================== */
 
 :root {
-  --pk-ink:   #173c2d;   /* krem üzerinde koyu yeşil yazı */
+  --pk-ink:   #163b2c;   /* krem üzerinde koyu yeşil yazı */
   --pk-green: #1c4a37;   /* fayda daireleri */
-  --pk-gold:  #c99636;   /* altın vurgu */
-  --pk-btn:   #d9ab48;   /* Sipariş Ver buton zemini */
-  --pk-btn-b: #b8892f;   /* buton kenarı */
-  --pk-cream: #fbf4e4;   /* krem panel */
+  --pk-gold:  #c1902f;   /* altın vurgu */
+  --pk-gold-2:#d9ab48;   /* buton altını */
+  --pk-btn-b: #a9802b;   /* buton kenarı */
+  --pk-cream: #fbf4e3;   /* krem panel */
 }
+
+/* --- Header altı ince altın süs çizgisi (tasarımdaki gibi) --- */
+.pk-topline {
+  position: relative; z-index: 40;
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px;
+  background: var(--hero-green);
+  color: var(--gold-warm);
+  padding: 6px clamp(20px, 6vw, 90px) 9px;
+}
+.pk-topline span { height: 1px; width: min(30vw, 360px); background: currentColor; opacity: .55; }
+.pk-topline svg { width: 74px; height: auto; flex-shrink: 0; }
 
 .pk-hero {
   position: relative;
@@ -25,6 +36,7 @@
   min-height: calc(100svh - var(--header-h));
   background: var(--pk-cream);
 }
+.pk-hero__clip { position: absolute; }
 
 /* --- Full-bleed manzara fotoğrafı --- */
 .pk-hero__bg {
@@ -35,207 +47,248 @@
   z-index: 0;
 }
 
-/* --- Organik kavisli krem panel (sol) --- */
+/* --- Organik kavisli krem panel (SVG clip-path) --- */
 .pk-hero__panel {
-  position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: clamp(46%, 47vw, 52%);
+  position: absolute; inset: 0;
   z-index: 1;
   background: var(--pk-cream);
-  border-radius: 0 22% 22% 0 / 0 100% 100% 0;
-  box-shadow: 46px 0 90px -18px rgba(251, 244, 228, 0.75);
+  clip-path: url(#pkPanel);
+  filter: drop-shadow(28px 0 34px rgba(20, 40, 25, 0.18));
 }
 
 /* --- İçerik katmanı --- */
 .pk-hero__content {
   position: relative;
   z-index: 2;
-  max-width: 1240px;
+  max-width: 1280px;
   margin: 0 auto;
   min-height: calc(100svh - var(--header-h));
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding:
-    clamp(16px, 3svh, 44px)
+    clamp(14px, 2.6svh, 40px)
     clamp(24px, 5vw, 70px)
-    clamp(16px, 3svh, 44px)
-    clamp(22px, 5.2vw, 84px);
+    clamp(14px, 2.6svh, 40px)
+    clamp(20px, 4.6vw, 78px);
 }
 
 /* Geri Dön */
 .pk-back {
   align-self: flex-start;
   display: inline-flex; align-items: center; gap: 8px;
-  margin-bottom: clamp(10px, 2.4svh, 30px);
-  padding: 9px 18px;
+  margin-bottom: clamp(8px, 2svh, 24px);
+  padding: 8px 18px;
   border: 1.5px solid var(--pk-gold);
   border-radius: 999px;
   color: var(--pk-ink);
   text-decoration: none;
   font-family: var(--font-body); font-weight: 700;
-  font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
   transition: background .2s ease, color .2s ease;
 }
 .pk-back:hover { background: var(--pk-gold); color: #fff; }
 .pk-back:focus-visible { outline: 3px solid var(--pk-gold); outline-offset: 2px; }
 
-/* Metin kolonu — panelin düz kısmına sığar */
-.pk-copy { width: min(460px, 40vw); color: var(--pk-ink); }
+/* Metin kolonu — büyük tipografi, kavise doğru taşar */
+.pk-copy { width: min(560px, 46vw); color: var(--pk-ink); }
 
-/* "Yakında" — el yazısı */
+/* "Yakında" — el yazısı, büyük, eğik */
 .pk-copy__pre {
-  display: block; margin: 0 0 2px;
+  position: relative;
+  display: inline-block; margin: 0 0 2px;
   font-family: "Dancing Script", var(--font-display), cursive;
   font-weight: 700;
-  font-size: clamp(2rem, 2.4vw + 1.2svh, 3.6rem);
+  font-size: clamp(2.4rem, 2.6vw + 1.6svh, 4.4rem);
   line-height: 1;
   color: var(--pk-ink);
-  transform: rotate(-3deg);
+  transform: rotate(-4deg);
   transform-origin: left center;
 }
+.pk-spark {
+  position: absolute;
+  width: 3px; height: clamp(12px, 1.6vw, 20px);
+  border-radius: 3px;
+  background: var(--pk-gold);
+}
+.pk-spark--a { left: -0.5em; top: -0.15em; transform: rotate(-28deg); }
+.pk-spark--a::before, .pk-spark--a::after {
+  content: ""; position: absolute; left: 0; width: 3px; border-radius: 3px; background: var(--pk-gold);
+}
+.pk-spark--a::before { height: 60%; transform: translate(9px, -4px) rotate(24deg); }
+.pk-spark--a::after  { height: 45%; transform: translate(-7px, 6px) rotate(58deg); }
+.pk-spark--b { right: -0.7em; top: -0.05em; transform: rotate(24deg); }
+.pk-spark--b::before, .pk-spark--b::after {
+  content: ""; position: absolute; left: 0; width: 3px; border-radius: 3px; background: var(--pk-gold);
+}
+.pk-spark--b::before { height: 55%; transform: translate(-9px, -3px) rotate(-26deg); }
+.pk-spark--b::after  { height: 42%; transform: translate(8px, 6px) rotate(-56deg); }
 
-/* Başlık bloğu */
+/* Başlık bloğu — çok büyük, yuvarlak-cesur */
 .pk-copy__title {
-  margin: 4px 0 clamp(8px, 1.8svh, 18px);
+  margin: 2px 0 clamp(8px, 1.6svh, 16px);
   font-family: var(--font-body); font-weight: 900;
-  line-height: 0.9; letter-spacing: -0.01em;
+  line-height: 0.92; letter-spacing: -0.015em;
   text-transform: uppercase;
 }
 .pk-copy__line {
   display: block;
-  font-size: clamp(2.4rem, 3vw + 1.5svh, 5rem);
+  font-size: clamp(3rem, 3.6vw + 1.9svh, 6.4rem);
   color: var(--pk-ink);
 }
 .pk-copy__accent {
   display: block;
-  font-size: clamp(2.5rem, 3.2vw + 1.5svh, 5.3rem);
+  margin-top: 0.04em;
+  font-size: clamp(3.1rem, 3.8vw + 2svh, 6.7rem);
   color: var(--pk-gold);
+  transform: rotate(-1.2deg);
+  transform-origin: left center;
 }
 
 .pk-orn {
   display: block; color: var(--pk-gold);
-  margin: 0 0 clamp(8px, 1.8svh, 16px);
+  margin: clamp(4px, 1svh, 10px) 0 clamp(8px, 1.8svh, 16px);
 }
-.pk-orn svg { width: clamp(100px, 12vw, 150px); height: auto; display: block; }
+.pk-orn svg { width: clamp(64px, 7vw, 92px); height: auto; display: block; }
 
 .pk-copy__lead {
   margin: 0;
-  font-family: var(--font-display); font-weight: 600;
+  font-family: var(--font-body); font-weight: 700;
   font-size: clamp(1.05rem, 1vw + .5svh, 1.5rem);
-  line-height: 1.28;
+  line-height: 1.32;
   color: var(--pk-ink);
 }
 .pk-copy__follow {
+  position: relative;
   display: inline-block;
-  margin: clamp(4px, 1svh, 10px) 0 0;
-  padding-bottom: 4px;
+  margin: clamp(6px, 1.4svh, 14px) 0 0;
+  padding-bottom: 12px;
   font-family: "Dancing Script", var(--font-display), cursive;
   font-weight: 700;
-  font-size: clamp(1.35rem, 1.4vw + .5svh, 2rem);
-  line-height: 1.1;
+  font-size: clamp(1.4rem, 1.5vw + .5svh, 2.15rem);
+  line-height: 1.05;
   color: var(--pk-ink);
-  border-bottom: 2.5px solid var(--pk-gold);
+}
+.pk-swoosh {
+  position: absolute; left: 0; right: 4%;
+  bottom: 0; width: 100%; height: 12px;
+  color: var(--pk-gold);
 }
 
-/* Sipariş Ver — görünür ama PASİF (disabled) */
+/* Sipariş Ver — geniş altın PILL, ortalı yazı, sol scooter ikon; PASİF */
 .pk-order {
-  margin-top: clamp(12px, 2.6svh, 26px);
+  position: relative;
+  margin-top: clamp(12px, 2.6svh, 24px);
   align-self: flex-start;
-  display: inline-flex; align-items: center; gap: clamp(10px, 1.4vw, 16px);
-  padding: clamp(9px, 1.5svh, 14px) clamp(20px, 2.4vw, 34px);
+  display: flex; flex-direction: column; align-items: center;
+  min-width: min(360px, 82%);
+  padding: clamp(10px, 1.7svh, 15px) clamp(24px, 3vw, 40px) clamp(11px, 1.8svh, 16px);
+  padding-left: clamp(58px, 7vw, 80px);
   border: 1.5px solid var(--pk-btn-b);
   border-radius: 999px;
-  background: var(--pk-btn);
+  background: var(--pk-gold-2);
   color: var(--pk-ink);
   cursor: not-allowed;
+  line-height: 1.02;
 }
-.pk-order__ico { width: clamp(26px, 2.6vw, 34px); height: clamp(26px, 2.6vw, 34px); flex-shrink: 0; color: var(--pk-ink); }
+.pk-order__ico {
+  position: absolute; left: clamp(16px, 2vw, 26px); top: 50%;
+  transform: translateY(-50%);
+  width: clamp(28px, 3vw, 38px); height: clamp(28px, 3vw, 38px);
+  color: var(--pk-ink);
+}
 .pk-order__ico svg { width: 100%; height: 100%; display: block; }
-.pk-order__main { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.05; }
 .pk-order__title {
   font-family: var(--font-body); font-weight: 900;
-  font-size: clamp(1.15rem, 1vw + .3svh, 1.55rem);
+  font-size: clamp(1.2rem, 1.1vw + .35svh, 1.7rem);
   letter-spacing: 0.06em; text-transform: uppercase;
 }
 .pk-order__status {
   margin-top: 3px;
   font-family: var(--font-body); font-weight: 600;
-  font-size: clamp(0.72rem, 0.4vw + .2svh, 0.86rem);
-  opacity: 0.85;
+  font-size: clamp(0.74rem, 0.4vw + .2svh, 0.9rem);
+  opacity: 0.82;
 }
 
-/* Fayda satırları */
+/* Fayda satırları — koyu yeşil daire + altın ikon, YEŞİL metin */
 .pk-benefits {
-  list-style: none; margin: clamp(14px, 3svh, 28px) 0 0; padding: 0;
-  display: grid; gap: clamp(8px, 1.7svh, 18px);
+  list-style: none; margin: clamp(12px, 2.8svh, 26px) 0 0; padding: 0;
+  display: grid; gap: clamp(9px, 2svh, 20px);
 }
-.pk-benefits li { display: flex; align-items: center; gap: 14px; }
+.pk-benefits li { display: flex; align-items: center; gap: clamp(12px, 1.4vw, 18px); }
 .pk-benefits__ico {
   flex-shrink: 0;
-  width: clamp(38px, 3.4vw + 1svh, 52px); height: clamp(38px, 3.4vw + 1svh, 52px);
+  width: clamp(42px, 3.6vw + 1svh, 58px); height: clamp(42px, 3.6vw + 1svh, 58px);
   border-radius: 50%;
   display: grid; place-items: center;
   background: var(--pk-green);
-  color: var(--pk-btn);
+  color: var(--pk-gold-2);
 }
-.pk-benefits__ico svg { width: 58%; height: 58%; }
+.pk-benefits__ico svg { width: 56%; height: 56%; }
 .pk-benefits li span:last-child {
-  font-family: var(--font-body); line-height: 1.24;
-  color: #2a2a2a;
-  font-size: clamp(0.86rem, 0.5vw + .3svh, 1rem);
+  font-family: var(--font-body); line-height: 1.22;
+  color: var(--pk-ink);
+  font-size: clamp(0.88rem, 0.5vw + .3svh, 1.02rem);
 }
 .pk-benefits li strong {
-  color: var(--pk-ink); font-size: clamp(0.94rem, 0.55vw + .3svh, 1.08rem);
+  display: block;
+  color: var(--pk-ink); font-size: clamp(0.98rem, 0.6vw + .3svh, 1.14rem);
   font-weight: 900; letter-spacing: 0.03em; text-transform: uppercase;
 }
 
 /* ==========================================================================
-   DUYARLI — YÜKSEKLİK MERDİVENİ (1. bölüm her ekrana sığsın)
+   DUYARLI — YÜKSEKLİK MERDİVENİ
    ========================================================================== */
-@media (min-width: 901px) and (max-height: 940px) {
-  .pk-copy__pre { font-size: clamp(1.8rem, 2vw + 1svh, 3rem); }
-  .pk-copy__line { font-size: clamp(2.2rem, 2.6vw + 1.2svh, 4.1rem); }
-  .pk-copy__accent { font-size: clamp(2.3rem, 2.8vw + 1.2svh, 4.4rem); }
+@media (min-width: 901px) and (max-height: 960px) {
+  .pk-copy__pre { font-size: clamp(2.1rem, 2.2vw + 1.3svh, 3.6rem); }
+  .pk-copy__line { font-size: clamp(2.6rem, 3vw + 1.6svh, 5rem); }
+  .pk-copy__accent { font-size: clamp(2.7rem, 3.2vw + 1.7svh, 5.3rem); }
 }
 @media (min-width: 901px) and (max-height: 860px) {
   :root { --header-h: 74px; --logo-w: clamp(100px, 10.5vw, 150px); }
-  .pk-back { margin-bottom: clamp(8px, 1.6svh, 18px); }
+  .pk-back { margin-bottom: clamp(6px, 1.4svh, 16px); }
   .pk-copy__title { margin-bottom: clamp(6px, 1.2svh, 12px); }
-  .pk-copy__line { font-size: clamp(2rem, 2.2vw + 1svh, 3.4rem); }
-  .pk-copy__accent { font-size: clamp(2.1rem, 2.4vw + 1svh, 3.6rem); }
-  .pk-copy__lead { font-size: clamp(1rem, .9vw + .4svh, 1.3rem); line-height: 1.24; }
-  .pk-copy__follow { font-size: clamp(1.2rem, 1.2vw + .4svh, 1.7rem); }
-  .pk-benefits { margin-top: clamp(10px, 1.7svh, 18px); gap: clamp(7px, 1.3svh, 13px); }
-  .pk-benefits__ico { width: 42px; height: 42px; }
-  .pk-orn svg { width: clamp(90px, 10vw, 128px); }
+  .pk-copy__line { font-size: clamp(2.3rem, 2.6vw + 1.3svh, 4rem); }
+  .pk-copy__accent { font-size: clamp(2.4rem, 2.8vw + 1.4svh, 4.3rem); }
+  .pk-copy__lead { font-size: clamp(1rem, .9vw + .4svh, 1.28rem); line-height: 1.28; }
+  .pk-copy__follow { font-size: clamp(1.3rem, 1.3vw + .4svh, 1.85rem); }
+  .pk-benefits { margin-top: clamp(10px, 1.8svh, 18px); gap: clamp(8px, 1.5svh, 14px); }
+  .pk-benefits__ico { width: 46px; height: 46px; }
+  .pk-orn svg { width: clamp(58px, 6vw, 80px); }
 }
-@media (min-width: 901px) and (max-height: 760px) {
+@media (min-width: 901px) and (max-height: 770px) {
   :root { --header-h: 66px; --logo-w: clamp(86px, 9vw, 118px); }
-  .pk-copy__pre { font-size: clamp(1.6rem, 1.8vw + .8svh, 2.4rem); }
-  .pk-copy__line { font-size: clamp(1.85rem, 2vw + .7svh, 2.8rem); }
-  .pk-copy__accent { font-size: clamp(1.95rem, 2.2vw + .7svh, 3rem); }
+  .pk-topline { padding: 4px 0 6px; }
+  .pk-copy__pre { font-size: clamp(1.8rem, 1.9vw + 1svh, 2.7rem); }
+  .pk-copy__line { font-size: clamp(2rem, 2.2vw + 1svh, 3.2rem); }
+  .pk-copy__accent { font-size: clamp(2.1rem, 2.4vw + 1svh, 3.4rem); }
   .pk-orn { display: none; }
-  .pk-benefits__ico { width: 38px; height: 38px; }
-  .pk-order__title { font-size: 1.1rem; }
+  .pk-benefits__ico { width: 42px; height: 42px; }
+  .pk-order__title { font-size: 1.15rem; }
 }
-@media (min-width: 901px) and (max-height: 660px) {
+@media (min-width: 901px) and (max-height: 670px) {
   .pk-hero, .pk-hero__content { min-height: 0; }
-  .pk-hero__content { justify-content: flex-start; padding-top: clamp(12px, 2svh, 22px); }
+  .pk-hero__content { justify-content: flex-start; padding-top: clamp(10px, 2svh, 20px); }
   .pk-copy__lead br { display: none; }
+  .pk-benefits { gap: clamp(6px, 1.2svh, 11px); }
 }
 
-/* Laptop / dar masaüstü */
-@media (min-width: 901px) and (max-width: 1100px) {
-  .pk-hero__content { justify-content: flex-start; padding-top: clamp(20px, 4svh, 40px); }
-  .pk-hero__panel { width: clamp(52%, 56vw, 62%); border-radius: 0 16% 16% 0 / 0 100% 100% 0; }
-  .pk-copy { width: min(440px, 46vw); }
+/* Laptop / dar masaüstü — panel genişler, metin daralır */
+@media (min-width: 901px) and (max-width: 1120px) {
+  .pk-hero__content { justify-content: flex-start; padding-top: clamp(18px, 4svh, 38px); }
+  .pk-hero__panel { clip-path: none; width: 60%; border-radius: 0 14vw 30vw 0 / 0 100% 100% 0; }
+  .pk-copy { width: min(460px, 52vw); }
+  .pk-copy__line { font-size: clamp(2.6rem, 6vw, 4rem); }
+  .pk-copy__accent { font-size: clamp(2.7rem, 6.2vw, 4.2rem); }
 }
 
 /* ==========================================================================
    MOBİL / DİKEY TABLET (≤900) — dikey yığın, GÖRSEL EN SONDA
    ========================================================================== */
 @media (max-width: 900px) {
+  .pk-topline { padding: 5px 0 7px; }
+  .pk-topline span { width: 24vw; }
+
   .pk-hero {
     display: flex; flex-direction: column;
     min-height: 0;
@@ -250,12 +303,13 @@
     display: block;
     max-width: 640px;
     margin-inline: auto;
-    padding: clamp(18px, 4svh, 34px) clamp(18px, 5vw, 28px) clamp(22px, 5svh, 38px);
+    padding: clamp(16px, 4svh, 32px) clamp(18px, 5vw, 28px) clamp(22px, 5svh, 38px);
   }
   .pk-copy { width: 100%; }
-  .pk-copy__line { font-size: clamp(2.3rem, 9vw, 3.4rem); }
-  .pk-copy__accent { font-size: clamp(2.4rem, 9.4vw, 3.6rem); }
-  .pk-copy__pre { font-size: clamp(1.9rem, 7vw, 2.6rem); }
+  .pk-copy__line { font-size: clamp(2.6rem, 11vw, 4rem); }
+  .pk-copy__accent { font-size: clamp(2.7rem, 11.4vw, 4.2rem); }
+  .pk-copy__pre { font-size: clamp(2.1rem, 9vw, 3rem); }
+  .pk-order { min-width: 0; width: 100%; }
 
   .pk-hero__bg {
     position: relative; inset: auto;
@@ -268,7 +322,6 @@
   }
 }
 @media (max-width: 480px) {
-  .pk-order { align-self: stretch; justify-content: center; }
   .pk-hero__bg { max-height: 34svh; aspect-ratio: 16 / 11; }
 }
 
