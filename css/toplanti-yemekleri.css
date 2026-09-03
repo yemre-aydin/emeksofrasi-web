@@ -240,11 +240,36 @@
     order: 1;
     max-width: 640px;
     margin-inline: auto;
-    padding: clamp(22px, 4svh, 38px) clamp(18px, 5vw, 30px) clamp(24px, 5svh, 40px);
+    padding: clamp(28px, 5svh, 44px) clamp(18px, 5vw, 30px) clamp(30px, 5svh, 44px);
   }
   .meeting-title span { font-size: clamp(2rem, 8.4vw, 3rem); }
-  .meeting-slogan { font-size: clamp(1.4rem, 5.6vw, 2.05rem); }
-  .meeting-description { font-size: clamp(0.98rem, 3.8vw, 1.12rem); max-width: none; }
+  .meeting-orn { margin: clamp(16px, 3vh, 24px) auto clamp(14px, 2.6vh, 20px); }
+  .meeting-slogan { font-size: clamp(1.4rem, 5.6vw, 2.05rem); margin-bottom: clamp(16px, 3vh, 24px); }
+  .meeting-description { font-size: clamp(0.98rem, 3.8vw, 1.12rem); max-width: none; margin-bottom: 0; line-height: 1.5; }
+
+  /* Mobilde: aradaki açıklama satırı + büyük "PEK YAKINDA!" fırça alanı GÖRÜNMEZ */
+  .meeting-status-line { display: none !important; }
+  .meeting-coming-soon { display: none !important; }
+
+  /* CTA doğal akışta biraz aşağı — üst metinler nefes alsın */
+  .meeting-cta {
+    margin-top: clamp(30px, 6vh, 44px);
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    min-height: 62px;
+  }
+  /* CTA içindeki tek "Pek Yakında" etiketi — daha belirgin pill */
+  .meeting-cta__soon {
+    flex-shrink: 0;
+    font-size: 0.74rem;
+    padding: 6px 12px;
+    letter-spacing: 0.1em;
+    background: var(--meeting-green);
+    color: var(--meeting-gold);
+  }
+  .meeting-cta__arrow { display: none; }
 
   .meeting-hero__bg {
     position: static;
@@ -260,12 +285,10 @@
 /* Küçük telefon */
 @media (max-width: 480px) {
   .meeting-hero__bg { max-height: 34svh; aspect-ratio: 16 / 11; }
-  .meeting-cta { width: 100%; justify-content: center; }
-  .meeting-coming-soon { display: block; }
 }
 @media (max-width: 900px) and (max-height: 720px) {
   .meeting-hero__bg { max-height: 30svh; }
-  .meeting-orn { margin: 8px auto 6px; }
+  .meeting-orn { margin: 12px auto 8px; }
   .meeting-orn svg { width: 120px; }
 }
 
