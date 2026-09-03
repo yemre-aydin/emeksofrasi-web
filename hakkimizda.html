@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="images/emek_sofrasi_logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500;1,600&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="css/hakkimizda.css">
 </head>
@@ -66,90 +66,88 @@
 
 <main class="about-page">
 
-  <!-- 1) HİKÂYEMİZ — kilitli ilk ekran -->
-  <section class="story-screen" id="hikayemiz">
-    <button type="button" class="back-btn" data-back aria-label="Geri dön"><span aria-hidden="true">&larr;</span> Geri Dön</button>
-    <div class="story-screen__inner">
-      <div class="story-screen__text reveal">
-        <h1>HİKÂYEMİZ</h1>
-        <span class="orn" aria-hidden="true">
-          <svg viewBox="0 0 120 16"><g stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M6 8h40M74 8h40"/></g><g fill="currentColor"><path d="M60 3c-2.4 2-3.6 4.6-3.6 7 2.4 0 4.4-2 5-4.5L60 3zM60 3c2.4 2 3.6 4.6 3.6 7-2.4 0-4.4-2-5-4.5L60 3z"/><circle cx="49" cy="8" r="1.4"/><circle cx="71" cy="8" r="1.4"/></g></svg>
-        </span>
-        <p class="story-lead">Her emek, bir sofrayı; her sofra da<br>bir hikâyeyi taşır.</p>
-        <p>Emek Sofrası'nın hikâyesi, aslında hiç planlamadığımız bir şekilde başladı. İlk düşüncemiz farklı bir konsepti. Ancak Maslak'ta bu mekanı gördüğümüzde her şey değişti.</p>
-        <p>Üç ortak olarak birbirimize baktık ve burada insanların güvenle gelebileceği, sıcak ev yemekleri sunan bir sofra olmasının çok daha doğru olacağına karar verdik.</p>
-        <p>İşletmeyi devraldıktan sonra sıra en önemli adımlardan birine geldi, bu sofraya bir isim bulmak. Birçok fikir konuşuldu.</p>
-        <p>O sırada ben de ortaklarımla birlikte düşünürken, bu işletmenin arkasında büyük bir emek, özveri ve alın teri olacağını konuştuk. İşte tam da bu yüzden hepimizin içine sinen tek isim ortaya çıktı: Emek Sofrası.</p>
-        <p>Çünkü bu isim yalnızca bir tabelayı değil, mutfakta başlayan emeği, özenle hazırlanan her tabağı ve misafirlerimizle kurduğumuz samimi bağı anlatıyordu.</p>
-        <p>Bugün de ilk günkü aynı anlayışla, her gün sofralarımızı aynı özenle hazırlıyor, ev yemeğinin sıcaklığını, emeğin değerini ve paylaşmanın güzelliğini misafirlerimizle buluşturuyoruz.</p>
+  <!-- ======================================
+       HİKÂYEMİZ  —  SOL: yazı → fotoğraf   SAĞ: fotoğraf → yazı
+       ====================================== -->
+  <section class="story-section">
+    <div class="about-container story-grid">
+
+      <div class="story-column story-column--left">
+        <div class="story-copy story-copy--intro">
+          <h1 class="story-title">Hikâyemiz</h1>
+          <div class="story-text">
+            <p>Her emek, bir sofrayı; her sofra da bir hikâyeyi taşır.</p>
+            <p>Emek Sofrası'nın hikâyesi, aslında hiç planlamadığımız bir şekilde başladı. İlk düşüncemiz farklı bir konsepti. Ancak Maslak'ta bu mekanı gördüğümüzde her şey değişti.</p>
+            <p>Üç ortak olarak birbirimize baktık ve burada insanların güvenle gelebileceği, sıcak ev yemekleri sunan bir sofra olmasının çok daha doğru olacağına karar verdik.</p>
+            <p>İşletmeyi devraldıktan sonra sıra en önemli adımlardan birine geldi, bu sofraya bir isim bulmak. Birçok fikir konuşuldu.</p>
+          </div>
+        </div>
+
+        <figure class="about-photo-frame">
+          <img src="images/emek-sofrasi-dis-cephe.jpg" alt="Emek Sofrası Maslak dış cephe görünümü" width="1536" height="1024">
+        </figure>
       </div>
-      <div class="story-screen__image">
-        <img src="images/hakkimizda/hikayemiz.jpg" alt="Emek Sofrası Maslak dış cephesi ve tabelası" loading="eager">
+
+      <div class="story-column story-column--right">
+        <figure class="about-photo-frame">
+          <img src="images/emek-sofrasi-giris.jpg" alt="Emek Sofrası Maslak giriş görünümü" width="740" height="1600">
+        </figure>
+
+        <div class="story-copy story-copy--continuation">
+          <div class="story-text">
+            <p>O sırada ben de ortaklarımla birlikte düşünürken, bu işletmenin arkasında büyük bir emek, özveri ve alın teri olacağını konuştuk. İşte tam da bu yüzden hepimizin içine sinen tek isim ortaya çıktı: Emek Sofrası.</p>
+            <p>Çünkü bu isim yalnızca bir tabelayı değil, mutfakta başlayan emeği, özenle hazırlanan her tabağı ve misafirlerimizle kurduğumuz samimi bağı anlatıyordu.</p>
+            <p>Bugün de ilk günkü aynı anlayışla, her gün sofralarımızı aynı özenle hazırlıyor, ev yemeğinin sıcaklığını, emeğin değerini ve paylaşmanın güzelliğini misafirlerimizle buluşturuyoruz.</p>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- 2–4) MEKÂN FOTOĞRAFLARI — kilitli, doğal akış, kesilmez -->
-  <section class="story-photo-section">
-    <div class="story-photo-wrap reveal">
-      <img src="images/hakkimizda/foto-01.jpg" alt="Emek Sofrası iç mekânı" loading="lazy">
+  <!-- ======================================
+       HİKÂYEMİZ → HAKKIMIZDA  —  3 ara fotoğraf (yeni başlık/metin yok)
+       ====================================== -->
+  <section class="about-photo-bridge" aria-label="Emek Sofrası'ndan görüntüler">
+    <div class="about-container">
+      <figure class="bridge-photo bridge-photo--1">
+        <div class="about-photo-frame">
+          <img src="images/emek-sofrasi-ic-mekan.jpg" alt="Emek Sofrası Maslak iç mekânı" loading="lazy" width="738" height="1600">
+        </div>
+      </figure>
+      <figure class="bridge-photo bridge-photo--2">
+        <div class="about-photo-frame">
+          <img src="images/hakkimizda/foto-01.jpg" alt="Emek Sofrası Maslak iç mekânı" loading="lazy" width="1493" height="1053">
+        </div>
+      </figure>
+      <figure class="bridge-photo bridge-photo--3">
+        <div class="about-photo-frame">
+          <img src="images/hakkimizda/foto-03.jpg" alt="Emek Sofrası Maslak günlük yemek vitrini" loading="lazy" width="853" height="1844">
+        </div>
+      </figure>
     </div>
   </section>
 
-  <section class="story-photo-section">
-    <div class="story-photo-wrap reveal">
-      <img src="images/hakkimizda/foto-02.jpg" alt="Emek Sofrası dış cephesi" loading="lazy">
-    </div>
-  </section>
-
-  <section class="story-photo-section">
-    <div class="story-photo-wrap reveal">
-      <img src="images/hakkimizda/foto-03.jpg" alt="Emek Sofrası günlük yemek vitrini ve iç mekân" loading="lazy">
-    </div>
-  </section>
-
-  <!-- 5) HAKKIMIZDA — kilitli bej ekran -->
-  <section class="about-screen" id="hakkimizda-detay">
-    <div class="about-screen__inner">
-
-      <div class="ad-row">
-        <div class="ad-text reveal">
-          <p class="ad-label">HAKKIMIZDA</p>
-          <h2 class="ad-slogan">Günün yoğunluğunda,<br>sıcak bir sofraya<br>yer açıyoruz.</h2>
-          <span class="ad-divider" aria-hidden="true"></span>
+  <!-- ======================================
+       HAKKIMIZDA
+       ====================================== -->
+  <section class="about-final-section">
+    <div class="about-container about-final-inner">
+      <div class="about-final-copy">
+        <h2 class="about-final-title">Hakkımızda</h2>
+        <h3 class="about-final-lead">Günün yoğunluğunda,<br>sıcak bir sofraya yer açıyoruz.</h3>
+        <div class="about-final-text">
           <p>Emek Sofrası'nı üç ortak olarak, Maslak'ın yoğun temposunda çalışanların, öğrencilerin ve yolu buraya düşen herkesin sıcak ev yemeklerine kolayca ulaşabileceği bir sofra oluşturmak için kurduk.</p>
           <p>Yemeklerimizi her gün taze hazırlıyor; misafirlerimizin uzun süre beklemeden, keyifle yemek yiyip biraz soluklanarak günlerine devam edebilmelerini önemsiyoruz.</p>
-        </div>
-        <div class="ad-img reveal">
-          <img src="images/hakkimizda/hakkimizda-ust.jpg" alt="Emek Sofrası dış cephesi ve çevresi" loading="lazy">
-        </div>
-      </div>
-
-      <div class="ad-row ad-row--rev">
-        <div class="ad-img reveal">
-          <img src="images/hakkimizda/hakkimizda-alt.jpg" alt="Emek Sofrası iç mekânı ve oturma alanı" loading="lazy">
-        </div>
-        <div class="ad-text reveal">
           <p>Yakında başlayacak paket servisimizle de işinden veya okulundan ayrılamayan misafirlerimize ulaşmak, yoğun günlerinde onlara zaman kazandırmak istiyoruz.</p>
-          <span class="ad-divider" aria-hidden="true"></span>
-          <p class="ad-close">Çünkü bizim için Emek Sofrası, yalnızca yemek yenilen bir yer değil; günün koşuşturması içinde verilen <strong>sıcak bir mola.</strong></p>
+          <p class="about-final-emphasis">Çünkü bizim için Emek Sofrası, yalnızca yemek yenilen bir yer değil; günün koşuşturması içinde verilen sıcak bir mola.</p>
         </div>
       </div>
-
     </div>
   </section>
 
 </main>
 
 <script src="js/main.js"></script>
-<script src="js/reveal.js"></script>
-<script>
-(function () {
-  var back = document.querySelector("[data-back]");
-  if (back) back.addEventListener("click", function () {
-    if (history.length > 1) history.back(); else window.location.href = "index.html";
-  });
-})();
-</script>
 </body>
 </html>
