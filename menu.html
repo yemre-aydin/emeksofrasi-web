@@ -18,7 +18,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Mulish:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="css/menu.css">
@@ -107,39 +107,43 @@
       <!-- AÇIK MENÜ -->
       <div class="menu-open" id="menu-open" data-menu-open hidden>
 
-        <div class="menu-viewer">
-          <img data-menu-image src="images/menu/gun-pazartesi.png" alt="Pazartesi günü menüsü" class="is-in">
-        </div>
-
-        <div class="day-nav">
-          <button type="button" class="day-nav__arrow" data-menu-prev aria-label="Önceki gün">
+        <div class="menu-book" data-menu-book>
+          <button type="button" class="menu-book__arrow menu-book__arrow--prev" data-menu-prev aria-label="Önceki gün">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-8 7 8 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <div class="day-tabs" data-menu-tabs role="tablist" aria-label="Menü günleri"></div>
-          <button type="button" class="day-nav__arrow" data-menu-next aria-label="Sonraki gün">
+
+          <div class="menu-book__spread">
+            <div class="menu-page menu-page--left" data-menu-left></div>
+            <div class="menu-page menu-page--right">
+              <img data-menu-image src="images/menu/food-pazartesi.png" alt="Pazartesi günü yemekleri" class="is-in">
+            </div>
+          </div>
+
+          <button type="button" class="menu-book__arrow menu-book__arrow--next" data-menu-next aria-label="Sonraki gün">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l8 7-8 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
 
-        <p class="menu-open__note" data-menu-note></p>
+        <div class="day-tabs" data-menu-tabs role="tablist" aria-label="Menü günleri"></div>
+      </div>
+
+      <!-- YEMEK KARTLARI — gün sekmelerinin hemen altında, açıklama cümlesi YOK -->
+      <div class="menu-cards">
+        <span class="menu-cards__label">Geçerli Yemek Kartlarımız</span>
+        <div class="menu-cards__row">
+          <span class="card-logo"><img src="images/yemek kartlari/pluxee.png" alt="Pluxee" loading="lazy"></span>
+          <span class="card-logo"><img src="images/yemek kartlari/setcard.png" alt="Setcard" loading="lazy"></span>
+          <span class="card-logo"><img src="images/yemek kartlari/edenred.png" alt="Edenred Ticket Restaurant" loading="lazy"></span>
+          <span class="card-logo"><img src="images/yemek kartlari/metropol_card.png" alt="MetropolCard" loading="lazy"></span>
+          <span class="card-logo"><img src="images/yemek kartlari/multinet.png" alt="Multinet" loading="lazy"></span>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- YEMEK KARTLARI + AFİYET OLSUN — ilk ekranın altında (Emel kuralı: bunlar "ana içerik" değil) -->
   <section class="menu-foot">
     <div class="container">
-      <div class="menu-cards">
-        <span class="menu-cards__label">Geçerli Yemek Kartlarımız</span>
-        <div class="menu-cards__row">
-          <span class="card-logo"><img src="images/yemek kartlari/pluxee.png" alt="Pluxee" loading="lazy"></span>
-          <span class="card-logo"><img src="images/yemek kartlari/edenred.png" alt="Edenred Ticket Restaurant" loading="lazy"></span>
-          <span class="card-logo"><img src="images/yemek kartlari/multinet.png" alt="Multinet" loading="lazy"></span>
-          <span class="card-logo"><img src="images/yemek kartlari/setcard.png" alt="Setcard" loading="lazy"></span>
-          <span class="card-logo"><img src="images/yemek kartlari/metropol_card.png" alt="MetropolCard" loading="lazy"></span>
-        </div>
-      </div>
       <p class="menu-afiyet">Afiyet Olsun <span aria-hidden="true">&#9829;</span></p>
     </div>
   </section>
