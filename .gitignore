@@ -34,3 +34,10 @@ images/mekan-orjinal.jpg
 
 # ── Tasarım kaynak dokümanı ───────────────────
 *.docx
+
+# ChatGPT yorum ekran görüntüleri + ham kaynak görseller (repoya girmez)
+images/chatgbt yorum/
+images/WhatsApp Image*
+images/mekan giris.jpeg
+images/mekan sandalye.jpeg
+images/mekanın dışı.jpeg
