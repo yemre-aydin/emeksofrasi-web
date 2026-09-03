@@ -39,6 +39,7 @@ window.MENU_DATA = {
       id: "sali", ad: "Salı",
       gorselYemek: "images/menu/food-sali.png",
       gorsel: "images/menu/gun-sali.png",
+      video: "images/menu/Menu_book_sali.mp4",   /* 3D menü videosu — hazır olan günlerde eklenir */
       corba: "Günün Çorbası",
       anaYemek: "Fırında İzmir Köfte",
       yanUrunler: ["Bulgur Pilavı", "Pilav"],

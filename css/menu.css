@@ -179,14 +179,17 @@
   background: var(--menu-page-2);
   cursor: pointer;
 }
-.menu-page--right img {
+.menu-page--right img,
+.menu-page--right video {
   width: 100%; height: 100%;
   object-fit: cover; object-position: center;
   display: block;
   opacity: 0; transform: translateY(8px) scale(.99);
   transition: opacity .45s ease, transform .5s cubic-bezier(.2,.75,.2,1);
 }
-.menu-page--right img.is-in { opacity: 1; transform: none; }
+.menu-page--right img.is-in,
+.menu-page--right video.is-in { opacity: 1; transform: none; }
+.menu-page--right [hidden] { display: none; }
 
 .menu-page__day {
   margin: 0;

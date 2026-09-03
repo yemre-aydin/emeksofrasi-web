@@ -24,6 +24,7 @@
   var book    = document.querySelector("[data-menu-book]");
   var leftEl  = document.querySelector("[data-menu-left]");
   var img     = document.querySelector("[data-menu-image]");
+  var video   = document.querySelector("[data-menu-video]");
   var tabsWrap= document.querySelector("[data-menu-tabs]");
   var prevBtn = document.querySelector("[data-menu-prev]");
   var nextBtn = document.querySelector("[data-menu-next]");
@@ -112,10 +113,27 @@
 
     if (leftEl) leftEl.innerHTML = day.kapali ? leftSunday(day) : leftNormal(day);
 
-    if (img) {
+    var altTxt = day.ad + (day.kapali ? " — pazar günü" : " günü yemekleri");
+
+    if (day.video && video && !reduce) {
+      /* 3D menü videosu olan gün (prefers-reduced-motion'da statik görsele düşer) */
+      if (img) { img.hidden = true; img.classList.remove("is-in"); }
+      var playVid = function () {
+        if (video.getAttribute("src") !== day.video) video.src = day.video;
+        video.hidden = false;
+        video.setAttribute("aria-label", day.ad + " günü 3D menü videosu");
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+        requestAnimationFrame(function () { video.classList.add("is-in"); });
+      };
+      video.classList.remove("is-in");
+      setTimeout(playVid, 150);
+    } else if (img) {
+      if (video) { try { video.pause(); } catch (e) {} video.hidden = true; video.classList.remove("is-in"); }
       var apply = function () {
         img.src = day.gorselYemek || day.gorsel;
-        img.alt = day.ad + (day.kapali ? " — pazar günü" : " günü yemekleri");
+        img.alt = altTxt;
+        img.hidden = false;
         requestAnimationFrame(function () { img.classList.add("is-in"); });
       };
       img.classList.remove("is-in");
