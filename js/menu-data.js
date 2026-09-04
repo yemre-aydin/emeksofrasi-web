@@ -76,6 +76,7 @@ window.MENU_DATA = {
       id: "cumartesi", ad: "Cumartesi",
       gorselYemek: "images/menu/food-cumartesi.png",
       gorsel: "images/menu/gun-cumartesi.png",
+      video: "images/menu/menu_dishes_cumartesi.mp4",   /* 3D menü videosu */
       corba: "Günün Çorbası",
       anaYemek: "Hünkarbeğendi",
       yanUrunler: ["Pilav"],
