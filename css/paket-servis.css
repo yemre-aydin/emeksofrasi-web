@@ -42,23 +42,27 @@
 }
 .pk-hero__clip { position: absolute; width: 0; height: 0; }
 
-/* --- Manzara fotoğrafı — sol kenarı dışa kavisli --- */
+/* --- Manzara fotoğrafı — tam kaplama, kavis YOK --- */
 .pk-hero__bg {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: 72% center;
   z-index: 0;
-  clip-path: url(#pkPhoto);
 }
 
-/* --- Fotoğrafın sol tarafında HAFİF beyazlatılmış alan (metin bunun üzerinde) --- */
+/* --- Fotoğrafın sol tarafı HAFİF BEYAZLATILMIŞ (düz kenar, yumuşak geçiş) --- */
 .pk-hero__scrim {
   position: absolute; inset: 0;
   z-index: 1;
-  background: var(--pk-scrim);
-  clip-path: url(#pkScrim);
-  filter: drop-shadow(14px 0 26px rgba(252, 246, 233, 0.55));
+  background: linear-gradient(
+    90deg,
+    var(--pk-scrim) 0%,
+    var(--pk-scrim) 40%,
+    rgba(252, 246, 233, 0.65) 50%,
+    rgba(252, 246, 233, 0.2) 58%,
+    rgba(252, 246, 233, 0) 66%
+  );
 }
 
 /* --- İçerik katmanı --- */
@@ -271,8 +275,15 @@
 /* Laptop / dar masaüstü — beyaz alan genişler */
 @media (min-width: 901px) and (max-width: 1120px) {
   .pk-hero__content { justify-content: flex-start; padding-top: clamp(18px, 4svh, 38px); }
-  .pk-hero__scrim { clip-path: none; width: 58%; border-radius: 0 22% 22% 0 / 0 100% 100% 0; }
-  .pk-hero__bg { clip-path: none; }
+  .pk-hero__scrim {
+    background: linear-gradient(
+      90deg,
+      var(--pk-scrim) 0%, var(--pk-scrim) 48%,
+      rgba(252, 246, 233, 0.65) 58%,
+      rgba(252, 246, 233, 0.2) 66%,
+      rgba(252, 246, 233, 0) 74%
+    );
+  }
   .pk-copy { width: min(450px, 50vw); }
   .pk-copy__line { font-size: clamp(2.5rem, 5.8vw, 3.9rem); }
   .pk-copy__accent { font-size: clamp(2.6rem, 6vw, 4.1rem); }
