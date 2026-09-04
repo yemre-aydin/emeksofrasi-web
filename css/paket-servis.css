@@ -94,7 +94,7 @@
     clamp(20px, 4.6vw, 78px);
 }
 
-/* Geri Dön */
+/* Geri Dön — kavis çizgisinden tam uzakta kalsın diye sol üst çapraza kaydırılmış */
 .pk-back {
   align-self: flex-start;
   display: inline-flex; align-items: center; gap: 8px;
@@ -107,11 +107,16 @@
   font-family: var(--font-body); font-weight: 700;
   font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
   transition: background .2s ease, color .2s ease;
+  transform: translate(clamp(-16px, -1.6vw, -8px), clamp(-12px, -1.6svh, -6px));
 }
 .pk-back:hover { background: var(--pk-gold); color: var(--pk-ink); }
 .pk-back:focus-visible { outline: 3px solid var(--pk-gold); outline-offset: 2px; }
 
-.pk-copy { width: min(540px, 45vw); color: var(--pk-ink); }
+.pk-copy {
+  width: min(540px, 45vw);
+  color: var(--pk-ink);
+  margin-left: clamp(10px, 2.6vw, 44px);   /* kuryeci figürüne biraz yaklaştır */
+}
 
 /* "Yakında" — el yazısı, eğik + altın fırça flikleri */
 .pk-copy__pre {
@@ -316,7 +321,7 @@
   }
   .pk-hero__scrim { display: none; }
   .pk-hero__corner { display: none; }
-  .pk-back { border-color: var(--pk-gold); color: var(--pk-ink); }
+  .pk-back { border-color: var(--pk-gold); color: var(--pk-ink); transform: none; }
   .pk-back:hover { background: var(--pk-gold); color: #fff; }
 
   .pk-hero__content {
@@ -327,7 +332,7 @@
     margin-inline: auto;
     padding: clamp(16px, 4svh, 32px) clamp(18px, 5vw, 28px) clamp(22px, 5svh, 38px);
   }
-  .pk-copy { width: 100%; }
+  .pk-copy { width: 100%; margin-left: 0; }
   .pk-copy__line { font-size: clamp(2.5rem, 10.5vw, 3.9rem); }
   .pk-copy__accent { font-size: clamp(2.6rem, 11vw, 4.1rem); }
   .pk-copy__pre { font-size: clamp(2rem, 8.6vw, 2.9rem); }
