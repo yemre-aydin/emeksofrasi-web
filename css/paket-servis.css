@@ -65,6 +65,18 @@
   );
 }
 
+/* --- Sol üst köşe: yeşil devam ediyor — kavis çizgisi GERİ DÖN ile
+   "Yakında" arasından geçer. Üstü (GERİ DÖN) yeşil, altı beyazlatılmış. --- */
+.pk-hero__corner {
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 1;
+  width: clamp(220px, 24vw, 380px);
+  height: clamp(88px, 15svh, 180px);
+  background: var(--hero-green);
+  border-radius: 0 0 100% 0 / 0 0 100% 0;
+}
+
 /* --- İçerik katmanı --- */
 .pk-hero__content {
   position: relative;
@@ -88,15 +100,15 @@
   display: inline-flex; align-items: center; gap: 8px;
   margin-bottom: clamp(8px, 2svh, 24px);
   padding: 8px 18px;
-  border: 1.5px solid var(--pk-gold);
+  border: 1.5px solid var(--pk-gold-2);
   border-radius: 999px;
-  color: var(--pk-ink);
+  color: var(--gold-warm);
   text-decoration: none;
   font-family: var(--font-body); font-weight: 700;
   font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
   transition: background .2s ease, color .2s ease;
 }
-.pk-back:hover { background: var(--pk-gold); color: #fff; }
+.pk-back:hover { background: var(--pk-gold); color: var(--pk-ink); }
 .pk-back:focus-visible { outline: 3px solid var(--pk-gold); outline-offset: 2px; }
 
 .pk-copy { width: min(540px, 45vw); color: var(--pk-ink); }
@@ -303,6 +315,9 @@
     overflow: visible;
   }
   .pk-hero__scrim { display: none; }
+  .pk-hero__corner { display: none; }
+  .pk-back { border-color: var(--pk-gold); color: var(--pk-ink); }
+  .pk-back:hover { background: var(--pk-gold); color: #fff; }
 
   .pk-hero__content {
     order: 1;
