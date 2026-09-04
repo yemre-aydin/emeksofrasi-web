@@ -115,21 +115,31 @@
 
     var altTxt = day.ad + (day.kapali ? " — pazar günü" : " günü yemekleri");
 
-    if (day.video && video && !reduce) {
-      /* 3D menü videosu olan gün (prefers-reduced-motion'da statik görsele düşer) */
-      if (img) { img.hidden = true; img.classList.remove("is-in"); }
-      var playVid = function () {
-        if (video.getAttribute("src") !== day.video) video.src = day.video;
-        video.hidden = false;
-        video.setAttribute("aria-label", day.ad + " günü 3D menü videosu");
-        var p = video.play();
-        if (p && p.catch) p.catch(function () {});
-        requestAnimationFrame(function () { video.classList.add("is-in"); });
+    if (day.video && video) {
+      /* 3D menü videosu olan gün */
+      if (img) { img.hidden = true; img.classList.remove("is-in"); img.removeAttribute("src"); }
+      video.hidden = false;
+      video.muted = true;                 /* autoplay için şart */
+      video.setAttribute("aria-label", day.ad + " günü 3D menü videosu");
+      if (video.getAttribute("src") !== day.video) {
+        video.setAttribute("src", day.video);
+        video.load();
+      }
+      video.currentTime = 0;
+      var tryPlay = function () {
+        var pr = video.play();
+        if (pr && pr.then) pr.then(function () {
+          video.classList.add("is-in");
+        }).catch(function () {
+          /* autoplay engellendi — yine de kareyi göster */
+          video.classList.add("is-in");
+        });
+        else video.classList.add("is-in");
       };
-      video.classList.remove("is-in");
-      setTimeout(playVid, 150);
+      tryPlay();
+      video.addEventListener("loadeddata", tryPlay, { once: true });
     } else if (img) {
-      if (video) { try { video.pause(); } catch (e) {} video.hidden = true; video.classList.remove("is-in"); }
+      if (video) { try { video.pause(); } catch (e) {} video.hidden = true; video.classList.remove("is-in"); video.removeAttribute("src"); }
       var apply = function () {
         img.src = day.gorselYemek || day.gorsel;
         img.alt = altTxt;
