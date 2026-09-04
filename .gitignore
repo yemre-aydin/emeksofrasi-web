@@ -20,6 +20,9 @@ _*
 # ── Büyük / kullanılmayan medya ───────────────
 #    (dosyalar diskte kalır, sadece repoya girmez)
 *.mp4
+# menü 3D videoları KULLANILIYOR — repoya girer
+!images/menu/
+!images/menu/*.mp4
 images/3d/
 images/menu 3d/
 images/ChatGPT*
