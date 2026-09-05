@@ -71,10 +71,10 @@
   position: absolute;
   top: 0; left: 0;
   z-index: 1;
-  width: clamp(220px, 24vw, 380px);
-  height: clamp(88px, 15svh, 180px);
+  width: clamp(230px, 25vw, 390px);
+  height: clamp(90px, 15.5svh, 185px);
   background: var(--hero-green);
-  border-radius: 0 0 100% 0 / 0 0 100% 0;
+  clip-path: url(#pkCorner);
 }
 
 /* --- İçerik katmanı --- */
@@ -115,7 +115,7 @@
 .pk-copy {
   width: min(540px, 45vw);
   color: var(--pk-ink);
-  margin-left: clamp(10px, 2.6vw, 44px);   /* kuryeci figürüne biraz yaklaştır */
+  margin-left: clamp(20px, 5vw, 84px);   /* kuryeci figürüne biraz yaklaştır */
 }
 
 /* "Yakında" — el yazısı, eğik + altın fırça flikleri */
@@ -197,9 +197,9 @@
   margin-top: clamp(12px, 2.6svh, 24px);
   align-self: flex-start;
   display: flex; flex-direction: column; align-items: center;
-  min-width: min(350px, 82%);
-  padding: clamp(10px, 1.7svh, 15px) clamp(24px, 3vw, 40px) clamp(11px, 1.8svh, 16px);
-  padding-left: clamp(56px, 7vw, 78px);
+  min-width: min(280px, 72%);
+  padding: clamp(10px, 1.7svh, 15px) clamp(18px, 2.2vw, 30px) clamp(11px, 1.8svh, 16px);
+  padding-left: clamp(48px, 5.6vw, 64px);
   border: 1.5px solid var(--pk-btn-b);
   border-radius: 999px;
   background: var(--pk-gold-2);
