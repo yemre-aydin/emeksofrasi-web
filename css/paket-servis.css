@@ -31,8 +31,8 @@
   color: var(--gold-warm);
   padding: 6px clamp(20px, 6vw, 90px) 9px;
 }
-.pk-topline span { height: 1px; width: min(30vw, 360px); background: currentColor; opacity: .55; }
-.pk-topline svg { width: 74px; height: auto; flex-shrink: 0; }
+.pk-topline span { height: 1.5px; width: min(30vw, 360px); background: currentColor; opacity: .8; }
+.pk-topline svg { width: 128px; height: auto; flex-shrink: 0; }
 
 .pk-hero {
   position: relative;
@@ -71,8 +71,8 @@
   position: absolute;
   top: 0; left: 0;
   z-index: 1;
-  width: clamp(280px, 34vw, 480px);
-  height: clamp(85px, 13svh, 150px);
+  width: clamp(320px, 48vw, 620px);
+  height: clamp(95px, 12.3vw, 165px);
   background: var(--hero-green);
   clip-path: url(#pkCorner);
 }
@@ -115,7 +115,7 @@
 .pk-copy {
   width: min(540px, 45vw);
   color: var(--pk-ink);
-  margin-left: clamp(30px, 9vw, 140px);   /* kuryeci figürüne biraz yaklaştır */
+  margin-left: clamp(50px, 13vw, 190px);   /* kuryeci figürüne biraz yaklaştır */
 }
 
 /* "Yakında" — el yazısı, eğik + altın fırça flikleri */
