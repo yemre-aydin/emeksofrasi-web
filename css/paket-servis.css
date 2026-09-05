@@ -71,8 +71,8 @@
   position: absolute;
   top: 0; left: 0;
   z-index: 1;
-  width: clamp(230px, 25vw, 390px);
-  height: clamp(90px, 15.5svh, 185px);
+  width: clamp(280px, 34vw, 480px);
+  height: clamp(85px, 13svh, 150px);
   background: var(--hero-green);
   clip-path: url(#pkCorner);
 }
@@ -115,7 +115,7 @@
 .pk-copy {
   width: min(540px, 45vw);
   color: var(--pk-ink);
-  margin-left: clamp(20px, 5vw, 84px);   /* kuryeci figürüne biraz yaklaştır */
+  margin-left: clamp(30px, 9vw, 140px);   /* kuryeci figürüne biraz yaklaştır */
 }
 
 /* "Yakında" — el yazısı, eğik + altın fırça flikleri */
