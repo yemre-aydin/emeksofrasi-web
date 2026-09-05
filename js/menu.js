@@ -49,8 +49,8 @@
   /* ---- Sol sayfa: normal gün ---- */
   function leftNormal(day) {
     var mainsHtml = "<li>" + esc(day.anaYemek) + "</li>" +
-      fixed.map(function (m, i) {
-        return '<li><span class="menu-grp__no">' + (i + 7) + "</span> " + esc(m) + "</li>";
+      fixed.map(function (m) {
+        return "<li>" + esc(m) + "</li>";
       }).join("");
 
     return (

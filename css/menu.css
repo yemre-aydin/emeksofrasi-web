@@ -237,12 +237,6 @@
 }
 .menu-grp--line .menu-grp__ico svg { width: 100%; height: 100%; display: block; }
 .menu-grp--line ul li { font-weight: 600; }
-.menu-grp__no {
-  display: inline-block;
-  margin-right: 0.35em;
-  font-family: var(--font-body); font-weight: 800;
-  color: #9a7526;
-}
 
 /* Pazar */
 .menu-page__body--sunday { gap: clamp(8px, 2svh, 20px); justify-content: center; }
