@@ -316,44 +316,55 @@
   .pk-topline { padding: 5px 0 7px; }
   .pk-topline span { width: 24vw; }
 
+  /* Mobil: fotoğraf tüm hero'nun arkasında full-bleed, yazılar üstünde.
+     Dikey beyazlatma katmanı: üstte fotoğraf hissedilir, aşağı indikçe
+     krem zemin belirginleşir (buton + fayda satırları neredeyse düz krem). */
   .pk-hero {
-    display: flex; flex-direction: column;
+    display: block;
     min-height: 0;
     background: var(--pk-scrim);
-    overflow: visible;
+    overflow: hidden;
   }
-  .pk-hero__scrim { display: none; }
   .pk-hero__corner { display: none; }
   .pk-back { border-color: var(--pk-gold); color: var(--pk-ink); transform: none; }
   .pk-back:hover { background: var(--pk-gold); color: #fff; }
 
+  .pk-hero__bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 64% 30%;
+    z-index: 0;
+    clip-path: none;
+  }
+  .pk-hero__scrim {
+    display: block;
+    position: absolute; inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(252, 246, 233, 0.66) 0%,
+      rgba(252, 246, 233, 0.82) 30%,
+      rgba(252, 246, 233, 0.94) 55%,
+      rgba(252, 246, 233, 0.98) 78%,
+      rgba(252, 246, 233, 1) 100%
+    );
+  }
+
   .pk-hero__content {
-    order: 1;
+    position: relative;
+    z-index: 2;
     min-height: 0;
     display: block;
     max-width: 640px;
     margin-inline: auto;
-    padding: clamp(16px, 4svh, 32px) clamp(18px, 5vw, 28px) clamp(22px, 5svh, 38px);
+    padding: clamp(18px, 5svh, 36px) clamp(18px, 5vw, 28px) clamp(24px, 5svh, 40px);
   }
   .pk-copy { width: 100%; margin-left: 0; }
   .pk-copy__line { font-size: clamp(2.5rem, 10.5vw, 3.9rem); white-space: normal; }
   .pk-copy__accent { font-size: clamp(2.6rem, 11vw, 4.1rem); margin-left: 0; white-space: normal; }
-  .pk-copy__pre { font-size: clamp(2rem, 8.6vw, 2.9rem); }
+  .pk-copy__pre { font-size: clamp(2rem, 8.6vw, 2.9rem); margin-left: 0; }
   .pk-order { min-width: 0; width: 100%; }
-
-  .pk-hero__bg {
-    position: relative; inset: auto;
-    order: 2;
-    width: 100%; height: auto;
-    aspect-ratio: 16 / 10;
-    max-height: 42svh;
-    object-fit: cover;
-    object-position: 60% center;
-    clip-path: none;
-  }
-}
-@media (max-width: 480px) {
-  .pk-hero__bg { max-height: 34svh; aspect-ratio: 16 / 11; }
 }
 
 @media (prefers-reduced-motion: reduce) {
