@@ -45,19 +45,19 @@
 }
 .pk-hero__frame {
   position: relative;
-  width: min(90vw, 1120px);
-  aspect-ratio: 1740 / 1930;     /* görselin DOĞAL oranı — sıkışma/kırpılma yok */
-  min-height: calc(100svh - var(--header-h));
+  width: min(92vw, 1100px);
+  /* İLK EKRANA SIĞAR — header + topline çıkarıldı, kaydırma yok */
+  height: calc(100svh - var(--header-h) - 34px);
   overflow: hidden;
   background: var(--pk-scrim);
 }
 
-/* --- Manzara fotoğrafı — frame'i doğal oranıyla doldurur --- */
+/* --- Manzara fotoğrafı — frame'i kaplar; kurye + ayna + çanta görünür --- */
 .pk-hero__bg {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: 60% 69%;   /* kurye + ayna + logolu çanta ilk ekranda; tabela üstü hafif kırpık */
   z-index: 0;
 }
 
@@ -79,14 +79,14 @@
 .pk-hero__content {
   position: relative;
   z-index: 2;
-  min-height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   padding:
-    clamp(24px, 5svh, 64px)
+    clamp(16px, 3svh, 40px)
     clamp(24px, 5vw, 70px)
-    clamp(24px, 5svh, 64px)
+    clamp(16px, 3svh, 40px)
     clamp(22px, 3.2vw, 60px);
 }
 
@@ -161,9 +161,9 @@
 
 .pk-orn {
   display: block; color: var(--pk-gold);
-  margin: clamp(4px, 1svh, 10px) 0 clamp(8px, 1.8svh, 16px);
+  margin: clamp(6px, 1.4svh, 14px) 0 clamp(10px, 2svh, 18px);
 }
-.pk-orn svg { width: clamp(60px, 6.5vw, 88px); height: auto; display: block; }
+.pk-orn svg { width: clamp(150px, 15vw, 220px); height: auto; display: block; }
 
 .pk-copy__lead {
   margin: 0;
@@ -326,10 +326,12 @@
      yükseklik içeriğe göre (aspect-ratio kısıtı ve clip yok) */
   .pk-hero__frame {
     width: 100%;
+    height: auto;
     min-height: 0;
     aspect-ratio: auto;
     overflow: visible;
   }
+  .pk-hero__content { height: auto; }
   .pk-hero__bg {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
