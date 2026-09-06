@@ -611,6 +611,8 @@
 @media (max-width: 960px) {
   .site-nav, .wa-btn { display: none; }
   .nav-burger { display: flex; }
+  /* ana sayfada da hamburger sol tarafta kalsın (iç sayfalarla aynı) */
+  .page-index .topbar__inner { justify-content: flex-start; }
 }
 @media (max-width: 640px) {
   :root { --header-h: 60px; }
