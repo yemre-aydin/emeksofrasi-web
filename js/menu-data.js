@@ -30,7 +30,7 @@ window.MENU_DATA = {
       id: "pazartesi", ad: "Pazartesi",
       gorselYemek: "images/menu/food-pazartesi.png",
       gorsel: "images/menu/gun-pazartesi.png",
-      video: "images/menu/Hand_sliding_food.mp4",   /* 3D menü videosu */
+      video: "images/menu/Food_commercial_pazartesi.mp4",   /* 3D menü videosu */
       corba: "Günün Çorbası",
       anaYemek: "Tavuklu Pilav",
       yanUrunler: ["Mevsim Salatası"],
