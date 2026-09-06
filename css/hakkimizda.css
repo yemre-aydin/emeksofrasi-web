@@ -74,7 +74,9 @@
   color: rgba(255, 255, 255, .94);
 }
 .story-text p { margin: 0 0 1.15em; }
-.story-text p:first-child {
+/* Giriş (lead) paragrafı sadece Hikayemiz'in ilk bölümünde italik serif;
+   devam bölümündeki paragraflar gövde yazı tipiyle aynı kalır. */
+.story-copy--intro .story-text p:first-child {
   font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(18px, 1.4vw, 22px);
   font-style: italic;
@@ -148,7 +150,7 @@
   .story-column { gap: 28px; }
   .story-title { font-size: clamp(44px, 4.2vw, 62px); margin-bottom: 18px; }
   .story-text { font-size: 14.5px; line-height: 1.56; }
-  .story-text p:first-child { font-size: clamp(16px, 1.1vw, 19px); }
+  .story-copy--intro .story-text p:first-child { font-size: clamp(16px, 1.1vw, 19px); }
   .about-photo-frame img { max-height: 62svh; }
   .about-photo-bridge .about-container { gap: 44px; }
   .about-final-section { padding-top: clamp(44px, 6svh, 70px); padding-bottom: clamp(52px, 7svh, 90px); }
@@ -187,7 +189,7 @@
 
   .story-title { font-size: clamp(40px, 12vw, 54px); line-height: 1; margin-bottom: 20px; }
   .story-text { font-size: 16px; line-height: 1.58; }
-  .story-text p:first-child { font-size: 17px; }
+  .story-copy--intro .story-text p:first-child { font-size: 17px; }
 
   .about-photo-frame { padding: 4px; border-radius: 14px; }
   .about-photo-frame img { width: 100%; height: auto; max-height: none; object-fit: contain; border-radius: 10px; }
