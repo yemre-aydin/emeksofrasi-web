@@ -51,17 +51,18 @@
   z-index: 0;
 }
 
-/* --- Fotoğrafın sol tarafı HAFİF BEYAZLATILMIŞ (düz kenar, yumuşak geçiş) --- */
+/* --- Fotoğrafın sol tarafı HAFİF BEYAZLATILMIŞ (düz kenar, yumuşak geçiş) —
+   solukluk azaltıldı, fotoğraf daha çok hissediliyor (mobil yaklaşımı gibi) --- */
 .pk-hero__scrim {
   position: absolute; inset: 0;
   z-index: 1;
   background: linear-gradient(
     90deg,
-    var(--pk-scrim) 0%,
-    var(--pk-scrim) 40%,
-    rgba(252, 246, 233, 0.65) 50%,
-    rgba(252, 246, 233, 0.2) 58%,
-    rgba(252, 246, 233, 0) 66%
+    rgba(252, 246, 233, 0.82) 0%,
+    rgba(252, 246, 233, 0.80) 38%,
+    rgba(252, 246, 233, 0.52) 50%,
+    rgba(252, 246, 233, 0.16) 60%,
+    rgba(252, 246, 233, 0) 70%
   );
 }
 
@@ -298,10 +299,11 @@
   .pk-hero__scrim {
     background: linear-gradient(
       90deg,
-      var(--pk-scrim) 0%, var(--pk-scrim) 48%,
-      rgba(252, 246, 233, 0.65) 58%,
-      rgba(252, 246, 233, 0.2) 66%,
-      rgba(252, 246, 233, 0) 74%
+      rgba(252, 246, 233, 0.83) 0%,
+      rgba(252, 246, 233, 0.81) 46%,
+      rgba(252, 246, 233, 0.52) 58%,
+      rgba(252, 246, 233, 0.16) 68%,
+      rgba(252, 246, 233, 0) 78%
     );
   }
   .pk-copy { width: min(450px, 50vw); }
@@ -343,10 +345,10 @@
     z-index: 1;
     background: linear-gradient(
       180deg,
-      rgba(252, 246, 233, 0.66) 0%,
-      rgba(252, 246, 233, 0.82) 30%,
-      rgba(252, 246, 233, 0.94) 55%,
-      rgba(252, 246, 233, 0.98) 78%,
+      rgba(252, 246, 233, 0.55) 0%,
+      rgba(252, 246, 233, 0.74) 30%,
+      rgba(252, 246, 233, 0.90) 56%,
+      rgba(252, 246, 233, 0.97) 80%,
       rgba(252, 246, 233, 1) 100%
     );
   }
