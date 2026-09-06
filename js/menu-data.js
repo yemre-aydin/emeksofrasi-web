@@ -33,17 +33,17 @@ window.MENU_DATA = {
       video: "images/menu/Hand_sliding_food.mp4",   /* 3D menü videosu */
       corba: "Günün Çorbası",
       anaYemek: "Tavuklu Pilav",
-      yanUrunler: ["Pilav", "Mevsim Salata"],
+      yanUrunler: ["Mevsim Salatası"],
       icecek: "Meşrubat"
     },
     {
       id: "sali", ad: "Salı",
       gorselYemek: "images/menu/food-sali.png",
       gorsel: "images/menu/gun-sali.png",
-      video: "images/menu/Menu_book_sali.mp4",   /* 3D menü videosu — hazır olan günlerde eklenir */
+      video: "images/menu/Menu_book_sali.mp4",   /* 3D menü videosu */
       corba: "Günün Çorbası",
-      anaYemek: "Fırında İzmir Köfte",
-      yanUrunler: ["Bulgur Pilavı", "Pilav"],
+      anaYemek: "Bostan Kebap",
+      yanUrunler: ["Makarna"],
       icecek: "Meşrubat"
     },
     {
@@ -51,7 +51,7 @@ window.MENU_DATA = {
       gorselYemek: "images/menu/food-carsamba.png",
       gorsel: "images/menu/gun-carsamba.png",
       corba: "Günün Çorbası",
-      anaYemek: "Sebzeli Nohut",
+      anaYemek: "Taze Fasulye",
       yanUrunler: ["Pilav"],
       icecek: "Meşrubat"
     },
@@ -60,8 +60,8 @@ window.MENU_DATA = {
       gorselYemek: "images/menu/food-persembe.png",
       gorsel: "images/menu/gun-persembe.png",
       corba: "Günün Çorbası",
-      anaYemek: "Çıtır Tavuk",
-      yanUrunler: ["Meyhane Pilavı", "Pilav"],
+      anaYemek: "Mantı",
+      yanUrunler: ["Mevsim Salatası"],
       icecek: "Meşrubat"
     },
     {
@@ -69,7 +69,7 @@ window.MENU_DATA = {
       gorselYemek: "images/menu/food-cuma.png",
       gorsel: "images/menu/gun-cuma.png",
       corba: "Günün Çorbası",
-      anaYemek: "Fırında Baget Tavuk",
+      anaYemek: "Köri Soslu Tavuk",
       yanUrunler: ["Pilav"],
       icecek: "Meşrubat"
     },
@@ -79,7 +79,7 @@ window.MENU_DATA = {
       gorsel: "images/menu/gun-cumartesi.png",
       video: "images/menu/menu_dishes_cumartesi.mp4",   /* 3D menü videosu */
       corba: "Günün Çorbası",
-      anaYemek: "Hünkarbeğendi",
+      anaYemek: "Dana Ciğer",
       yanUrunler: ["Pilav"],
       icecek: "Meşrubat"
     }

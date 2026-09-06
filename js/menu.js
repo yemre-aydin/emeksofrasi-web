@@ -59,7 +59,6 @@
       ornSvg() +
       '<div class="menu-page__body">' +
         '<section class="menu-grp menu-grp--line">' +
-          '<span class="menu-grp__ico" aria-hidden="true">' + icoSoup() + "</span>" +
           "<ul><li>" + esc(day.corba || "Günün Çorbası") + "</li></ul>" +
         "</section>" +
         '<section class="menu-grp">' +
@@ -69,7 +68,6 @@
           "<h3>Yan Lezzetler</h3><ul>" + li(day.yanUrunler || []) + "</ul>" +
         "</section>" +
         '<section class="menu-grp menu-grp--line">' +
-          '<span class="menu-grp__ico" aria-hidden="true">' + icoDrink() + "</span>" +
           "<ul><li>" + esc(day.icecek || "Meşrubat") + "</li></ul>" +
         "</section>" +
       "</div>"
@@ -97,12 +95,6 @@
       '<g stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M6 6h24M60 6h24"/></g>' +
       '<g fill="currentColor"><path d="M45 1.5c-2 1.7-2.9 3.8-2.9 5.8 2 0 3.6-1.6 4.1-3.7L45 1.5zM45 1.5c2 1.7 2.9 3.8 2.9 5.8-2 0-3.6-1.6-4.1-3.7L45 1.5z"/>' +
       '<circle cx="37" cy="6" r="1.2"/><circle cx="53" cy="6" r="1.2"/></g></svg></span>';
-  }
-  function icoSoup() {
-    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16M5 11a7 7 0 0 0 14 0"/><path d="M8 7c0-1.2 1-1.8 1-3M12 7c0-1.2 1-1.8 1-3M16 7c0-1.2 1-1.8 1-3"/></svg>';
-  }
-  function icoDrink() {
-    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10l-1 15a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z"/><path d="M7.5 9h9"/></svg>';
   }
 
   /* ---- Gün render ---- */
