@@ -115,7 +115,7 @@
 .pk-copy {
   width: min(540px, 45vw);
   color: var(--pk-ink);
-  margin-left: clamp(50px, 13vw, 190px);   /* kuryeci figürüne biraz yaklaştır */
+  margin-left: clamp(16px, 3.5vw, 64px);   /* mockup: metin sola yakın başlar, büyük başlıkla kuryeye ulaşır */
 }
 
 /* "Yakında" — el yazısı, eğik + altın fırça flikleri */
@@ -142,23 +142,26 @@
 
 /* Başlık — çok büyük, cesur, fotoğrafa doğru taşar */
 .pk-copy__title {
-  margin: 2px 0 clamp(8px, 1.6svh, 16px);
+  margin: clamp(4px, 1.3svh, 14px) 0 clamp(8px, 1.6svh, 16px);
   font-family: var(--font-body); font-weight: 900;
   line-height: 0.92; letter-spacing: -0.015em;
   text-transform: uppercase;
 }
 .pk-copy__line {
   display: block;
-  font-size: clamp(2.9rem, 3.4vw + 1.9svh, 6.1rem);
+  font-size: clamp(3rem, 5vw + 1.6svh, 7.7rem);
   color: var(--pk-ink);
+  white-space: nowrap;
 }
 .pk-copy__accent {
   display: block;
   margin-top: 0.04em;
-  font-size: clamp(3rem, 3.6vw + 2svh, 6.4rem);
+  margin-left: clamp(26px, 5vw, 90px);   /* mockup: "Başlıyor!" kademeli sağa kayık */
+  font-size: clamp(3.1rem, 5.3vw + 1.7svh, 8.1rem);
   color: var(--pk-gold);
   transform: rotate(-1.2deg);
   transform-origin: left center;
+  white-space: nowrap;
 }
 
 .pk-orn {
@@ -194,7 +197,7 @@
 /* Sipariş Ver — geniş altın PILL, ortalı yazı, sol scooter ikon; PASİF */
 .pk-order {
   position: relative;
-  margin-top: clamp(12px, 2.6svh, 24px);
+  margin-top: clamp(10px, 2.2svh, 18px);
   align-self: flex-start;
   display: flex; flex-direction: column; align-items: center;
   min-width: min(280px, 72%);
@@ -228,8 +231,8 @@
 
 /* Fayda satırları — koyu yeşil daire + altın ikon, koyu yeşil metin */
 .pk-benefits {
-  list-style: none; margin: clamp(12px, 2.8svh, 26px) 0 0; padding: 0;
-  display: grid; gap: clamp(9px, 2svh, 20px);
+  list-style: none; margin: clamp(10px, 2.2svh, 18px) 0 0; padding: 0;
+  display: grid; gap: clamp(8px, 1.7svh, 16px);
 }
 .pk-benefits li { display: flex; align-items: center; gap: clamp(12px, 1.4vw, 18px); }
 .pk-benefits__ico {
@@ -242,9 +245,11 @@
 }
 .pk-benefits__ico svg { width: 56%; height: 56%; }
 .pk-benefits li span:last-child {
-  font-family: var(--font-body); line-height: 1.22;
+  font-family: var(--font-body); line-height: 1.32;
   color: #2c4a3c;
   font-size: clamp(0.88rem, 0.5vw + .3svh, 1.02rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 .pk-benefits li strong {
   display: block;
@@ -333,8 +338,8 @@
     padding: clamp(16px, 4svh, 32px) clamp(18px, 5vw, 28px) clamp(22px, 5svh, 38px);
   }
   .pk-copy { width: 100%; margin-left: 0; }
-  .pk-copy__line { font-size: clamp(2.5rem, 10.5vw, 3.9rem); }
-  .pk-copy__accent { font-size: clamp(2.6rem, 11vw, 4.1rem); }
+  .pk-copy__line { font-size: clamp(2.5rem, 10.5vw, 3.9rem); white-space: normal; }
+  .pk-copy__accent { font-size: clamp(2.6rem, 11vw, 4.1rem); margin-left: 0; white-space: normal; }
   .pk-copy__pre { font-size: clamp(2rem, 8.6vw, 2.9rem); }
   .pk-order { min-width: 0; width: 100%; }
 
