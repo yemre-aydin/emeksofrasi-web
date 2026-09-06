@@ -45,19 +45,22 @@
 }
 .pk-hero__frame {
   position: relative;
-  width: min(92vw, 1100px);
-  /* İLK EKRANA SIĞAR — header + topline çıkarıldı, kaydırma yok */
+  /* İLK EKRANA SIĞAR + GÖRSEL DOĞAL ORANINDA (yakınlaştırma/kırpma yok):
+     yükseklik viewport'a sabit, genişlik görselin oranına göre. */
   height: calc(100svh - var(--header-h) - 34px);
+  aspect-ratio: 1740 / 1500;
+  width: auto;
+  max-width: 92vw;
   overflow: hidden;
   background: var(--pk-scrim);
 }
 
-/* --- Manzara fotoğrafı — frame'i kaplar; kurye + ayna + çanta görünür --- */
+/* --- Manzara fotoğrafı — frame'i DOĞAL oranıyla doldurur (kırpma/zoom yok) --- */
 .pk-hero__bg {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 60% 69%;   /* kurye + ayna + logolu çanta ilk ekranda; tabela üstü hafif kırpık */
+  object-position: center;
   z-index: 0;
 }
 
@@ -336,7 +339,7 @@
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
-    object-position: 64% 30%;
+    object-position: 58% 62%;
     z-index: 0;
     clip-path: none;
   }
