@@ -34,51 +34,60 @@
 .pk-topline span { height: 1.5px; width: min(30vw, 360px); background: currentColor; opacity: .8; }
 .pk-topline svg { width: 128px; height: auto; flex-shrink: 0; }
 
+/* Hero = ortada GÖRSEL bandı, iki yanda YEŞİL.
+   Görsel doğal oranıyla (birebir tasarım) ortalanır; sağ/sol kalan yeşil. */
 .pk-hero {
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background: var(--hero-green);
+}
+.pk-hero__frame {
+  position: relative;
+  width: min(90vw, 1120px);
+  aspect-ratio: 1740 / 1930;     /* görselin DOĞAL oranı — sıkışma/kırpılma yok */
   min-height: calc(100svh - var(--header-h));
+  overflow: hidden;
   background: var(--pk-scrim);
 }
 
-/* --- Manzara fotoğrafı — tüm hero'nun arkasında full-bleed (mobil gibi) --- */
+/* --- Manzara fotoğrafı — frame'i doğal oranıyla doldurur --- */
 .pk-hero__bg {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 68% center;
+  object-position: center top;
   z-index: 0;
 }
 
-/* --- Beyazlatma katmanı — fotoğraf yazıların ARKASINDA görünür kalır
-   (mobil yaklaşımı): sol/üst hafif krem, kuryeye doğru şeffaf. --- */
+/* --- Beyazlatma katmanı — yazıların olduğu SOL bölge (mockup) --- */
 .pk-hero__scrim {
   position: absolute; inset: 0;
   z-index: 1;
   background: linear-gradient(
     100deg,
-    rgba(252, 246, 233, 0.74) 0%,
-    rgba(252, 246, 233, 0.66) 32%,
-    rgba(252, 246, 233, 0.34) 46%,
-    rgba(252, 246, 233, 0.10) 58%,
-    rgba(252, 246, 233, 0) 70%
+    rgba(252, 246, 233, 0.90) 0%,
+    rgba(252, 246, 233, 0.86) 30%,
+    rgba(252, 246, 233, 0.52) 44%,
+    rgba(252, 246, 233, 0.14) 56%,
+    rgba(252, 246, 233, 0) 68%
   );
 }
 
-/* --- İçerik katmanı — SOL KENARA sabit (metin sola yakın başlar,
-   geniş ekranda ortalama gutter'ı YOK) --- */
+/* --- İçerik katmanı — frame'in SOL kısmı üzerinde --- */
 .pk-hero__content {
   position: relative;
   z-index: 2;
-  min-height: calc(100svh - var(--header-h));
+  min-height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding:
-    clamp(14px, 2.6svh, 40px)
+    clamp(24px, 5svh, 64px)
     clamp(24px, 5vw, 70px)
-    clamp(14px, 2.6svh, 40px)
-    clamp(24px, 3.4vw, 68px);
+    clamp(24px, 5svh, 64px)
+    clamp(22px, 3.2vw, 60px);
 }
 
 /* Geri Dön — fotoğraf/krem katman üzerinde koyu metin */
@@ -273,7 +282,7 @@
   .pk-order__title { font-size: 1.12rem; }
 }
 @media (min-width: 901px) and (max-height: 670px) {
-  .pk-hero, .pk-hero__content { min-height: 0; }
+  .pk-hero__frame, .pk-hero__content { min-height: 0; }
   .pk-hero__content { justify-content: flex-start; padding-top: clamp(10px, 2svh, 20px); }
   .pk-copy__lead br { display: none; }
   .pk-benefits { gap: clamp(6px, 1.2svh, 11px); }
@@ -285,10 +294,10 @@
   .pk-hero__scrim {
     background: linear-gradient(
       100deg,
-      rgba(252, 246, 233, 0.78) 0%,
-      rgba(252, 246, 233, 0.70) 44%,
-      rgba(252, 246, 233, 0.36) 56%,
-      rgba(252, 246, 233, 0.10) 66%,
+      rgba(252, 246, 233, 0.90) 0%,
+      rgba(252, 246, 233, 0.86) 40%,
+      rgba(252, 246, 233, 0.52) 54%,
+      rgba(252, 246, 233, 0.14) 66%,
       rgba(252, 246, 233, 0) 78%
     );
   }
@@ -312,6 +321,14 @@
     min-height: 0;
     background: var(--pk-scrim);
     overflow: hidden;
+  }
+  /* mobilde yeşil yan bantlar YOK — frame tam genişlik, fotoğraf full-bleed,
+     yükseklik içeriğe göre (aspect-ratio kısıtı ve clip yok) */
+  .pk-hero__frame {
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    overflow: visible;
   }
   .pk-hero__bg {
     position: absolute; inset: 0;
