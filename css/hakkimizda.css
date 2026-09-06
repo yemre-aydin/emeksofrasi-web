@@ -133,12 +133,13 @@
 }
 .about-final-text p { margin: 0 0 clamp(16px, 2.5svh, 25px); }
 .about-final-text p:last-child { margin-bottom: 0; }
+/* "Çünkü..." kapanış cümlesi — bir üst paragrafla aynı yazı tipi (Mulish) */
 .about-final-emphasis {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.05rem, 0.7vw + .4vh, 1.3rem);
-  font-weight: 500; font-style: italic;
-  line-height: 1.5;
-  color: #fbf7ec;
+  font-family: "Mulish", Arial, sans-serif;
+  font-size: clamp(15px, 1.05vw, 18px);
+  font-weight: 400; font-style: normal;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, .94);
 }
 
 /* ==========================================================================

@@ -38,47 +38,34 @@
   position: relative;
   overflow: hidden;
   min-height: calc(100svh - var(--header-h));
-  background: var(--hero-green);       /* fotoğraf DIŞI = ana yeşil */
+  background: var(--pk-scrim);
 }
-.pk-hero__clip { position: absolute; width: 0; height: 0; }
 
-/* --- Manzara fotoğrafı — tam kaplama, kavis YOK --- */
+/* --- Manzara fotoğrafı — tüm hero'nun arkasında full-bleed (mobil gibi) --- */
 .pk-hero__bg {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 72% center;
+  object-position: 68% center;
   z-index: 0;
 }
 
-/* --- Fotoğrafın sol tarafı HAFİF BEYAZLATILMIŞ (düz kenar, yumuşak geçiş) —
-   solukluk azaltıldı, fotoğraf daha çok hissediliyor (mobil yaklaşımı gibi) --- */
+/* --- Beyazlatma katmanı — fotoğraf yazıların ARKASINDA görünür kalır
+   (mobil yaklaşımı): sol/üst hafif krem, kuryeye doğru şeffaf. --- */
 .pk-hero__scrim {
   position: absolute; inset: 0;
   z-index: 1;
   background: linear-gradient(
-    90deg,
-    rgba(252, 246, 233, 0.82) 0%,
-    rgba(252, 246, 233, 0.80) 38%,
-    rgba(252, 246, 233, 0.52) 50%,
-    rgba(252, 246, 233, 0.16) 60%,
+    100deg,
+    rgba(252, 246, 233, 0.74) 0%,
+    rgba(252, 246, 233, 0.66) 32%,
+    rgba(252, 246, 233, 0.34) 46%,
+    rgba(252, 246, 233, 0.10) 58%,
     rgba(252, 246, 233, 0) 70%
   );
 }
 
-/* --- Sol üst köşe: yeşil devam ediyor — kavis çizgisi GERİ DÖN ile
-   "Yakında" arasından geçer. Üstü (GERİ DÖN) yeşil, altı beyazlatılmış. --- */
-.pk-hero__corner {
-  position: absolute;
-  top: 0; left: 0;
-  z-index: 1;
-  width: clamp(300px, 44vw, 560px);
-  height: clamp(74px, 8vw, 108px);
-  background: var(--hero-green);
-  clip-path: url(#pkCorner);
-}
-
-/* --- İçerik katmanı — SOL KENARA sabit (mockup: metin sola yakın başlar,
+/* --- İçerik katmanı — SOL KENARA sabit (metin sola yakın başlar,
    geniş ekranda ortalama gutter'ı YOK) --- */
 .pk-hero__content {
   position: relative;
@@ -94,22 +81,21 @@
     clamp(24px, 3.4vw, 68px);
 }
 
-/* Geri Dön — kavis çizgisinden tam uzakta kalsın diye sol üst çapraza kaydırılmış */
+/* Geri Dön — fotoğraf/krem katman üzerinde koyu metin */
 .pk-back {
   align-self: flex-start;
   display: inline-flex; align-items: center; gap: 8px;
-  margin-bottom: clamp(18px, 3.8vw, 46px);   /* kavis yüksekliğiyle (vw) orantılı — "Yakında" kavisin altında kalsın */
+  margin-bottom: clamp(12px, 2.4svh, 26px);
   padding: 8px 18px;
-  border: 1.5px solid var(--pk-gold-2);
+  border: 1.5px solid var(--pk-gold);
   border-radius: 999px;
-  color: var(--gold-warm);
+  color: var(--pk-ink);
   text-decoration: none;
   font-family: var(--font-body); font-weight: 700;
   font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
   transition: background .2s ease, color .2s ease;
-  transform: translate(clamp(-16px, -1.6vw, -8px), clamp(-12px, -1.6svh, -6px));
 }
-.pk-back:hover { background: var(--pk-gold); color: var(--pk-ink); }
+.pk-back:hover { background: var(--pk-gold); color: #fff; }
 .pk-back:focus-visible { outline: 3px solid var(--pk-gold); outline-offset: 2px; }
 
 .pk-copy {
@@ -121,7 +107,7 @@
 /* "Yakında" — el yazısı, eğik + altın fırça flikleri */
 .pk-copy__pre {
   position: relative;
-  display: inline-block; margin: 0 0 2px clamp(12px, 2.4vw, 46px);
+  display: inline-block; margin: 0 0 2px clamp(6px, 1vw, 16px);
   font-family: "Dancing Script", var(--font-display), cursive;
   font-weight: 700;
   font-size: clamp(2.3rem, 2.4vw + 1.5svh, 4.1rem);
@@ -293,16 +279,16 @@
   .pk-benefits { gap: clamp(6px, 1.2svh, 11px); }
 }
 
-/* Laptop / dar masaüstü — beyaz alan genişler */
+/* Laptop / dar masaüstü */
 @media (min-width: 901px) and (max-width: 1120px) {
   .pk-hero__content { justify-content: flex-start; padding-top: clamp(18px, 4svh, 38px); }
   .pk-hero__scrim {
     background: linear-gradient(
-      90deg,
-      rgba(252, 246, 233, 0.83) 0%,
-      rgba(252, 246, 233, 0.81) 46%,
-      rgba(252, 246, 233, 0.52) 58%,
-      rgba(252, 246, 233, 0.16) 68%,
+      100deg,
+      rgba(252, 246, 233, 0.78) 0%,
+      rgba(252, 246, 233, 0.70) 44%,
+      rgba(252, 246, 233, 0.36) 56%,
+      rgba(252, 246, 233, 0.10) 66%,
       rgba(252, 246, 233, 0) 78%
     );
   }
@@ -327,10 +313,6 @@
     background: var(--pk-scrim);
     overflow: hidden;
   }
-  .pk-hero__corner { display: none; }
-  .pk-back { border-color: var(--pk-gold); color: var(--pk-ink); transform: none; }
-  .pk-back:hover { background: var(--pk-gold); color: #fff; }
-
   .pk-hero__bg {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
