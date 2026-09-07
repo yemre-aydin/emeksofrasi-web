@@ -40,7 +40,7 @@ window.MENU_DATA = {
       id: "sali", ad: "Salı",
       gorselYemek: "images/menu/food-sali.png",
       gorsel: "images/menu/gun-sali.png",
-      video: "images/menu/Menu_book_sali.mp4",   /* 3D menü videosu */
+      video: "images/menu/Food_commercial_sali.mp4",   /* 3D menü videosu */
       corba: "Günün Çorbası",
       anaYemek: "Bostan Kebap",
       yanUrunler: ["Makarna"],
@@ -50,6 +50,7 @@ window.MENU_DATA = {
       id: "carsamba", ad: "Çarşamba",
       gorselYemek: "images/menu/food-carsamba.png",
       gorsel: "images/menu/gun-carsamba.png",
+      video: "images/menu/Food_commercial_carsamba.mp4",   /* 3D menü videosu */
       corba: "Günün Çorbası",
       anaYemek: "Taze Fasulye",
       yanUrunler: ["Pilav"],
