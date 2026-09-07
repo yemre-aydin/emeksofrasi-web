@@ -70,6 +70,7 @@ window.MENU_DATA = {
       id: "cuma", ad: "Cuma",
       gorselYemek: "images/menu/food-cuma.png",
       gorsel: "images/menu/gun-cuma.png",
+      video: "images/menu/Food_commercial_cuma.mp4",   /* 3D menü videosu */
       corba: "Günün Çorbası",
       anaYemek: "Köri Soslu Tavuk",
       yanUrunler: ["Pilav"],
@@ -79,7 +80,7 @@ window.MENU_DATA = {
       id: "cumartesi", ad: "Cumartesi",
       gorselYemek: "images/menu/food-cumartesi.png",
       gorsel: "images/menu/gun-cumartesi.png",
-      video: "images/menu/menu_dishes_cumartesi.mp4",   /* 3D menü videosu */
+      video: "images/menu/Food_commercial_cumartesi.mp4",   /* 3D menü videosu */
       corba: "Günün Çorbası",
       anaYemek: "Dana Ciğer",
       yanUrunler: ["Pilav"],
