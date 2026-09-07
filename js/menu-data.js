@@ -43,7 +43,7 @@ window.MENU_DATA = {
       video: "images/menu/Food_commercial_sali.mp4",   /* 3D menü videosu */
       corba: "Günün Çorbası",
       anaYemek: "Bostan Kebap",
-      yanUrunler: ["Makarna"],
+      yanUrunler: ["Makarna", "Pilav"],
       icecek: "Meşrubat"
     },
     {
@@ -62,7 +62,7 @@ window.MENU_DATA = {
       gorsel: "images/menu/gun-persembe.png",
       corba: "Günün Çorbası",
       anaYemek: "Mantı",
-      yanUrunler: ["Mevsim Salatası"],
+      yanUrunler: ["Mevsim Salatası", "Pilav"],
       icecek: "Meşrubat"
     },
     {
