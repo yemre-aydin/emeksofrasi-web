@@ -60,6 +60,7 @@ window.MENU_DATA = {
       id: "persembe", ad: "Perşembe",
       gorselYemek: "images/menu/food-persembe.png",
       gorsel: "images/menu/gun-persembe.png",
+      video: "images/menu/Food_commercial_persembe.mp4",   /* 3D menü videosu */
       corba: "Günün Çorbası",
       anaYemek: "Mantı",
       yanUrunler: ["Mevsim Salatası", "Pilav"],
