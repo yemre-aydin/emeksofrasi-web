@@ -92,8 +92,8 @@ window.MENU_DATA = {
   /* Pazar — restoran kapalı */
   pazar: {
     id: "pazar", ad: "Pazar",
-    gorselYemek: "images/menu/food-pazar.png",
-    gorsel: "images/menu/gun-pazar.png",
+    gorselYemek: "images/menu/pazar-gorseli.png",
+    gorsel: "images/menu/pazar-gorseli.png",
     kapali: true,
     mesajlar: [
       { baslik: "Günün Dileği", metin: "Güzel bir pazar geçirin." },

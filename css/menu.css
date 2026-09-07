@@ -176,6 +176,7 @@
   color: rgba(31, 61, 42, 0.4);
 }
 .menu-page--right {
+  position: relative;
   background: var(--menu-page-2);
   cursor: pointer;
 }
@@ -190,6 +191,25 @@
 .menu-page--right img.is-in,
 .menu-page--right video.is-in { opacity: 1; transform: none; }
 .menu-page--right [hidden] { display: none; }
+
+/* Pazar — tencere görseli tam görünür (kırpılmaz) + üstünde el yazısı mesaj */
+.menu-page--right.is-pazar { background: var(--menu-page); }
+.menu-page--right.is-pazar img { object-fit: contain; }
+.menu-page__pazar-msg {
+  position: absolute;
+  left: 50%; top: 45%;
+  transform: translate(-50%, -50%) rotate(-3deg);
+  z-index: 2;
+  width: 56%;
+  text-align: center;
+  font-family: "Dancing Script", var(--font-display), cursive;
+  font-weight: 700;
+  font-size: clamp(1.35rem, 2.7vw + .5svh, 2.7rem);
+  line-height: 1.08;
+  color: #6b1414;
+  text-shadow: 0 1px 7px rgba(255, 252, 240, 0.85);
+  pointer-events: none;
+}
 
 .menu-page__day {
   margin: 0;

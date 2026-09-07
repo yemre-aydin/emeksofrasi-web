@@ -25,6 +25,8 @@
   var leftEl  = document.querySelector("[data-menu-left]");
   var img     = document.querySelector("[data-menu-image]");
   var video   = document.querySelector("[data-menu-video]");
+  var rightPg = document.querySelector("[data-menu-right]");
+  var pazarMsg= document.querySelector("[data-menu-pazar-msg]");
   var tabsWrap= document.querySelector("[data-menu-tabs]");
   var prevBtn = document.querySelector("[data-menu-prev]");
   var nextBtn = document.querySelector("[data-menu-next]");
@@ -104,6 +106,10 @@
     activeIndex = index;
 
     if (leftEl) leftEl.innerHTML = day.kapali ? leftSunday(day) : leftNormal(day);
+
+    /* Pazar: sağ sayfada tencere görseli + üstünde "Güzel Bir Pazar Geçirin" yazısı */
+    if (rightPg) rightPg.classList.toggle("is-pazar", !!day.kapali);
+    if (pazarMsg) pazarMsg.hidden = !day.kapali;
 
     var altTxt = day.ad + (day.kapali ? " — pazar günü" : " günü yemekleri");
 
