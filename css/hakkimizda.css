@@ -213,3 +213,54 @@
     transition-duration: .01ms !important;
   }
 }
+
+/* ==========================================================================
+   FOOTER — diğer sayfalarla aynı görünüm (bu sayfa style.css yüklemiyor)
+   ========================================================================== */
+.site-footer {
+  background: var(--hero-green-3);
+  color: var(--cream-dim);
+  border-top: 1px solid rgba(217, 180, 90, 0.2);
+  padding: clamp(40px, 6vw, 64px) 0 28px;
+  font-family: "Mulish", Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.site-footer .container {
+  width: min(calc(100% - 48px), 1180px);
+  margin-inline: auto;
+}
+.site-footer .footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  margin-bottom: 44px;
+}
+.site-footer .footer-brand img {
+  height: 84px; width: auto;
+  margin-bottom: 12px;
+  background: #faf9f8; padding: 8px; border-radius: 8px;
+}
+.site-footer .footer-brand p { max-width: 34ch; margin: 0; }
+.site-footer h4 {
+  color: var(--cream-text);
+  font-family: "Mulish", Arial, sans-serif;
+  font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  font-size: 0.8rem; margin: 0 0 16px;
+}
+.site-footer ul { list-style: none; display: grid; gap: 10px; margin: 0; padding: 0; }
+.site-footer a { color: var(--cream-dim); text-decoration: none; }
+.site-footer a:hover { color: var(--gold-warm); }
+.site-footer .footer-bottom {
+  border-top: 1px solid rgba(217, 180, 90, 0.15);
+  padding-top: 22px;
+  display: flex; flex-wrap: wrap;
+  gap: 10px 24px; justify-content: space-between;
+  font-size: 0.85rem;
+}
+@media (max-width: 860px) {
+  .site-footer .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+}
+@media (max-width: 520px) {
+  .site-footer .footer-grid { grid-template-columns: 1fr; gap: 26px; }
+}
