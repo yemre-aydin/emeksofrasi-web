@@ -48,9 +48,9 @@
   /* İLK EKRANA SIĞAR + GÖRSEL DOĞAL ORANINDA (yakınlaştırma/kırpma yok):
      yükseklik viewport'a sabit, genişlik görselin oranına göre. */
   height: calc(100svh - var(--header-h) - 34px);
-  aspect-ratio: 1740 / 1500;
+  aspect-ratio: 3 / 2;   /* yeni arka plan görseli (1536×1024) doğal oranı */
   width: auto;
-  max-width: 92vw;
+  max-width: 94vw;
   overflow: hidden;
   background: var(--pk-scrim);
 }
@@ -339,7 +339,7 @@
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
-    object-position: 58% 62%;
+    object-position: 56% 50%;
     z-index: 0;
     clip-path: none;
   }

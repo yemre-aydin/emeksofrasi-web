@@ -66,21 +66,7 @@
   filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.3));
 }
 
-/* Sadece ANA SAYFA: tasarım 4'teki büyük, hero'ya taşan logo */
-.page-index .topbar__inner {
-  padding-left: calc(var(--logo-w) + clamp(20px, 3vw, 46px));
-}
-.page-index .topbar__logo {
-  position: absolute;
-  left: clamp(24px, 4.6vw, 70px);   /* hero metniyle aynı sol hiza */
-  top: 8px;
-  z-index: 3;
-}
-.page-index .topbar__logo img {
-  width: var(--logo-w);
-  height: auto;
-  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.35));
-}
+/* Ana sayfa logosu da diğer sayfalarla aynı boyutta (bkz. .topbar__logo img) */
 
 .site-nav { flex: 1; }
 .site-nav ul {
@@ -249,10 +235,9 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: clamp(8px, 1.4vh, 18px);
-  /* üst padding = taşan logonun altına iner: logo genişliği - header + küçük boşluk
-     alt padding ~0 → yemek kartları çerçevesi kolonun alt kenarı olur */
+  /* alt padding ~0 → yemek kartları çerçevesi kolonun alt kenarı olur */
   padding:
-    calc(var(--logo-w) - var(--header-h) + clamp(10px, 1.4vh, 20px))
+    clamp(20px, 3.6vh, 48px)
     clamp(24px, 2.6vw, 46px)
     0
     clamp(24px, 4.6vw, 70px);
@@ -595,16 +580,6 @@
 /* LAPTOP / TABLET GENİŞLİĞİ — tek kolon */
 @media (max-width: 1100px) {
   :root { --header-h: 68px; --logo-w: clamp(88px, 16vw, 128px); }
-  .page-index .topbar__inner {
-    justify-content: space-between;
-    padding-left: clamp(16px, 4vw, 30px);
-  }
-  .page-index .topbar__logo { position: static; }
-  .page-index .topbar__logo img {
-    width: auto;
-    height: clamp(46px, calc(var(--header-h) - 20px), 62px);
-    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.3));
-  }
 
   /* mobil/tablet: doğal akış — hero'yu ekrana zorlamıyoruz (dikey yığın) */
   .page-home .hero { display: block; min-height: 0; }
