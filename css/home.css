@@ -517,7 +517,15 @@
 /* Hakkımızda */
 .page-home .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
 .page-home .split--reverse .split__media { order: 2; }
-.about-photo { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 14px; border: 1px solid rgba(217, 180, 90, 0.3); display: block; }
+.about-photo {
+  display: block;
+  height: clamp(380px, 54vh, 560px);
+  aspect-ratio: 4 / 5;
+  width: auto; max-width: 100%;
+  margin-inline: auto;
+  object-fit: cover; object-position: center 30%;
+  border-radius: 14px; border: 1px solid rgba(217, 180, 90, 0.3);
+}
 .page-home .split__content p { color: var(--cream-dim); }
 .page-home .split__content em { color: var(--cream-dim); opacity: .8; }
 .page-home .checklist li { color: var(--cream-dim); }
