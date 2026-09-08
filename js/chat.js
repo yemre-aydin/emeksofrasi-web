@@ -223,7 +223,7 @@
 
   function greet() {
     botSay(
-      "Merhaba! Emek Sofrası dijital asistanıyım 🍲\nMenü, saatler, adres, yemek kartları, rezervasyon veya kurumsal sipariş konusunda yardımcı olabilirim."
+      "Merhaba, size nasıl yardımcı olabilirim?"
     );
     defaultChips();
   }

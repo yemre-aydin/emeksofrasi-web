@@ -595,11 +595,14 @@
   .hero__cta { max-width: 100%; }
   .hero__cards { max-width: 100%; }
   .hero__baseline { padding-left: 18px; padding-right: 18px; }
+  /* mobil: görsel TAM görünür (kırpılmaz) — dikey-ağırlıklı kutuya sığdır */
   .page-home .hero__media {
     order: 2; min-height: 0;
-    height: clamp(200px, 40svh, 340px);
+    height: auto; aspect-ratio: 4 / 5;
+    background: var(--hero-green);
   }
-  .hero__media::after { background: linear-gradient(0deg, transparent 78%, var(--hero-green) 100%); }
+  .hero__slide { object-fit: contain; object-position: center; }
+  .hero__media::after { display: none; }
   .hero__leaf { display: none; }
   .page-home .split { grid-template-columns: 1fr; }
   .page-home .split--reverse .split__media { order: 0; }
@@ -618,7 +621,7 @@
   .hero__left { padding-top: clamp(12px, 2.2vh, 20px); gap: clamp(6px, 1.2vh, 12px); }
   .hero__cards { padding: 7px 12px 9px; gap: 5px; }
   .card-logo { height: 20px; }
-  .page-home .hero__media { height: clamp(170px, 32svh, 260px); }
+  .page-home .hero__media { aspect-ratio: 1 / 1; }
   .page-home .info-grid { grid-template-columns: 1fr; }
 }
 /* Çok kısa mobil (375x667 vb.) */
@@ -627,5 +630,4 @@
   .hero__desc { font-size: 0.95rem; line-height: 1.35; }
   .hero__eyebrow { font-size: 0.74rem; }
   .hero__cta { font-size: 0.84rem; padding: 10px 12px; }
-  .page-home .hero__media { height: clamp(130px, 24svh, 180px); }
 }
