@@ -97,13 +97,16 @@
 
     <article class="contact-card">
       <!-- İKONLAR: geçici — Emel'in ikon seti gelince .contact-icon içleri değişecek -->
-      <div class="contact-row">
+      <a class="contact-row"
+         href="https://www.google.com/maps/dir/?api=1&destination=Maslak%20Mahallesi%2C%20Dereboyu%202%20Caddesi%2C%20No%3A%208%2C%20E%20Blok%2C%20Sar%C4%B1yer%2C%20%C4%B0stanbul%2034475"
+         target="_blank" rel="noopener" id="directions_address_cta" data-cta="directions">
         <span class="contact-icon" data-icon="pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg></span>
         <div>
           <h2>ADRES</h2>
           <p>Maslak Mahallesi<br>Dereboyu 2 Caddesi, No: 8, E Blok<br>Sarıyer / İstanbul 34475</p>
         </div>
-      </div>
+        <span class="row-chevron" aria-hidden="true">›</span>
+      </a>
 
       <a class="contact-row" href="tel:+905310219976">
         <span class="contact-icon" data-icon="phone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.3 1l-2.2 2.2z"/></svg></span>
@@ -123,8 +126,8 @@
         <span class="row-chevron" aria-hidden="true">›</span>
       </a>
 
-      <!-- INSTAGRAM: gerçek hesap linki eksik listesinde — geldiğinde href güncellenecek -->
-      <a class="contact-row" href="#" data-needs-link="instagram" aria-disabled="true">
+      <a class="contact-row" href="https://www.instagram.com/emeksofrasimaslak/"
+         target="_blank" rel="noopener" id="instagram_cta" data-cta="instagram">
         <span class="contact-icon" data-icon="instagram" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>
         <div><h2>INSTAGRAM</h2><p>Emek Sofrası Maslak</p></div>
         <span class="row-chevron" aria-hidden="true">›</span>
@@ -162,13 +165,5 @@
 </main>
 
 <script src="js/main.js"></script>
-<script>
-(function () {
-  // Instagram linki gelene kadar tıklamayı engelle
-  document.querySelectorAll('[data-needs-link]').forEach(function (a) {
-    a.addEventListener("click", function (e) { if (a.getAttribute("href") === "#") e.preventDefault(); });
-  });
-})();
-</script>
 </body>
 </html>

@@ -14,6 +14,16 @@
     });
   }
 
+  /* ---------- KPI: [data-cta] tıklamaları dataLayer'a (GA4/Pixel bağlanınca sayılır) ---------- */
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest && e.target.closest("[data-cta]");
+    if (!el) return;
+    (window.dataLayer = window.dataLayer || []).push({
+      event: "cta_click",
+      cta: el.getAttribute("data-cta")
+    });
+  });
+
   /* ---------- Mobil navigasyon (iç sayfalar) ---------- */
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".main-nav");
@@ -67,6 +77,7 @@
   /* ---------- Haftalık menü kartları ---------- */
   (function renderMenu() {
     var host = document.querySelector("[data-menu-grid]");
+    if (!host) return;
     var m = window.WEEKLY_MENU || {};
     var list = m.menuler || [];
 
@@ -74,8 +85,6 @@
     if (week) week.textContent = (m.hafta && m.hafta.trim()) ? m.hafta.trim() : "Bu hafta";
     var note = document.querySelector("[data-menu-note]");
     if (note && m.not) note.textContent = m.not;
-
-    if (!host) return;
     if (!list.length) {
       host.innerHTML =
         '<p class="menu-empty">Bu haftanın menüsü henüz yayınlanmadı. ' +
