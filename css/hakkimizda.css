@@ -141,6 +141,16 @@
   line-height: 1.7;
   color: rgba(255, 255, 255, .94);
 }
+.about-final-slogan {
+  margin: clamp(28px, 4svh, 44px) 0 0;
+  padding-top: clamp(20px, 3svh, 32px);
+  border-top: 1px solid rgba(217, 180, 90, .32);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(22px, 2.1vw, 32px);
+  font-weight: 500; font-style: italic;
+  letter-spacing: 0.02em;
+  color: var(--gold-warm);
+}
 
 /* ==========================================================================
    KISA MASAÜSTÜ — 1366x768 vb.
