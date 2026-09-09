@@ -1,19 +1,22 @@
 /* ==========================================================================
    Emek Sofrası — Menü sayfası
-   Koyu orman yeşili zemin · açık KREM KİTAP (sol=HTML metin, sağ=onaylı yemek
-   görseli) · altın detaylar. home.css (token + header/footer) üzerine biner.
+   Koyu orman yeşili zemin · açık KREM KİTAP · altın detaylar.
+   home.css (token + header/footer) üzerine biner.
 
-   VIEWPORT KURALI: 1366x768'de header + başlık + açık kitap + gün sekmeleri
-   + küçük yemek kartı logoları mümkün olduğunca tek ekranda. svh clamp +
-   yükseklik merdiveni. Gün sekmeleri ile ticket alanı arasında açıklama
-   cümlesi YOK — sadece temiz boşluk.
+   YAPI: Kapalı kitap → tıkla → dikey kaydırmalı AÇIK kitap.
+     Sayfa 1  SOL: Menü 1-2   SAĞ: Menü 3-4
+     Sayfa 2  SOL: Menü 5-6   SAĞ: Menü 7-8
+     Yan Ürünler bandı
+     Pazar    SOL: karşılama mesajları   SAĞ: "kapalıyız" + tencere görseli
+   Mobilde sayfalar tek sütun; Pazar'da sadece sağ taraf görünür.
    ========================================================================== */
 
 :root {
   --menu-page:   #e9ddc0;   /* kitap sayfası kremi */
-  --menu-page-2: #e3d5b4;   /* sayfa gölge tonu */
+  --menu-page-2: #e3d5b4;   /* sağ sayfa tonu */
   --menu-ink:    #1f3d2a;   /* sayfa üzerinde koyu yeşil metin */
   --menu-ink-2:  #3a5140;
+  --menu-gold:   #8a6a26;   /* sayfa üzerinde altın başlık */
 }
 
 .menu-section {
@@ -28,6 +31,8 @@
   flex: 1; min-height: 0;
   display: flex; flex-direction: column; justify-content: center;
 }
+/* kitap açıkken içerik üstten aksın (dikey ortalamayı bırak) */
+.menu-section > .container:has(.menu-open:not([hidden])) { justify-content: flex-start; }
 
 /* ---- Başlık (kompakt) ---- */
 .menu-head { text-align: center; max-width: 640px; margin: 0 auto clamp(8px, 1.6svh, 18px); }
@@ -95,41 +100,27 @@
 }
 
 /* ==========================================================================
-   AÇIK KİTAP
+   AÇIK KİTAP — dikey kaydırmalı çoklu sayfa
    ========================================================================== */
-.menu-open { display: flex; flex-direction: column; flex: 0 1 auto; min-height: 0; }
+.menu-open { display: block; width: 100%; }
 .menu-open[hidden] { display: none; }
 
 .menu-book {
-  flex: 0 1 auto; min-height: 0;
-  display: flex; align-items: center; justify-content: center;
-  gap: clamp(6px, 1.4vw, 18px);
+  display: flex; flex-direction: column; align-items: center;
+  gap: clamp(22px, 4svh, 46px);
+  width: 100%;
+  padding: clamp(10px, 2svh, 24px) 0 clamp(4px, 1svh, 12px);
+  animation: menu-book-in .5s ease both;
 }
-.menu-book__arrow {
-  flex-shrink: 0;
-  width: clamp(34px, 3vw, 42px); height: clamp(34px, 3vw, 42px);
-  border-radius: 50%;
-  display: grid; place-items: center;
-  background: transparent; color: var(--gold-warm);
-  border: 1px solid var(--gold-warm);
-  cursor: pointer;
-  transition: background .2s ease, color .2s ease, opacity .2s ease;
-}
-.menu-book__arrow svg { width: 44%; height: 44%; }
-.menu-book__arrow:hover:not(:disabled) { background: var(--gold-warm); color: var(--hero-ink); }
-.menu-book__arrow:disabled { opacity: 0.3; cursor: default; }
-.menu-book__arrow:focus-visible { outline: 3px solid var(--gold-warm); outline-offset: 2px; }
+@keyframes menu-book-in { from { opacity: 0; transform: translateY(14px); } }
 
 /* --- İki sayfalı açık kitap --- */
-.menu-book__spread {
-  flex: 0 1 auto;
+.menu-spread {
+  width: min(1060px, 94vw);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: min(60svh, 560px);
-  aspect-ratio: 137 / 88;
-  max-width: 92vw;
   background: var(--menu-page);
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow:
     0 30px 60px rgba(0, 0, 0, 0.45),
     inset 0 0 0 1px rgba(120, 92, 45, 0.25);
@@ -137,7 +128,7 @@
   position: relative;
 }
 /* orta cilt gölgesi */
-.menu-book__spread::after {
+.menu-spread::after {
   content: "";
   position: absolute; top: 0; bottom: 0; left: 50%;
   width: 46px; transform: translateX(-50%);
@@ -149,156 +140,101 @@
     rgba(60, 44, 20, 0) 100%);
   pointer-events: none;
 }
-/* yeşil şerit ayraç */
-.menu-book__spread::before {
-  content: "";
-  position: absolute; top: 0; left: clamp(20px, 4%, 44px);
-  width: clamp(16px, 2.4%, 26px); height: clamp(40px, 12%, 74px);
-  background: linear-gradient(180deg, #2c5a3d, #1c3f2a);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
-  z-index: 3;
-}
 
-.menu-page { position: relative; min-width: 0; overflow: hidden; }
-.menu-page--left {
-  padding: clamp(20px, 3vw, 40px) clamp(16px, 2.4vw, 32px) clamp(24px, 3vw, 34px) clamp(24px, 3.6vw, 50px);
-  color: var(--menu-ink);
+.menu-page {
+  min-width: 0;
+  padding: clamp(24px, 3.4vw, 46px) clamp(20px, 2.8vw, 40px);
   display: flex; flex-direction: column;
-  cursor: pointer;
+  gap: clamp(16px, 3vh, 30px);
 }
-.menu-page--left::after {
-  /* alt gravür hissi */
-  content: "EMEK SOFRASI";
-  position: absolute; left: 0; right: 0; bottom: clamp(6px, 1.4vw, 14px);
-  text-align: center;
-  font-family: var(--font-display); letter-spacing: 0.14em;
-  font-size: clamp(0.6rem, 1vw, 0.82rem);
-  color: rgba(31, 61, 42, 0.4);
-}
-.menu-page--right {
-  position: relative;
-  background: var(--menu-page-2);
-  cursor: pointer;
-}
-.menu-page--right img,
-.menu-page--right video {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  display: block;
-  opacity: 0; transform: translateY(8px) scale(.99);
-  transition: opacity .45s ease, transform .5s cubic-bezier(.2,.75,.2,1);
-}
-.menu-page--right img.is-in,
-.menu-page--right video.is-in { opacity: 1; transform: none; }
-.menu-page--right [hidden] { display: none; }
+.menu-page--left  { padding-left: clamp(26px, 4vw, 56px); color: var(--menu-ink); }
+.menu-page--right { padding-right: clamp(26px, 4vw, 56px); background: var(--menu-page-2); color: var(--menu-ink); }
 
-/* Pazar — tencere görseli tam görünür (kırpılmaz) + üstünde el yazısı mesaj */
-.menu-page--right.is-pazar { background: var(--menu-page); }
-.menu-page--right.is-pazar img { object-fit: contain; }
-.menu-page__pazar-msg {
-  position: absolute;
-  left: 50%; top: 43%;
-  transform: translate(-50%, -50%) rotate(-3deg);
-  z-index: 2;
-  width: 52%;
-  text-align: center;
-  font-family: "Dancing Script", var(--font-display), cursive;
-  font-weight: 700;
-  font-size: clamp(1.15rem, 2.3vw + .4svh, 2.35rem);
-  line-height: 1.02;
-  color: #6b1414;
-  text-shadow: 0 1px 7px rgba(255, 252, 240, 0.85);
-  pointer-events: none;
+/* --- Menü kartı --- */
+.menu-card__no {
+  margin: 0 0 clamp(8px, 1.4vh, 14px);
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid rgba(138, 106, 38, 0.5);
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(1rem, 1.1vw + .4svh, 1.4rem);
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--menu-gold);
+}
+.menu-card ul { list-style: none; margin: 0; padding: 0; }
+.menu-card li {
+  font-family: var(--font-display);
+  font-size: clamp(0.92rem, 0.8vw + .35svh, 1.18rem);
+  line-height: 1.6;
+  color: var(--menu-ink);
 }
 
-.menu-page__day {
+/* --- Yan Ürünler bandı --- */
+.menu-extra { width: min(1060px, 94vw); text-align: center; }
+.menu-extra h3 {
+  margin: 0 0 6px;
+  font-family: var(--font-body); font-weight: 800;
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold-warm);
+}
+.menu-extra ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 6px 22px; justify-content: center;
+}
+.menu-extra li {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1vw, 1.15rem);
+  color: var(--cream-dim);
+}
+
+/* --- Pazar sayfası --- */
+.menu-spread--sunday .menu-page--left { justify-content: center; }
+.menu-sunday__msgs {
+  display: flex; flex-direction: column;
+  gap: clamp(12px, 2.4vh, 22px);
+}
+.menu-sunday__title {
   margin: 0;
   font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(1.5rem, 2.4vw + .5svh, 2.9rem);
-  line-height: 1; letter-spacing: 0.02em;
-  text-transform: uppercase;
+  font-size: clamp(1.4rem, 2vw + .5svh, 2.4rem);
+  letter-spacing: 0.04em; text-transform: uppercase;
   color: var(--menu-ink);
 }
-.menu-page__sub {
-  margin: 2px 0 0;
-  font-family: "Dancing Script", var(--font-display), cursive;
-  font-weight: 700;
-  font-size: clamp(1rem, 1.3vw + .3svh, 1.5rem);
-  color: #9a7526;
-}
-.menu-page__orn { display: block; color: #a9832f; margin: clamp(5px, 1svh, 11px) 0 clamp(6px, 1.4svh, 14px); }
-.menu-page__orn svg { width: clamp(64px, 8vw, 96px); height: auto; display: block; }
-
-.menu-page__body {
-  display: flex; flex-direction: column;
-  gap: clamp(6px, 1.4svh, 15px);
-  flex: 1; min-height: 0;
-}
-.menu-grp h3 {
-  margin: 0 0 clamp(2px, 0.5svh, 5px);
+.menu-sunday__msgs .menu-grp { margin: 0; }
+.menu-sunday__msgs h4 {
+  margin: 0 0 2px;
   font-family: var(--font-body); font-weight: 800;
   font-size: clamp(0.62rem, 0.75vw, 0.8rem);
   letter-spacing: 0.16em; text-transform: uppercase;
-  color: #8a6a26;
+  color: var(--menu-gold);
 }
-.menu-grp ul { list-style: none; margin: 0; padding: 0; }
-.menu-grp li {
-  font-family: var(--font-display);
-  font-size: clamp(0.86rem, 0.85vw + .35svh, 1.16rem);
-  line-height: 1.42;
-  color: var(--menu-ink);
-}
-.menu-grp--line {
-  display: flex; align-items: center; gap: 10px;
-}
-.menu-grp--line ul li { font-weight: 600; }
-
-/* Pazar */
-.menu-page__body--sunday { gap: clamp(8px, 2svh, 20px); justify-content: center; }
-.menu-page__body--sunday .menu-grp p {
-  margin: 2px 0 0;
+.menu-sunday__msgs p {
+  margin: 0;
   font-family: var(--font-display);
   font-size: clamp(0.9rem, 0.9vw + .3svh, 1.18rem);
   color: var(--menu-ink-2); line-height: 1.4;
 }
+.menu-spread--sunday .menu-page--right {
+  background: var(--menu-page);
+  align-items: center; justify-content: center; text-align: center;
+}
+.menu-sunday__closed img {
+  display: block; margin: 0 auto;
+  width: 100%; max-width: 300px; height: auto; object-fit: contain;
+}
 .menu-page__closed {
-  margin: clamp(6px, 1.6svh, 16px) 0 0;
+  margin: clamp(8px, 1.6vh, 16px) 0 0;
   font-family: var(--font-body); font-weight: 800;
-  font-size: clamp(0.8rem, 0.9vw, 1rem);
+  font-size: clamp(0.82rem, 0.9vw, 1rem);
   letter-spacing: 0.08em; text-transform: uppercase;
   color: #8c1112;
 }
 
-/* ---- Gün sekmeleri ---- */
-.day-tabs {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-  gap: 6px; flex-shrink: 0;
-  margin: clamp(10px, 2svh, 22px) auto 0;
-  max-width: 96vw;
-}
-.day-tab {
-  font-family: var(--font-body); font-weight: 800;
-  font-size: clamp(0.6rem, 0.7vw, 0.7rem); letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 7px 13px; border-radius: 999px;
-  background: transparent; color: var(--cream-text);
-  border: 1px solid rgba(217, 180, 90, 0.4);
-  cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease;
-  white-space: nowrap;
-}
-.day-tab:hover { border-color: var(--gold-warm); color: var(--gold-warm); }
-.day-tab:focus-visible { outline: 3px solid var(--gold-warm); outline-offset: 2px; }
-.day-tab.is-active { background: var(--gold-warm); color: var(--hero-ink); border-color: var(--gold-warm); }
-
 /* ==========================================================================
-   YEMEK KARTLARI — gün sekmelerinin hemen altında (temiz boşluk, açıklama YOK)
+   YEMEK KARTLARI + ALT BÖLÜM
    ========================================================================== */
-.menu-foot {
-  background: var(--hero-green);
-  padding: clamp(14px, 2.6vw, 30px) 0 clamp(24px, 4vw, 44px);
-}
 .menu-cards {
   display: flex; flex-direction: column; align-items: center; gap: 10px;
-  margin: clamp(12px, 2.6svh, 26px) auto 0; text-align: center;
+  margin: clamp(16px, 3svh, 30px) auto 0; text-align: center;
   flex-shrink: 0;
 }
 .menu-cards__label {
@@ -317,10 +253,13 @@
   border-radius: 12px;
   padding: 11px clamp(14px, 2.4vw, 28px);
 }
-/* daha KÜÇÜK logolar */
 .menu-cards .card-logo { height: 20px; display: inline-flex; align-items: center; }
 .menu-cards .card-logo img { height: 100%; width: auto; display: block; }
 
+.menu-foot {
+  background: var(--hero-green);
+  padding: clamp(14px, 2.6vw, 30px) 0 clamp(24px, 4vw, 44px);
+}
 .menu-afiyet {
   text-align: center; margin: clamp(16px, 3vw, 30px) 0 0;
   font-family: "Dancing Script", var(--font-display), cursive; font-weight: 700;
@@ -330,38 +269,17 @@
 .menu-afiyet span { color: var(--bordo, #8c1112); }
 
 /* ==========================================================================
-   DUYARLI — YÜKSEKLİK MERDİVENİ (masaüstü, 1366x768 vb.)
+   DUYARLI — kısa masaüstü
    ========================================================================== */
-@media (min-width: 781px) and (max-height: 940px) {
-  .menu-section { padding-top: clamp(8px, 1.4svh, 16px); }
-  .menu-head { margin-bottom: clamp(4px, 1svh, 10px); }
-  .menu-head__ornament svg { width: clamp(78px, 9vw, 112px); }
-  .menu-head__eyebrow { font-size: 0.64rem; }
-  .menu-head__title { font-size: clamp(1.7rem, 3vw + .6svh, 2.6rem); }
-  .menu-head__sub { font-size: 0.84rem; margin-top: 3px; }
-  .menu-head__week { margin-top: 4px; }
-  .menu-book__spread { height: min(56svh, 470px); }
-  .day-tabs { margin-top: clamp(8px, 1.6svh, 16px); }
-}
-@media (min-width: 781px) and (max-height: 800px) {
+@media (min-width: 781px) and (max-height: 860px) {
   .menu-head__ornament { display: none; }
   .menu-head__sub { display: none; }
-  .menu-book__spread { height: min(54svh, 430px); aspect-ratio: 142 / 88; }
-  .menu-grp li { line-height: 1.3; }
-  .menu-page__body { gap: clamp(4px, 1svh, 10px); }
-}
-@media (min-width: 781px) and (max-height: 700px) {
-  .menu-head__week { display: none; }
-  .menu-head__title { font-size: clamp(1.5rem, 2.6vw + .4svh, 2rem); }
-  .menu-book__spread { height: min(50svh, 360px); aspect-ratio: 150 / 84; }
-  .menu-page__orn { display: none; }
-  .menu-page__sub { display: none; }
-  .menu-page__body { gap: clamp(3px, 0.8svh, 7px); }
-  .menu-page--left { padding-top: clamp(12px, 2vw, 20px); }
+  .menu-page { gap: clamp(12px, 2.4vh, 22px); padding-top: clamp(20px, 3vw, 34px); padding-bottom: clamp(20px, 3vw, 34px); }
+  .menu-card li { line-height: 1.45; }
 }
 
 /* ==========================================================================
-   MOBİL / DİKEY TABLET (≤780) — kitap dikey yığın, doğal scroll
+   MOBİL / DİKEY TABLET (≤780) — tek sütun, sayfalar alt alta akar
    ========================================================================== */
 @media (max-width: 780px) {
   .menu-head__ornament svg { width: clamp(80px, 20vw, 120px); }
@@ -370,35 +288,30 @@
 
   .menu-closed__trigger img { height: min(52svh, 74vw, 400px); }
 
-  .menu-book { flex-wrap: wrap; }
-  .menu-book__spread {
-    grid-template-columns: 1fr;
-    width: min(440px, 92vw);
-    height: auto;
-    max-height: none;
-    aspect-ratio: auto;
+  /* her yarım sayfa kendi kremi kartı olur: Menü 1-2 / 3-4 / 5-6 / 7-8 / Pazar */
+  .menu-book { gap: clamp(16px, 3svh, 24px); }
+  .menu-spread {
+    display: flex; flex-direction: column;
+    gap: clamp(16px, 3svh, 24px);
+    width: min(460px, 94vw);
+    background: none; box-shadow: none; border-radius: 0;
   }
-  .menu-book__spread::after { display: none; }
-  .menu-book__spread::before { left: 24px; }
-  .menu-page { overflow: visible; }
-  .menu-page--left { order: 1; padding: 24px 22px 30px 40px; }
-  .menu-page--left::after { position: static; margin-top: 14px; }
-  .menu-page--right { order: 2; aspect-ratio: 4 / 5; }
-  .menu-page__body { flex: 0 0 auto; }
-  .menu-book__arrow { order: 3; margin-top: 12px; }
-  .menu-book__arrow--prev { margin-right: auto; }
-  .menu-book__arrow--next { margin-left: auto; }
+  .menu-spread::after { display: none; }
+  .menu-page {
+    background: var(--menu-page);
+    border-radius: 10px;
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(120, 92, 45, 0.25);
+    padding: clamp(24px, 6.5vw, 32px) clamp(22px, 6.5vw, 30px);
+    gap: clamp(16px, 4vw, 24px);
+  }
 
-  .day-tabs {
-    max-width: 94vw; overflow-x: auto; flex-wrap: nowrap;
-    justify-content: flex-start; scrollbar-width: thin;
-    padding-bottom: 3px;
-  }
+  /* Pazar: mobilde sadece sağ taraf ("kapalıyız") görünür */
+  .menu-spread--sunday .menu-page--left { display: none; }
+
   .menu-cards .card-logo { height: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .menu-closed__trigger,
-  .menu-page--right img { transition: none !important; }
-  .menu-page--right img { opacity: 1 !important; transform: none !important; }
+  .menu-closed__trigger { transition: none !important; }
+  .menu-book { animation: none; }
 }

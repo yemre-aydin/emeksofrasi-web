@@ -3,107 +3,44 @@
    --------------------------------------------------------------------------
    HER HAFTA SADECE BU DOSYA GÜNCELLENİR:
    1) "hafta" alanına tarih aralığını yaz.
-   2) Pazartesi–Cumartesi için: "anaYemek", "yanUrunler", "gorselYemek" alanlarını
-      o haftanın menüsüne göre değiştir.  (çorba ve içecek genelde sabittir)
-   3) 3D görseller hazır olduğunda sadece "gorselYemek" yollarını değiştir —
-      kodun geri kalanına dokunmaya gerek yok.
-
-   GÖRSEL ALANLARI
-   - gorselYemek: açık kitabın SAĞ sayfası — sadece yemek görseli (aktif, Seçenek 2)
-   - gorsel:      açık kitabın TAMAMI — sol yazı + sağ yemek, tek parça görsel
-                  (yedek — Seçenek 1'e dönülürse kullanılır, menu.js şu an
-                  bunu okumuyor ama silinmedi)
+   2) "menuler" dizisindeki 8 menünün "kalemler" listelerini o haftaya göre
+      güncelle. Sıra önemli: liste ekranda aynı sırayla görünür.
+   3) Gerekirse "yanUrunler" listesini güncelle.
 
    KURALLAR
    - Sitede FİYAT gösterilmez.
-   - "Kekikli Izgara Tavuk" ve "Izgara Köfte" her gün sabittir (sabitAnaYemekler).
-     Bunları günlük listeye TEKRAR yazma; kod otomatik ekler.
+   - 8 sabit menü (Menü 1–8). Gün kavramı yok.
    - Pazar günü işletme kapalıdır; menü yerine karşılama mesajları gösterilir.
    ========================================================================== */
 
 window.MENU_DATA = {
-  hafta: "Bu hafta",
+  hafta: "7 – 13 Eylül",
 
-  /* Pazartesi – Cumartesi */
-  gunler: [
-    {
-      id: "pazartesi", ad: "Pazartesi",
-      gorselYemek: "images/menu/food-pazartesi.png",
-      gorsel: "images/menu/gun-pazartesi.png",
-      video: "images/menu/Food_commercial_pazartesi.mp4",   /* 3D menü videosu */
-      corba: "Günün Çorbası",
-      anaYemek: "Tavuklu Pilav",
-      yanUrunler: ["Mevsim Salatası"],
-      icecek: "Meşrubat"
-    },
-    {
-      id: "sali", ad: "Salı",
-      gorselYemek: "images/menu/food-sali.png",
-      gorsel: "images/menu/gun-sali.png",
-      video: "images/menu/Food_commercial_sali.mp4",   /* 3D menü videosu */
-      corba: "Günün Çorbası",
-      anaYemek: "Bostan Kebap",
-      yanUrunler: ["Makarna", "Pilav"],
-      icecek: "Meşrubat"
-    },
-    {
-      id: "carsamba", ad: "Çarşamba",
-      gorselYemek: "images/menu/food-carsamba.png",
-      gorsel: "images/menu/gun-carsamba.png",
-      video: "images/menu/Food_commercial_carsamba.mp4",   /* 3D menü videosu */
-      corba: "Günün Çorbası",
-      anaYemek: "Taze Fasulye",
-      yanUrunler: ["Pilav"],
-      icecek: "Meşrubat"
-    },
-    {
-      id: "persembe", ad: "Perşembe",
-      gorselYemek: "images/menu/food-persembe.png",
-      gorsel: "images/menu/gun-persembe.png",
-      video: "images/menu/Food_commercial_persembe.mp4",   /* 3D menü videosu */
-      corba: "Günün Çorbası",
-      anaYemek: "Mantı",
-      yanUrunler: ["Mevsim Salatası", "Pilav"],
-      icecek: "Meşrubat"
-    },
-    {
-      id: "cuma", ad: "Cuma",
-      gorselYemek: "images/menu/food-cuma.png",
-      gorsel: "images/menu/gun-cuma.png",
-      video: "images/menu/Food_commercial_cuma.mp4",   /* 3D menü videosu */
-      corba: "Günün Çorbası",
-      anaYemek: "Köri Soslu Tavuk",
-      yanUrunler: ["Pilav"],
-      icecek: "Meşrubat"
-    },
-    {
-      id: "cumartesi", ad: "Cumartesi",
-      gorselYemek: "images/menu/food-cumartesi.png",
-      gorsel: "images/menu/gun-cumartesi.png",
-      video: "images/menu/Food_commercial_cumartesi.mp4",   /* 3D menü videosu */
-      corba: "Günün Çorbası",
-      anaYemek: "Dana Ciğer",
-      yanUrunler: ["Pilav"],
-      icecek: "Meşrubat"
-    }
+  /* 8 menü — açık kitapta: sol sayfa 1-2 / 5-6, sağ sayfa 3-4 / 7-8 */
+  menuler: [
+    { no: 1, kalemler: ["Günün Çorbası", "Tavuklu Pilav", "Mevsim Salata", "Meşrubat"] },
+    { no: 2, kalemler: ["Günün Çorbası", "Makarna", "Bostan Kebabı", "Meşrubat"] },
+    { no: 3, kalemler: ["Günün Çorbası", "Pilav", "Taze Fasulye", "Meşrubat"] },
+    { no: 4, kalemler: ["Günün Çorbası", "Mantı", "Mevsim Salata", "Meşrubat"] },
+    { no: 5, kalemler: ["Günün Çorbası", "Pilav", "Köri Soslu Tavuk", "Meşrubat"] },
+    { no: 6, kalemler: ["Günün Çorbası", "Pilav", "Dana Ciğer", "Meşrubat"] },
+    { no: 7, kalemler: ["Günün Çorbası", "Pilav", "Kekikli Izgara Tavuk", "Meşrubat"] },
+    { no: 8, kalemler: ["Günün Çorbası", "Pilav", "Izgara Köfte", "Meşrubat"] }
   ],
 
-  /* Her gün sunulan sabit ana yemek seçenekleri */
-  sabitAnaYemekler: ["Kekikli Izgara Tavuk", "Izgara Köfte"],
+  yanUrunler: ["Cacık", "Buharda Pişmiş Sebzeler"],
 
   /* Pazar — restoran kapalı */
   pazar: {
-    id: "pazar", ad: "Pazar",
-    gorselYemek: "images/menu/pazar-gorseli.png",
-    gorsel: "images/menu/pazar-gorseli.png",
-    kapali: true,
+    baslik: "Pazar",
     mesajlar: [
       { baslik: "Günün Dileği", metin: "Güzel bir pazar geçirin." },
       { baslik: "Günün Tadı", metin: "Sevdiklerinizle keyfini çıkarın." },
       { baslik: "Haftanın Daveti", metin: "Yeni haftada soframıza bekleriz." }
     ],
-    kapanis: "Pazar günleri kapalıyız."
+    kapanis: "Pazar günleri kapalıyız.",
+    gorsel: "images/menu/pazar-gorseli.png"
   },
 
-  not: "Kekikli Izgara Tavuk ve Izgara Köfte her gün servis edilir. Menülerimiz günlük olarak değişiklik gösterebilir."
+  not: "Menülerimiz haftalık olarak değişiklik gösterebilir."
 };

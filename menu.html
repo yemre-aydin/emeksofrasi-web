@@ -101,29 +101,9 @@
         </button>
       </div>
 
-      <!-- AÇIK MENÜ -->
+      <!-- AÇIK MENÜ — dikey kaydırmalı açık kitap, JS ile doldurulur -->
       <div class="menu-open" id="menu-open" data-menu-open hidden>
-
-        <div class="menu-book" data-menu-book>
-          <button type="button" class="menu-book__arrow menu-book__arrow--prev" data-menu-prev aria-label="Önceki gün">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-8 7 8 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-
-          <div class="menu-book__spread">
-            <div class="menu-page menu-page--left" data-menu-left></div>
-            <div class="menu-page menu-page--right" data-menu-right>
-              <img data-menu-image src="images/menu/food-pazartesi.png" alt="Pazartesi günü yemekleri" class="is-in">
-              <video data-menu-video muted loop autoplay playsinline preload="metadata" hidden></video>
-              <span class="menu-page__pazar-msg" data-menu-pazar-msg aria-hidden="true" hidden>Güzel Bir<br>Pazar<br>Geçirin</span>
-            </div>
-          </div>
-
-          <button type="button" class="menu-book__arrow menu-book__arrow--next" data-menu-next aria-label="Sonraki gün">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l8 7-8 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-
-        <div class="day-tabs" data-menu-tabs role="tablist" aria-label="Menü günleri"></div>
+        <div class="menu-book" data-menu-book></div>
       </div>
 
       <!-- YEMEK KARTLARI — gün sekmelerinin hemen altında, açıklama cümlesi YOK -->
