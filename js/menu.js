@@ -1,12 +1,11 @@
 /* ==========================================================================
    Emek Sofrası — Menü sayfası
-   - Kapalı kitap (kapak) → tıkla → AÇIK kitap
-   - Açık kitap: dikey kaydırmalı çoklu sayfa (gün / sekme YOK)
-       Sayfa 1 → SOL: Menü 1-2   SAĞ: Menü 3-4
-       Sayfa 2 → SOL: Menü 5-6   SAĞ: Menü 7-8
-       Yan Ürünler bandı
-       Pazar → SOL: karşılama mesajları   SAĞ: "kapalıyız" + tencere görseli
-   - Mobilde sayfalar tek sütun halinde alt alta akar; Pazar'da sadece sağ taraf.
+   - Kapalı kitap (kapak) → tıkla → AÇIK kitap (KARUSEL)
+   - Karusel: sayfalar tek tek gösterilir, sağa/sola kaydırma
+       (ana sayfa hero görselleri gibi — ok · nokta · dokunmatik kaydırma · otomatik)
+       Sayfa 1: Menü 1-2   Sayfa 2: Menü 3-4   Sayfa 3: Menü 5-6
+       Sayfa 4: Menü 7-8 + Yan Ürünler        Sayfa 5: Pazar (kapalı)
+   - Aynı karusel mobilde de çalışır.
    - HER HAFTA sadece js/menu-data.js güncellenir.
    ========================================================================== */
 (function () {
@@ -40,48 +39,116 @@
   }
   function card(m) {
     return '<article class="menu-card">' +
-      '<h3 class="menu-card__no">Menü ' + esc(m.no) + '</h3>' +
+      '<h3 class="menu-card__no">Menü ' + esc(m.no) + "</h3>" +
       "<ul>" + items(m.kalemler) + "</ul>" +
       "</article>";
   }
-  function spread(leftHtml, rightHtml, extra) {
-    return '<div class="menu-spread' + (extra ? " " + extra : "") + '">' +
-      '<div class="menu-page menu-page--left">'  + leftHtml  + "</div>" +
-      '<div class="menu-page menu-page--right">' + rightHtml + "</div>" +
-      "</div>";
+  function slide(inner, extraClass) {
+    return '<div class="menu-slide' + (extraClass ? " " + extraClass : "") + '">' +
+      '<div class="menu-page">' + inner + "</div></div>";
   }
 
   function build() {
     if (built) return;
-    var html = "";
 
-    html += spread(card(menuler[0]) + card(menuler[1]),
-                   card(menuler[2]) + card(menuler[3]));
-    html += spread(card(menuler[4]) + card(menuler[5]),
-                   card(menuler[6]) + card(menuler[7]));
+    var slides = "";
+    slides += slide(card(menuler[0]) + card(menuler[1]));
+    slides += slide(card(menuler[2]) + card(menuler[3]));
+    slides += slide(card(menuler[4]) + card(menuler[5]));
 
+    var page4 = card(menuler[6]) + card(menuler[7]);
     if (DATA.yanUrunler && DATA.yanUrunler.length) {
-      html += '<div class="menu-extra"><h3>Yan Ürünler</h3><ul>' +
+      page4 += '<div class="menu-extra"><h3>Yan Ürünler</h3><ul>' +
         items(DATA.yanUrunler) + "</ul></div>";
     }
+    slides += slide(page4);
 
     var p = DATA.pazar;
     if (p) {
-      var msgs = (p.mesajlar || []).map(function (m) {
-        return '<section class="menu-grp"><h4>' + esc(m.baslik) + "</h4><p>" + esc(m.metin) + "</p></section>";
+      var wishes = (p.mesajlar || []).map(function (m) {
+        return "<p>" + esc(m.metin) + "</p>";
       }).join("");
-      var left = '<div class="menu-sunday__msgs">' +
-        '<h2 class="menu-sunday__title">' + esc(p.baslik || "Pazar") + "</h2>" +
-        msgs + "</div>";
-      var right = '<div class="menu-sunday__closed">' +
-        (p.gorsel ? '<img src="' + esc(p.gorsel) + '" alt="Emek Sofrası — Pazar günü kapalı" loading="lazy">' : "") +
+      var sun =
+        '<h3 class="menu-sunday__title">' + esc(p.baslik || "Pazar") + "</h3>" +
+        (p.gorsel ? '<img class="menu-sunday__img" src="' + esc(p.gorsel) + '" alt="Emek Sofrası — Pazar günü kapalı" loading="lazy">' : "") +
         '<p class="menu-page__closed">' + esc(p.kapanis || "Pazar günleri kapalıyız.") + "</p>" +
-        "</div>";
-      html += spread(left, right, "menu-spread--sunday");
+        (wishes ? '<div class="menu-sunday__wishes">' + wishes + "</div>" : "");
+      slides += slide(sun, "menu-slide--sunday");
     }
 
-    book.innerHTML = html;
+    book.innerHTML =
+      '<div class="menu-carousel" data-menu-carousel>' +
+        '<button type="button" class="menu-carousel__arrow menu-carousel__arrow--prev" data-menu-prev aria-label="Önceki sayfa">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-8 7 8 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        "</button>" +
+        '<div class="menu-carousel__viewport">' +
+          '<div class="menu-carousel__track" data-menu-track>' + slides + "</div>" +
+        "</div>" +
+        '<button type="button" class="menu-carousel__arrow menu-carousel__arrow--next" data-menu-next aria-label="Sonraki sayfa">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l8 7-8 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        "</button>" +
+        '<div class="menu-carousel__dots" data-menu-dots aria-label="Menü sayfaları"></div>' +
+      "</div>";
+
     built = true;
+    initCarousel();
+  }
+
+  function initCarousel() {
+    var track  = book.querySelector("[data-menu-track]");
+    var slides = Array.prototype.slice.call(track.children);
+    var prev   = book.querySelector("[data-menu-prev]");
+    var next   = book.querySelector("[data-menu-next]");
+    var dotsW  = book.querySelector("[data-menu-dots]");
+    if (!track || slides.length < 2) return;
+
+    var index = 0;
+    var timer = null;
+    var interval = 6500;
+
+    var dots = slides.map(function (_, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", (i + 1) + ". sayfa");
+      b.addEventListener("click", function () { go(i); restart(); });
+      dotsW.appendChild(b);
+      return b;
+    });
+
+    function render() {
+      track.style.transform = "translateX(-" + (index * 100) + "%)";
+      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === index); });
+    }
+    function go(i) { index = (i + slides.length) % slides.length; render(); }
+    function start() { if (reduce || timer) return; timer = setInterval(function () { go(index + 1); }, interval); }
+    function stop() { clearInterval(timer); timer = null; }
+    function restart() { stop(); start(); }
+
+    if (prev) prev.addEventListener("click", function () { go(index - 1); restart(); });
+    if (next) next.addEventListener("click", function () { go(index + 1); restart(); });
+
+    var carousel = book.querySelector("[data-menu-carousel]");
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
+    carousel.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); go(index + 1); restart(); }
+      if (e.key === "ArrowLeft")  { e.preventDefault(); go(index - 1); restart(); }
+    });
+
+    /* Dokunmatik kaydırma */
+    var x0 = null;
+    track.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+    track.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+      x0 = null; start();
+    }, { passive: true });
+
+    render();
+    start();
   }
 
   function openBook() {
