@@ -364,8 +364,8 @@
 .hero__slide {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  /* farklı oranlardaki görseller kırpılmadan tam görünür (dikey/yatay hepsi) */
-  object-fit: contain;
+  /* görseller 4:5 kırpılmış (images/hero/slide-*.webp) → cover ile boşluksuz */
+  object-fit: cover;
   object-position: center;
   opacity: 0;
   transition: opacity .8s ease;
@@ -600,12 +600,14 @@
   /* mobil: görsel TAM görünür (kırpılmaz) — sabit yükseklikli kutu.
      NOT: aspect-ratio + align-self:stretch iOS Safari'de 0 yükseklik veriyordu;
      bu yüzden açık height kullanıyoruz. */
+  /* mobil: 4:5 kutu (125vw = tam 4:5), görseller zaten 4:5 → kırpma yok.
+     aspect-ratio kullanmıyoruz (iOS Safari + salt-absolute içerik → 0 yükseklik). */
   .page-home .hero__media {
     order: 2;
     align-self: start;
     width: 100%;
     min-height: 0;
-    height: clamp(340px, 78vw, 460px);
+    height: clamp(400px, 125vw, 600px);
     aspect-ratio: auto;
   }
   .hero__media::after { display: none; }
@@ -627,7 +629,7 @@
   .hero__left { padding-top: clamp(12px, 2.2vh, 20px); gap: clamp(6px, 1.2vh, 12px); }
   .hero__cards { padding: 7px 12px 9px; gap: 5px; }
   .card-logo { height: 20px; }
-  .page-home .hero__media { height: clamp(300px, 84vw, 400px); }
+  .page-home .hero__media { height: clamp(360px, 122vw, 520px); }
   .page-home .info-grid { grid-template-columns: 1fr; }
 }
 /* Çok kısa mobil (375x667 vb.) */
