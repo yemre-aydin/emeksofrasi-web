@@ -358,13 +358,15 @@
   min-height: 340px;
   max-width: none; width: auto; margin: 0;
   align-self: stretch;
+  background: var(--hero-green);
 }
 .hero__slides { position: absolute; inset: 0; }
 .hero__slide {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: 50% 58%;
+  /* farklı oranlardaki görseller kırpılmadan tam görünür (dikey/yatay hepsi) */
+  object-fit: contain;
+  object-position: center;
   opacity: 0;
   transition: opacity .8s ease;
 }
@@ -605,9 +607,7 @@
     min-height: 0;
     height: clamp(340px, 78vw, 460px);
     aspect-ratio: auto;
-    background: var(--hero-green);
   }
-  .hero__slide { object-fit: contain; object-position: center; }
   .hero__media::after { display: none; }
   .hero__leaf { display: none; }
   .page-home .split { grid-template-columns: 1fr; }
