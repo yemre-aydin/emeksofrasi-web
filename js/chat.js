@@ -144,10 +144,13 @@
     } catch (e) { return "s-" + Date.now(); }
   }
   function loadTranscript() {
-    try { return JSON.parse(localStorage.getItem("es_chat_log") || "[]"); } catch (e) { return []; }
+    try {
+      localStorage.removeItem("es_chat_log");
+      return JSON.parse(localStorage.getItem("es_chat_log_v2") || "[]");
+    } catch (e) { return []; }
   }
   function saveTranscript() {
-    try { localStorage.setItem("es_chat_log", JSON.stringify(transcript.slice(-60))); } catch (e) {}
+    try { localStorage.setItem("es_chat_log_v2", JSON.stringify(transcript.slice(-60))); } catch (e) {}
   }
   function todaysDish() {
     var d = window.WEEKLY_DAYS;
