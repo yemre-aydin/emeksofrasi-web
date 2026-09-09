@@ -53,17 +53,18 @@
     return '<div class="menu-slide' + (cls ? " " + cls : "") + '">' + pagesHtml + "</div>";
   }
 
-  /* Kitap sayfası içerikleri */
+  /* Kitap sayfası içerikleri — her menü sayfasının altında Yan Ürünler */
+  function yanUrunler() {
+    if (!DATA.yanUrunler || !DATA.yanUrunler.length) return "";
+    return '<div class="menu-extra"><h3>Yan Ürünler</h3><ul>' + items(DATA.yanUrunler) + "</ul></div>";
+  }
   function pages() {
-    var p4 = card(menuler[6]) + card(menuler[7]);
-    if (DATA.yanUrunler && DATA.yanUrunler.length) {
-      p4 += '<div class="menu-extra"><h3>Yan Ürünler</h3><ul>' + items(DATA.yanUrunler) + "</ul></div>";
-    }
+    var yu = yanUrunler();
     return [
-      card(menuler[0]) + card(menuler[1]),
-      card(menuler[2]) + card(menuler[3]),
-      card(menuler[4]) + card(menuler[5]),
-      p4
+      card(menuler[0]) + card(menuler[1]) + yu,
+      card(menuler[2]) + card(menuler[3]) + yu,
+      card(menuler[4]) + card(menuler[5]) + yu,
+      card(menuler[6]) + card(menuler[7]) + yu
     ];
   }
   function sundayLeft() {
