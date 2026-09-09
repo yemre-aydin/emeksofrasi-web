@@ -120,12 +120,13 @@
 }
 .menu-carousel__viewport {
   overflow: hidden;
-  width: min(1000px, 90vw);
   border-radius: 10px;
   box-shadow:
     0 30px 60px rgba(0, 0, 0, 0.45),
     inset 0 0 0 1px rgba(120, 92, 45, 0.25);
 }
+.menu-carousel--spread .menu-carousel__viewport { width: min(1120px, 92vw); }
+.menu-carousel--single .menu-carousel__viewport { width: min(1000px, 90vw); }
 .menu-carousel__track {
   display: flex;
   transition: transform .5s cubic-bezier(.2, .75, .2, 1);
@@ -134,18 +135,36 @@
   flex: 0 0 100%;
   min-width: 0;
   display: flex;
+  position: relative;
+}
+/* masaüstü: iki kitap sayfası yan yana — orta cilt gölgesi */
+.menu-carousel--spread .menu-slide::after {
+  content: "";
+  position: absolute; top: 0; bottom: 0; left: 50%;
+  width: 46px; transform: translateX(-50%);
+  background: linear-gradient(90deg,
+    rgba(60, 44, 20, 0) 0%,
+    rgba(60, 44, 20, 0.16) 38%,
+    rgba(60, 44, 20, 0.24) 50%,
+    rgba(60, 44, 20, 0.16) 62%,
+    rgba(60, 44, 20, 0) 100%);
+  pointer-events: none; z-index: 2;
 }
 
 /* --- Kitap sayfası --- */
 .menu-page {
-  flex: 1; min-width: 0;
+  flex: 1 1 50%; min-width: 0;
   background: var(--menu-page);
   color: var(--menu-ink);
-  padding: clamp(26px, 4vw, 52px) clamp(24px, 5vw, 68px);
+  padding: clamp(26px, 3vw, 48px) clamp(24px, 3.4vw, 54px);
   min-height: clamp(370px, 52svh, 520px);
   display: flex; flex-direction: column; justify-content: center;
   gap: clamp(16px, 3vh, 30px);
 }
+.menu-carousel--single .menu-page { flex: 1 1 100%; padding-inline: clamp(24px, 5vw, 68px); }
+.menu-page--r { background: var(--menu-page-2); }
+.menu-page--l { padding-left: clamp(28px, 4vw, 64px); }
+.menu-page--r { padding-right: clamp(28px, 4vw, 64px); }
 
 /* --- Menü kartı --- */
 .menu-card__no {
@@ -184,7 +203,7 @@
 }
 
 /* --- Pazar sayfası --- */
-.menu-slide--sunday .menu-page { text-align: center; align-items: center; }
+.menu-slide--sunday .menu-page { text-align: center; align-items: center; background: var(--menu-page); }
 .menu-sunday__title {
   margin: 0;
   font-family: var(--font-display); font-weight: 800;
@@ -296,7 +315,7 @@
 }
 
 /* ==========================================================================
-   MOBİL / DİKEY TABLET (≤780) — aynı karusel, daralan sayfa
+   MOBİL / DİKEY TABLET (≤780) — tek sayfalı karusel (JS: menu-carousel--single)
    ========================================================================== */
 @media (max-width: 780px) {
   .menu-head__ornament svg { width: clamp(80px, 20vw, 120px); }
@@ -306,9 +325,9 @@
   .menu-closed__trigger img { height: min(52svh, 74vw, 400px); }
 
   .menu-carousel { gap: 2px; }
-  .menu-carousel__viewport { width: min(420px, 80vw); }
+  .menu-carousel--single .menu-carousel__viewport { width: min(420px, 80vw); }
   .menu-carousel__arrow { width: 32px; height: 32px; }
-  .menu-page {
+  .menu-carousel--single .menu-page {
     padding: clamp(26px, 8vw, 40px) clamp(22px, 7vw, 34px);
     min-height: clamp(340px, 56svh, 480px);
     gap: clamp(16px, 5vw, 26px);

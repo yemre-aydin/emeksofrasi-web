@@ -1,11 +1,13 @@
 /* ==========================================================================
    Emek Sofrası — Menü sayfası
    - Kapalı kitap (kapak) → tıkla → AÇIK kitap (KARUSEL)
-   - Karusel: sayfalar tek tek gösterilir, sağa/sola kaydırma
-       (ana sayfa hero görselleri gibi — ok · nokta · dokunmatik kaydırma · otomatik)
-       Sayfa 1: Menü 1-2   Sayfa 2: Menü 3-4   Sayfa 3: Menü 5-6
-       Sayfa 4: Menü 7-8 + Yan Ürünler        Sayfa 5: Pazar (kapalı)
-   - Aynı karusel mobilde de çalışır.
+   - MASAÜSTÜ: her karusel sayfasında İKİ kitap sayfası yan yana (açık kitap)
+       Sayfa 1: sol Menü 1-2 / sağ Menü 3-4
+       Sayfa 2: sol Menü 5-6 / sağ Menü 7-8 + Yan Ürünler
+       Sayfa 3: sol Pazar mesajları / sağ "kapalıyız" + tencere
+   - MOBİL: ekran dar → her karusel sayfasında TEK kitap sayfası
+       Menü 1-2 · Menü 3-4 · Menü 5-6 · Menü 7-8+Yan Ürünler · Pazar (kapalı)
+   - Ok · nokta · dokunmatik kaydırma · otomatik geçiş (ana sayfa hero gibi)
    - HER HAFTA sadece js/menu-data.js güncellenir.
    ========================================================================== */
 (function () {
@@ -23,6 +25,7 @@
   if (!open || !book || menuler.length < 8) return;
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var mobileMq = window.matchMedia("(max-width: 780px)");
   var built = false;
 
   if (weekEl && DATA.hafta) weekEl.textContent = DATA.hafta;
@@ -43,46 +46,65 @@
       "<ul>" + items(m.kalemler) + "</ul>" +
       "</article>";
   }
-  function slide(inner, extraClass) {
-    return '<div class="menu-slide' + (extraClass ? " " + extraClass : "") + '">' +
-      '<div class="menu-page">' + inner + "</div></div>";
+  function pageEl(inner, cls) {
+    return '<div class="menu-page' + (cls ? " " + cls : "") + '">' + inner + "</div>";
+  }
+  function slideEl(pagesHtml, cls) {
+    return '<div class="menu-slide' + (cls ? " " + cls : "") + '">' + pagesHtml + "</div>";
+  }
+
+  /* Kitap sayfası içerikleri */
+  function pages() {
+    var p4 = card(menuler[6]) + card(menuler[7]);
+    if (DATA.yanUrunler && DATA.yanUrunler.length) {
+      p4 += '<div class="menu-extra"><h3>Yan Ürünler</h3><ul>' + items(DATA.yanUrunler) + "</ul></div>";
+    }
+    return [
+      card(menuler[0]) + card(menuler[1]),
+      card(menuler[2]) + card(menuler[3]),
+      card(menuler[4]) + card(menuler[5]),
+      p4
+    ];
+  }
+  function sundayLeft() {
+    var p = DATA.pazar || {};
+    var wishes = (p.mesajlar || []).map(function (m) { return "<p>" + esc(m.metin) + "</p>"; }).join("");
+    return '<h3 class="menu-sunday__title">' + esc(p.baslik || "Pazar") + "</h3>" +
+      (wishes ? '<div class="menu-sunday__wishes">' + wishes + "</div>" : "");
+  }
+  function sundayRight() {
+    var p = DATA.pazar || {};
+    return (p.gorsel ? '<img class="menu-sunday__img" src="' + esc(p.gorsel) + '" alt="Emek Sofrası — Pazar günü kapalı" loading="lazy">' : "") +
+      '<p class="menu-page__closed">' + esc(p.kapanis || "Pazar günleri kapalıyız.") + "</p>";
   }
 
   function build() {
-    if (built) return;
+    var mobile = mobileMq.matches;
+    var pg = pages();
+    var slides;
 
-    var slides = "";
-    slides += slide(card(menuler[0]) + card(menuler[1]));
-    slides += slide(card(menuler[2]) + card(menuler[3]));
-    slides += slide(card(menuler[4]) + card(menuler[5]));
-
-    var page4 = card(menuler[6]) + card(menuler[7]);
-    if (DATA.yanUrunler && DATA.yanUrunler.length) {
-      page4 += '<div class="menu-extra"><h3>Yan Ürünler</h3><ul>' +
-        items(DATA.yanUrunler) + "</ul></div>";
-    }
-    slides += slide(page4);
-
-    var p = DATA.pazar;
-    if (p) {
-      var wishes = (p.mesajlar || []).map(function (m) {
-        return "<p>" + esc(m.metin) + "</p>";
-      }).join("");
-      var sun =
-        '<h3 class="menu-sunday__title">' + esc(p.baslik || "Pazar") + "</h3>" +
-        (p.gorsel ? '<img class="menu-sunday__img" src="' + esc(p.gorsel) + '" alt="Emek Sofrası — Pazar günü kapalı" loading="lazy">' : "") +
-        '<p class="menu-page__closed">' + esc(p.kapanis || "Pazar günleri kapalıyız.") + "</p>" +
-        (wishes ? '<div class="menu-sunday__wishes">' + wishes + "</div>" : "");
-      slides += slide(sun, "menu-slide--sunday");
+    if (mobile) {
+      slides = pg.map(function (html) { return slideEl(pageEl(html)); });
+      slides.push(slideEl(pageEl(sundayRight(), "menu-page--sunday"), "menu-slide--sunday"));
+    } else {
+      slides = [
+        slideEl(pageEl(pg[0], "menu-page--l") + pageEl(pg[1], "menu-page--r")),
+        slideEl(pageEl(pg[2], "menu-page--l") + pageEl(pg[3], "menu-page--r")),
+        slideEl(
+          pageEl(sundayLeft(), "menu-page--l menu-page--sunday") +
+          pageEl(sundayRight(), "menu-page--r menu-page--sunday"),
+          "menu-slide--sunday"
+        )
+      ];
     }
 
     book.innerHTML =
-      '<div class="menu-carousel" data-menu-carousel>' +
+      '<div class="menu-carousel' + (mobile ? " menu-carousel--single" : " menu-carousel--spread") + '" data-menu-carousel>' +
         '<button type="button" class="menu-carousel__arrow menu-carousel__arrow--prev" data-menu-prev aria-label="Önceki sayfa">' +
           '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-8 7 8 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
         "</button>" +
         '<div class="menu-carousel__viewport">' +
-          '<div class="menu-carousel__track" data-menu-track>' + slides + "</div>" +
+          '<div class="menu-carousel__track" data-menu-track>' + slides.join("") + "</div>" +
         "</div>" +
         '<button type="button" class="menu-carousel__arrow menu-carousel__arrow--next" data-menu-next aria-label="Sonraki sayfa">' +
           '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l8 7-8 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
@@ -137,7 +159,6 @@
       if (e.key === "ArrowLeft")  { e.preventDefault(); go(index - 1); restart(); }
     });
 
-    /* Dokunmatik kaydırma */
     var x0 = null;
     track.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
     track.addEventListener("touchend", function (e) {
@@ -150,6 +171,11 @@
     render();
     start();
   }
+
+  /* Masaüstü ↔ mobil geçişinde kitap açıksa yeniden kur */
+  var mqHandler = function () { if (built && !open.hidden) build(); };
+  if (mobileMq.addEventListener) mobileMq.addEventListener("change", mqHandler);
+  else if (mobileMq.addListener) mobileMq.addListener(mqHandler);
 
   function openBook() {
     build();
