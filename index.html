@@ -26,6 +26,7 @@
 
 <!-- Çerez onayı + izne bağlı takip (Meta Pixel / GA4) — kimlikler js/consent.js CONFIG'inde -->
 <script src="js/consent.js" defer></script>
+<script src="js/cta.js" defer></script>
 
 <script type="application/ld+json">
 {
@@ -35,6 +36,7 @@
   "servesCuisine": "Türk ev yemekleri",
   "image": "https://emeksofrasi.com/images/emek_sofrasi_logo.png",
   "url": "https://emeksofrasi.com/",
+  "sameAs": ["https://www.instagram.com/emeksofrasimaslak/"],
   "telephone": "+90-531-021-99-76",
   "address": {
     "@type": "PostalAddress",
@@ -44,6 +46,8 @@
     "postalCode": "34475",
     "addressCountry": "TR"
   },
+  "geo": { "@type": "GeoCoordinates", "latitude": 41.111447, "longitude": 29.020964 },
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=41.111447%2C29.020964",
   "openingHoursSpecification": [{
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
@@ -73,7 +77,7 @@
     </nav>
 
     <a class="wa-btn wa-btn--img" id="whatsapp_cta" data-cta="whatsapp"
-       href="https://wa.me/905310219976?text=Merhaba%2C%20Emek%20Sofras%C4%B1'na%20yazmak%20istiyorum."
+       href="https://wa.me/905310219976?text=Merhaba%2C%20bug%C3%BCn%C3%BCn%20men%C3%BCs%C3%BCn%C3%BC%20%C3%B6%C4%9Frenebilir%20miyim%3F"
        target="_blank" rel="noopener" aria-label="WhatsApp ile İletişime Geç">
       <img class="wa-btn__img" src="images/whatsapp-butonu.webp"
            alt="WhatsApp ile İletişime Geç" width="767" height="240">
@@ -92,7 +96,7 @@
       <li><a href="paket-servis.html">Paket Servis <small>· Yakında</small></a></li>
       <li><a href="toplanti-yemekleri.html">Toplantı Yemekleri <small>· Yakında</small></a></li>
       <li><a href="iletisim.html">İletişim</a></li>
-      <li><a href="https://wa.me/905310219976" target="_blank" rel="noopener">WhatsApp ile İletişime Geç</a></li>
+      <li><a href="https://wa.me/905310219976?text=Merhaba%2C%20bug%C3%BCn%C3%BCn%20men%C3%BCs%C3%BCn%C3%BC%20%C3%B6%C4%9Frenebilir%20miyim%3F" target="_blank" rel="noopener">WhatsApp ile İletişime Geç</a></li>
     </ul>
   </nav>
 </header>
@@ -259,13 +263,13 @@
           <svg class="info-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg>
           <h3>Adres</h3>
           <p>Maslak Mah. Dere Boyu 2. Cad.<br>No:8 E Blok, 34475 Sarıyer / İstanbul</p>
-          <p><a href="https://www.google.com/maps/search/?api=1&query=Emek+Sofras%C4%B1+Maslak+Dere+Boyu+2.+Cadde+No+8" target="_blank" rel="noopener">Yol tarifi al →</a></p>
+          <p><a href="https://www.google.com/maps/search/?api=1&query=41.111447%2C29.020964" target="_blank" rel="noopener">Yol tarifi al →</a></p>
         </div>
         <div class="info-card">
           <svg class="info-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.53 15.53 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
           <h3>Telefon &amp; WhatsApp</h3>
           <p><a href="tel:+905310219976">0531 021 99 76</a></p>
-          <p><a href="https://wa.me/905310219976" target="_blank" rel="noopener">WhatsApp'tan yazın →</a></p>
+          <p><a href="https://wa.me/905310219976?text=Merhaba%2C%20bug%C3%BCn%C3%BCn%20men%C3%BCs%C3%BCn%C3%BC%20%C3%B6%C4%9Frenebilir%20miyim%3F" target="_blank" rel="noopener">WhatsApp'tan yazın →</a></p>
         </div>
         <div class="info-card">
           <svg class="info-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
@@ -295,7 +299,7 @@
       <div class="map-embed">
         <iframe
           title="Emek Sofrası konum haritası"
-          src="https://www.google.com/maps?q=Maslak%20Mah.%20Dere%20Boyu%202.%20Cad.%20No%3A8%20Sar%C4%B1yer%20%C4%B0stanbul&output=embed"
+          src="https://www.google.com/maps?q=41.111447,29.020964&output=embed"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
@@ -311,6 +315,9 @@
       <div class="footer-brand">
         <img src="images/emek_sofrasi_logo.png" alt="Emek Sofrası logosu">
         <p>Maslak'ta el emeği ev lezzeti. Her gün özenle hazırlanan, sıcak ve doyurucu menüler.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/emeksofrasimaslak/" target="_blank" rel="noopener" aria-label="Instagram" data-cta="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a>
+        </div>
       </div>
       <div>
         <h4>Sayfalar</h4>
@@ -327,7 +334,7 @@
         <h4>İletişim</h4>
         <ul>
           <li><a href="tel:+905310219976">0531 021 99 76</a></li>
-          <li><a href="https://wa.me/905310219976" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://wa.me/905310219976?text=Merhaba%2C%20bug%C3%BCn%C3%BCn%20men%C3%BCs%C3%BCn%C3%BC%20%C3%B6%C4%9Frenebilir%20miyim%3F" target="_blank" rel="noopener">WhatsApp</a></li>
           <li><a href="mailto:emeksofrasimaslak@gmail.com">emeksofrasimaslak@gmail.com</a></li>
           <li>Pzt–Cmt 08:30–19:00 · Pazar kapalı</li>
         </ul>
@@ -338,7 +345,7 @@
           <li>Maslak Mah. Dere Boyu 2. Cad.</li>
           <li>No:8 E Blok, 34475</li>
           <li>Sarıyer / İstanbul</li>
-          <li><a href="https://www.google.com/maps/search/?api=1&query=Emek+Sofras%C4%B1+Maslak+Dere+Boyu+2.+Cadde+No+8" target="_blank" rel="noopener">Haritada aç</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=41.111447%2C29.020964" target="_blank" rel="noopener">Haritada aç</a></li>
         </ul>
       </div>
     </div>
