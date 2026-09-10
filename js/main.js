@@ -14,14 +14,17 @@
     });
   }
 
-  /* ---------- KPI: [data-cta] tıklamaları dataLayer'a (GA4/Pixel bağlanınca sayılır) ---------- */
+  /* ---------- KPI: [data-cta] tıklamaları — GA4 + Meta Pixel'e (izin verildiyse) ---------- */
   document.addEventListener("click", function (e) {
     var el = e.target.closest && e.target.closest("[data-cta]");
     if (!el) return;
-    (window.dataLayer = window.dataLayer || []).push({
-      event: "cta_click",
-      cta: el.getAttribute("data-cta")
-    });
+    var cta = el.getAttribute("data-cta");
+    (window.dataLayer = window.dataLayer || []).push({ event: "cta_click", cta: cta });
+    if (typeof window.gtag === "function") window.gtag("event", "cta_click", { cta_name: cta });
+    if (typeof window.fbq === "function") {
+      if (cta === "whatsapp") window.fbq("track", "Contact");
+      else window.fbq("trackCustom", "CtaClick", { cta: cta });
+    }
   });
 
   /* ---------- Mobil navigasyon (iç sayfalar) ---------- */

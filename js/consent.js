@@ -13,7 +13,7 @@
 
   var CONFIG = {
     pixelId: "1627919535723501",   /* Meta Pixel ID */
-    gaId: ""                        /* GA4 Ölçüm Kimliği (G-XXXXXXXXXX) — gelince buraya */
+    gaId: "G-1KFMR5JS1X"           /* GA4 Ölçüm Kimliği */
   };
 
   var KEY = "es_cookie_consent";
