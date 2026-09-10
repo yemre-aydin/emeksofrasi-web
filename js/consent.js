@@ -62,24 +62,26 @@
     var st = document.createElement("style");
     st.id = "es-consent-style";
     st.textContent = [
+      /* Krem zemin + koyu yeşil metin + yeşil buton — sayfanın koyu yeşil
+         footer'ında göze çarpsın diye zıt renk (Emel geri bildirimi 2026-09-10). */
       '#es-consent{position:fixed;left:18px;bottom:18px;z-index:2147483000;',
-      'width:min(390px,calc(100vw - 36px));background:#04210f;color:#fdf9ef;',
-      'border:1px solid rgba(224,192,124,.35);border-radius:14px;',
-      'box-shadow:0 18px 46px rgba(0,0,0,.45);padding:18px 18px 16px;',
+      'width:min(390px,calc(100vw - 36px));background:#fdf9ef;color:#1f3d2a;',
+      'border:1px solid #04210f;border-radius:14px;',
+      'box-shadow:0 16px 44px rgba(0,0,0,.4);padding:18px 18px 16px;',
       'font-family:"Mulish",system-ui,sans-serif;font-size:.9rem;line-height:1.5;',
       'max-height:80vh;overflow-y:auto;animation:es-consent-in .35s ease both}',
       '@keyframes es-consent-in{from{opacity:0;transform:translateY(14px)}}',
       '#es-consent p{margin:0 0 12px}',
-      '#es-consent a{color:#e0c07c}',
+      '#es-consent a{color:#1c5d48;font-weight:700}',
       '#es-consent .es-consent-row{display:flex;gap:10px;flex-wrap:wrap}',
       '#es-consent button{flex:1 1 130px;cursor:pointer;font-family:inherit;',
       'font-weight:800;font-size:.86rem;border-radius:9px;padding:11px 14px;',
       'border:1px solid transparent;transition:transform .15s ease}',
       '#es-consent button:hover{transform:translateY(-1px)}',
-      '#es-consent .es-consent-accept{background:#e0c07c;color:#04210f}',
-      '#es-consent .es-consent-reject{background:transparent;color:#fdf9ef;',
-      'border-color:rgba(253,249,239,.4)}',
-      '#es-consent button:focus-visible{outline:3px solid #e0c07c;outline-offset:2px}',
+      '#es-consent .es-consent-accept{background:#04210f;color:#fdf9ef}',
+      '#es-consent .es-consent-reject{background:transparent;color:#04210f;',
+      'border-color:#04210f}',
+      '#es-consent button:focus-visible{outline:3px solid #04210f;outline-offset:2px}',
       '@media (max-width:480px){#es-consent{left:12px;right:12px;bottom:12px;width:auto}}',
       '@media (prefers-reduced-motion:reduce){#es-consent{animation:none}}',
       /* onay kutusu açıkken sohbet balonunu gizle (üst üste binmesin) */
